@@ -49,9 +49,9 @@
 <div class="hero-copy">
 <div class="eyebrow">CARE, IN EVERY DETAIL</div>
 <h1><span>حماية تليق</span><span>بتفاصيل <em>سيارتك.</em></span></h1>
-<p class="hero-desc">اختَر العناية المناسبة من السيارة نفسها. اضغط على الزجاج للعازل الحراري، أو على الهيكل لاستكشاف حماية الطلاء PPF.</p>
+<p class="hero-desc">اختَر العناية من السيارة نفسها: من حماية الطلاء والشمعات إلى تفاصيل المقصورة والدعسات.</p>
 <div class="actions"><a class="btn" href="#stage">ابدأ التجربة <span class="arrow">←</span></a><a class="text-link" href="#protection">اكتشف خدماتنا <b>←</b></a></div>
-<div class="hero-notes"><div class="note"><i>01</i><span>حماية الطلاء PPF</span></div><div class="note"><i>02</i><span>عازل حراري للزجاج</span></div></div>
+<div class="hero-notes"><div class="note"><i>01</i><span>حماية خارجية</span></div><div class="note"><i>02</i><span>تفاصيل المقصورة</span></div></div>
 </div>
 <div class="stage" id="stage" aria-label="اختر الخدمة من السيارة">
 <div class="stage-glow"></div><div class="stage-ring"></div>
@@ -154,12 +154,12 @@ try{
   group.add(car);
   const bounds=new THREE.Box3().setFromObject(car),size=bounds.getSize(new THREE.Vector3());
   const center=bounds.getCenter(new THREE.Vector3()),height=size.y;
-  const glassBounds=new THREE.Box3(),lampBounds=new THREE.Box3(),interiorBounds=new THREE.Box3(),seatBounds=new THREE.Box3(),floorBounds=new THREE.Box3();let glassFound=false,lampFound=false,seatFound=false,floorFound=false;const windowMaterials=new Map();
-  car.traverse(node=>{if(!node.isMesh)return;const materials=Array.isArray(node.material)?node.material:[node.material];const names=[node.name,...materials.map(m=>m.name)].join(' ').toLowerCase();const box=new THREE.Box3().setFromObject(node);if(materials.some(m=>m.name==='Mesheswindows1Mtl')){glassBounds.union(box);glassFound=true;materials.forEach(m=>{if(m.name==='Mesheswindows1Mtl'&&!windowMaterials.has(m))windowMaterials.set(m,{transparent:m.transparent,opacity:m.opacity,depthWrite:m.depthWrite})})}if(/head.?light|lamp|led/.test(names)){lampBounds.union(box);lampFound=true}if(/seat|uphol|interior|cabin/.test(names)){seatBounds.union(box);interiorBounds.union(box);seatFound=true}if(/floor|carpet|mat|footwell/.test(names)){floorBounds.union(box);interiorBounds.union(box);floorFound=true}});
+  const glassBounds=new THREE.Box3(),lampBounds=new THREE.Box3();let glassFound=false,lampFound=false;const windowMaterials=new Map(),windowNodes=[];
+  car.traverse(node=>{if(!node.isMesh)return;const materials=Array.isArray(node.material)?node.material:[node.material];const names=[node.name,...materials.map(m=>m.name)].join(' ').toLowerCase();const box=new THREE.Box3().setFromObject(node);if(materials.some(m=>m.name==='Mesheswindows1Mtl')){glassBounds.union(box);glassFound=true;windowNodes.push(node);materials.forEach(m=>{if(m.name==='Mesheswindows1Mtl'&&!windowMaterials.has(m))windowMaterials.set(m,{transparent:m.transparent,opacity:m.opacity,depthWrite:m.depthWrite})})}if(/head.?light|lamp|led/.test(names)){lampBounds.union(box);lampFound=true}});
   const glassCenter=glassFound?glassBounds.getCenter(new THREE.Vector3()):new THREE.Vector3(center.x,height*.7,center.z);
   const lampCenter=lampFound?lampBounds.getCenter(new THREE.Vector3()):new THREE.Vector3(center.x,height*.36,center.z+size.z*.44);
-  const seatCenter=seatFound?seatBounds.getCenter(new THREE.Vector3()):new THREE.Vector3(center.x,height*.58,center.z);
-  const floorCenter=floorFound?floorBounds.getCenter(new THREE.Vector3()):new THREE.Vector3(center.x,height*.13,center.z);
+  const seatCenter=glassCenter.clone();seatCenter.y=Math.max(height*.48,glassCenter.y-height*.12);
+  const floorCenter=glassCenter.clone();floorCenter.y=Math.max(height*.18,glassCenter.y-height*.42);
   const baseDistance=Math.max(7.1,Math.max(size.x,size.z)*1.75);
   const homeCamera=new THREE.Vector3(baseDistance*.64,baseDistance*.3,baseDistance*.76);
   const desiredCamera=homeCamera.clone(),currentLook=new THREE.Vector3(center.x,height*.32,center.z),desiredLook=currentLook.clone();
@@ -181,9 +181,9 @@ try{
     else if(kind==='ppf'){desiredCamera.set(center.x+Math.max(size.x*.86,2.1),Math.max(height*.62,1.15),center.z+Math.max(size.z*.72,1.9));desiredLook.set(center.x+size.x*.24,height*.26,center.z);}
     else if(kind==='lamps'){const view=homeCamera.clone().sub(center).normalize();desiredLook.copy(lampCenter);desiredCamera.copy(lampCenter).addScaledVector(view,Math.max(1.45,baseDistance*.24));}
     else if(kind==='edges'){desiredLook.set(center.x+size.x*.24,height*.25,center.z+size.z*.06);desiredCamera.set(center.x+Math.max(size.x*.77,1.5),height*.32,center.z+size.z*.12);}
-    else if(kind==='mats'||kind==='upholstery'){const focus=kind==='mats'?floorCenter:seatCenter;const view=homeCamera.clone().sub(center).normalize();desiredLook.copy(focus);desiredCamera.copy(focus).addScaledVector(view,Math.max(1.7,baseDistance*.29));desiredCamera.y=Math.max(desiredCamera.y,focus.y+(kind==='mats'?.65:.35));}
+    else if(kind==='mats'||kind==='upholstery'){const focus=kind==='mats'?floorCenter:seatCenter;const view=homeCamera.clone().sub(center).normalize();desiredLook.copy(focus);desiredCamera.copy(focus).addScaledVector(view,Math.max(1.7,baseDistance*.29));desiredCamera.y=Math.max(desiredCamera.y,focus.y+(kind==='mats'?1.05:.55));}
     else{desiredCamera.copy(homeCamera);desiredLook.set(center.x,height*.32,center.z);}
-    const showInterior=kind==='mats'||kind==='upholstery';windowMaterials.forEach((original,material)=>{if(showInterior){material.transparent=true;material.opacity=Math.min(original.opacity,.12);material.depthWrite=false;material.needsUpdate=true}else{material.transparent=original.transparent;material.opacity=original.opacity;material.depthWrite=original.depthWrite;material.needsUpdate=true}});
+    const showInterior=kind==='mats'||kind==='upholstery';windowNodes.forEach(node=>node.visible=!showInterior);windowMaterials.forEach((original,material)=>{if(showInterior){material.transparent=true;material.opacity=Math.min(original.opacity,.12);material.depthWrite=false;material.needsUpdate=true}else{material.transparent=original.transparent;material.opacity=original.opacity;material.depthWrite=original.depthWrite;material.needsUpdate=true}});
   });
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   function animate(){requestAnimationFrame(animate);camera.position.lerp(desiredCamera,reduced?.2:.045);currentLook.lerp(desiredLook,reduced?.2:.055);camera.lookAt(currentLook);group.rotation.y+=(targetY+(reduced?0:pointerX*.16)-group.rotation.y)*(reduced?.22:.045);group.rotation.x+=(targetX+(reduced?0:pointerY*-.06)-group.rotation.x)*(reduced?.22:.045);renderer.render(scene,camera)}
