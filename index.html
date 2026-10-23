@@ -146,7 +146,7 @@ try{
   const modelURL='https://cdn.jsdelivr.net/gh/lukaizj/car-mod-saas@2a4cbf3b06769d7dff84bfdd3d1f445ef672be1a/public/models/bmw-m4.optimized.glb';
   const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);const gltf=await loader.loadAsync(modelURL);
   const car=gltf.scene;
-  car.traverse(node=>{if(node.isMesh){node.castShadow=true;node.receiveShadow=true;const mats=Array.isArray(node.material)?node.material:[node.material];if(mats.some(m=>m.name==='Mesheslivery1Mtl'||m.name==='Mesheslogo11Mtl'))node.visible=false;mats.forEach(m=>{if(m.name==='Meshesbody151Mtl'||m.name==='Mesheszx1Mtl'){m.color?.set('#db542c');m.metalness=.62;m.roughness=.25;if('clearcoat'in m){m.clearcoat=.9;m.clearcoatRoughness=.16}}if('envMapIntensity'in m)m.envMapIntensity=1.15})}});
+  car.traverse(node=>{if(node.isMesh){node.castShadow=true;node.receiveShadow=true;const mats=Array.isArray(node.material)?node.material:[node.material];mats.forEach(m=>{if(m.name==='Mesheslivery1Mtl'||m.name==='Mesheslogo11Mtl')m.visible=false;if(m.name==='Meshesbody151Mtl'||m.name==='Mesheszx1Mtl'){m.color?.set('#db542c');m.metalness=.62;m.roughness=.25;if('clearcoat'in m){m.clearcoat=.9;m.clearcoatRoughness=.16}}if('envMapIntensity'in m)m.envMapIntensity=1.15})}});
   const rawBounds=new THREE.Box3().setFromObject(car),rawSize=rawBounds.getSize(new THREE.Vector3()),rawCenter=rawBounds.getCenter(new THREE.Vector3());
   const maxDim=Math.max(rawSize.x,rawSize.y,rawSize.z)||1;
   car.scale.setScalar(4.75/maxDim);
@@ -158,8 +158,8 @@ try{
   car.traverse(node=>{if(!node.isMesh)return;const materials=Array.isArray(node.material)?node.material:[node.material];const names=[node.name,...materials.map(m=>m.name)].join(' ').toLowerCase();const box=new THREE.Box3().setFromObject(node);if(materials.some(m=>m.name==='Mesheswindows1Mtl')){glassBounds.union(box);glassFound=true;windowNodes.push(node);materials.forEach(m=>{if(m.name==='Mesheswindows1Mtl'&&!windowMaterials.has(m))windowMaterials.set(m,{transparent:m.transparent,opacity:m.opacity,depthWrite:m.depthWrite})})}if(/head.?light|lamp|led/.test(names)){lampBounds.union(box);lampFound=true}});
   const glassCenter=glassFound?glassBounds.getCenter(new THREE.Vector3()):new THREE.Vector3(center.x,height*.7,center.z);
   const lampCenter=lampFound?lampBounds.getCenter(new THREE.Vector3()):new THREE.Vector3(center.x,height*.36,center.z+size.z*.44);
-  const seatCenter=glassCenter.clone();seatCenter.y=Math.max(height*.48,glassCenter.y-height*.12);
-  const floorCenter=glassCenter.clone();floorCenter.y=Math.max(height*.18,glassCenter.y-height*.42);
+  const seatCenter=glassCenter.clone();seatCenter.y=height*.48;
+  const floorCenter=glassCenter.clone();floorCenter.y=height*.13;
   const baseDistance=Math.max(7.1,Math.max(size.x,size.z)*1.75);
   const homeCamera=new THREE.Vector3(baseDistance*.64,baseDistance*.3,baseDistance*.76);
   const desiredCamera=homeCamera.clone(),currentLook=new THREE.Vector3(center.x,height*.32,center.z),desiredLook=currentLook.clone();
@@ -181,7 +181,8 @@ try{
     else if(kind==='ppf'){desiredCamera.set(center.x+Math.max(size.x*.86,2.1),Math.max(height*.62,1.15),center.z+Math.max(size.z*.72,1.9));desiredLook.set(center.x+size.x*.24,height*.26,center.z);}
     else if(kind==='lamps'){const view=homeCamera.clone().sub(center).normalize();desiredLook.copy(lampCenter);desiredCamera.copy(lampCenter).addScaledVector(view,Math.max(1.45,baseDistance*.24));}
     else if(kind==='edges'){desiredLook.set(center.x+size.x*.24,height*.25,center.z+size.z*.06);desiredCamera.set(center.x+Math.max(size.x*.77,1.5),height*.32,center.z+size.z*.12);}
-    else if(kind==='mats'||kind==='upholstery'){const focus=kind==='mats'?floorCenter:seatCenter;const view=homeCamera.clone().sub(center).normalize();desiredLook.copy(focus);desiredCamera.copy(focus).addScaledVector(view,Math.max(1.7,baseDistance*.29));desiredCamera.y=Math.max(desiredCamera.y,focus.y+(kind==='mats'?1.05:.55));}
+    else if(kind==='mats'){desiredLook.copy(floorCenter);desiredCamera.copy(floorCenter).addScaledVector(new THREE.Vector3(.42,.88,.2).normalize(),Math.max(1.8,baseDistance*.26));}
+    else if(kind==='upholstery'){desiredLook.copy(seatCenter);desiredCamera.copy(seatCenter).addScaledVector(new THREE.Vector3(.82,.53,.2).normalize(),Math.max(1.65,baseDistance*.23));}
     else{desiredCamera.copy(homeCamera);desiredLook.set(center.x,height*.32,center.z);}
     const showInterior=kind==='mats'||kind==='upholstery';windowNodes.forEach(node=>node.visible=!showInterior);windowMaterials.forEach((original,material)=>{if(showInterior){material.transparent=true;material.opacity=Math.min(original.opacity,.12);material.depthWrite=false;material.needsUpdate=true}else{material.transparent=original.transparent;material.opacity=original.opacity;material.depthWrite=original.depthWrite;material.needsUpdate=true}});
   });
