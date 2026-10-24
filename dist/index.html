@@ -282,10 +282,29 @@ html{scroll-padding-top:112px}
 
 
 .cinematic-intro[hidden]{display:none}.cinematic-intro{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 58%,#24140f,#0b0c0d 54%,#050607);transition:opacity .65s,visibility .65s}.intro-light{position:absolute;width:min(80vw,700px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(241,90,42,.23),transparent 68%);animation:introGlow 1.5s ease both}.intro-content{z-index:1;text-align:center;opacity:0;transform:translateY(14px);animation:introIn .8s .25s ease forwards}.intro-mark{direction:ltr;font:800 clamp(42px,9vw,76px) var(--latin);letter-spacing:.16em;color:#f5f3ef}.intro-mark em{color:var(--orange2);font-style:normal}.intro-rule{display:block;width:min(42vw,230px);height:1px;margin:20px auto 15px;background:linear-gradient(90deg,transparent,var(--orange2),transparent)}.intro-content p{font-size:clamp(14px,3vw,20px);color:#f4f0eb}.intro-content small{font:600 8px var(--latin);letter-spacing:.22em;color:#a9aaa7}.cinematic-intro button{position:absolute;bottom:max(25px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);min-height:44px;padding:0 18px;border:1px solid #ffffff33;border-radius:30px;background:#101112cc;color:#eee;font:500 10px var(--ar);cursor:pointer}.cinematic-intro.is-leaving{opacity:0;visibility:hidden;pointer-events:none}@keyframes introIn{to{opacity:1;transform:none}}@keyframes introGlow{from{opacity:0;transform:scale(.65)}to{opacity:1;transform:scale(1)}}@media(prefers-reduced-motion:reduce){.intro-content,.intro-light{animation:none;opacity:1;transform:none}}
+
+/* Architectural arrival */
+#cinematicIntro{background:#080b0e;overflow:hidden}
+#cinematicIntro canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.arrival-fallback{position:absolute;inset:0;display:grid;place-content:center;text-align:center;background:radial-gradient(ellipse at 50% 65%,#66301d55,transparent 65%)}
+.arrival-fallback strong{font:800 clamp(38px,9vw,90px) var(--latin);letter-spacing:.2em;color:#fff}
+.arrival-fallback em{color:#ff8c53;font-style:normal}
+.arrival-fallback p{font-size:13px;color:#ccc}
+.arrival-ready .arrival-fallback{display:none}
+.arrival-top{position:absolute;top:max(26px,env(safe-area-inset-top));left:24px;right:24px;display:flex;justify-content:space-between;z-index:2;direction:ltr;color:#e5e2db;font:600 9px var(--latin);letter-spacing:.19em;pointer-events:none}
+.arrival-copy{position:absolute;bottom:115px;left:20px;right:20px;text-align:center;z-index:2;pointer-events:none;text-shadow:0 2px 18px #000}
+.arrival-copy p{font-size:clamp(18px,4.8vw,30px);margin:0 0 10px;color:#fff}
+.arrival-copy small{font-size:10px;color:#c1bbb5}
+.arrival-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:#ffffff15;direction:ltr}
+.arrival-progress span{display:block;width:100%;height:100%;background:#f5763d;transform:scaleX(var(--arrival-progress,0));transform-origin:left}
+#cinematicIntro #introSkip{z-index:4;bottom:max(38px,env(safe-area-inset-bottom));background:#090c10cc;min-height:44px}
+@media(max-width:700px){.arrival-top{top:max(19px,env(safe-area-inset-top));left:16px;right:16px;font-size:7px}.arrival-copy{bottom:110px}}
+
 </style>
 </head>
 <body>
-<div class="cinematic-intro" id="cinematicIntro" aria-hidden="true" hidden><div class="intro-light"></div><div class="intro-content"><div class="intro-mark">ONE <em>K</em></div><span class="intro-rule"></span><p>العناية تبدأ من التفاصيل</p><small>A NEW STANDARD OF CARE</small></div><button id="introSkip" type="button">تخطّي المقدمة ↗</button></div>
+<div class="cinematic-intro" id="cinematicIntro" role="dialog" aria-modal="true" aria-label="مرحبًا بك في ONE K" aria-hidden="true" hidden><div class="arrival-fallback"><strong>ONE <em>K</em></strong><p>مرحبًا بك في عالم العناية</p></div><canvas aria-hidden="true"></canvas><div class="arrival-top"><span>ONE K / THE ARRIVAL</span><span>AUTO CARE STUDIO</span></div><div class="arrival-copy"><p>تفضّل… سيارتك تستاهل.</p><small>من هنا تبدأ العناية بالتفاصيل</small></div><button id="introSkip" type="button">ادخل الموقع الآن ↗</button><div class="arrival-progress" aria-hidden="true"><span></span></div></div>
+
 
 <div class="read-progress" aria-hidden="true"></div>
 <div class="topline">عناية مدروسة لسيارتك <b>ONE K</b></div>
@@ -363,7 +382,75 @@ html{scroll-padding-top:112px}
 </main>
 <footer class="footer"><div class="wrap footer-inner"><a class="footer-brand" href="#home">ONE <em>K</em><span style="font:600 7px var(--latin);letter-spacing:.15em;color:#777d7b;margin-inline-start:8px">PREMIUM PROTECTION</span></a><div>© ONE K · العناية بالسيارات</div><div class="footer-links"><a href="#protection">الخدمات</a><a href="#faq">الأسئلة الشائعة</a><a href="https://wa.me/966530004764">واتساب</a></div></div></footer>
 <a class="wa-float" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1" aria-label="تواصل مع ONE K على واتساب" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.5-4.8a8.4 8.4 0 1 1 16-4Z"/><path d="M8.2 8.6c.3-.7.6-.7.9-.7h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4-.1.6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.7-.1l1.5.7c.3.1.4.3.4.5 0 .3-.2 1-.7 1.3-.5.4-1.1.6-1.8.5-1.1-.2-2.3-.7-3.5-1.8-1.1-1-1.9-2.2-2.1-3.3-.2-.8 0-1.5.3-2.1Z"/></svg></a>
-<script>(()=>{const x=document.getElementById('cinematicIntro');if(!x)return;if(matchMedia('(prefers-reduced-motion: reduce)').matches){x.remove();return}x.hidden=false;x.setAttribute('aria-hidden','false');let done=false;const end=()=>{if(done)return;done=true;x.classList.add('is-leaving');setTimeout(()=>x.remove(),700)};document.getElementById('introSkip').addEventListener('click',end);setTimeout(end,4200)})();</script>
+<script>(()=> {
+const x=document.getElementById('cinematicIntro');
+if(!x)return;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){x.remove();return}
+x.hidden=false;x.setAttribute('aria-hidden','false');
+const prevFocus=document.activeElement;
+const siblings=[...document.body.children].filter(el=>el!==x&&!['SCRIPT','STYLE'].includes(el.tagName));
+const old=siblings.map(el=>el.inert);siblings.forEach(el=>el.inert=true);
+const overflow=document.body.style.overflow;document.body.style.overflow='hidden';
+let done=false;let cleanup=()=>{};
+const finish=()=>{if(done)return;done=true;clearTimeout(safety);cleanup();x.classList.add('is-leaving');siblings.forEach((el,i)=>el.inert=old[i]);document.body.style.overflow=overflow;
+if(x.contains(document.activeElement))document.querySelector('.actions .btn')?.focus({preventScroll:true});
+setTimeout(()=>x.remove(),700);document.removeEventListener('keydown',escape)};
+const escape=e=>{if(e.key==='Escape')finish()};
+document.addEventListener('keydown',escape);
+document.getElementById('introSkip').addEventListener('click',finish);
+const safety=setTimeout(finish,11000);
+window.oneKArrival={element:x,finish,isDone:()=>done,setCleanup:fn=>{cleanup=fn;if(done)fn()}};
+})();</script><script>(async()=>{
+const app=window.oneKArrival;if(!app||app.isDone())return;
+try{
+const T=await import('https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js');
+if(app.isDone())return;
+const host=app.element,canvas=host.querySelector('canvas');
+const renderer=new T.WebGLRenderer({canvas,antialias:innerWidth>700,alpha:false,powerPreference:'low-power'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.5;
+const scene=new T.Scene();scene.background=new T.Color('#090d12');scene.fog=new T.Fog('#090d12',25,60);
+const camera=new T.PerspectiveCamera(48,1,.1,100);
+const mat=(color,metalness=.2,roughness=.5)=>new T.MeshStandardMaterial({color,metalness,roughness});
+const wall=mat('#252a30',.5,.42),floor=mat('#191c20',.35,.4),trim=mat('#080a0e',.6,.3);
+const glow=new T.MeshBasicMaterial({color:'#ff8b4e'}),white=new T.MeshBasicMaterial({color:'#e4edff'});
+function box(w,h,d,x,y,z,m){const o=new T.Mesh(new T.BoxGeometry(w,h,d),m);o.position.set(x,y,z);scene.add(o);return o}
+box(100,.12,100,0,-.1,0,floor);
+box(14,.22,10,0,0,0,wall);
+box(.35,6,9,-6.8,3,-.5,wall);box(.35,6,9,6.8,3,-.5,wall);
+box(14,.35,9,0,6,-.5,wall);box(14,6,.3,0,3,-5,wall);
+box(14,1.65,.5,0,5.25,4,trim);
+box(.3,4.5,.5,-6.8,2.25,4,trim);box(.3,4.5,.5,6.8,2.25,4,trim);
+box(14,.045,.12,0,4.42,4.3,glow);
+const glass=new T.MeshStandardMaterial({color:'#758793',metalness:.65,roughness:.1,transparent:true,opacity:.24,side:T.DoubleSide});
+box(4.4,4.15,.08,-4.5,2.12,4,glass);box(4.4,4.15,.08,4.5,2.12,4,glass);
+[-6.7,-2.2,2.2,6.7].forEach(x=>box(.07,4.4,.13,x,2.2,4.12,trim));
+const left=new T.Group(),right=new T.Group();scene.add(left,right);
+function door(group,x){const pane=box(2.12,4.25,.08,x,2.15,4.04,glass);group.attach(pane);const handle=box(.045,.65,.06,x+(x<0?.9:-.9),2.1,4.16,white);group.attach(handle)}
+door(left,-1.08);door(right,1.08);
+[-4.7,0,4.7].forEach(x=>box(.065,.04,7.6,x,5.75,-.2,white));
+[-2.5,2.5].forEach(x=>box(.04,.02,13,x,.05,2,glow));
+const sign=document.createElement('canvas');sign.width=1536;sign.height=256;
+const ctx=sign.getContext('2d');ctx.fillStyle='#080a0e';ctx.fillRect(0,0,1536,256);ctx.textAlign='center';ctx.fillStyle='#f8f4ed';ctx.font='bold 145px Arial';ctx.fillText('ONE',650,155);ctx.fillStyle='#ff8c53';ctx.fillText('K',895,155);ctx.font='22px Arial';ctx.fillStyle='#b5babd';ctx.fillText('P R E M I U M   A U T O   C A R E',768,217);
+const tex=new T.CanvasTexture(sign);tex.colorSpace=T.SRGBColorSpace;
+const label=new T.Mesh(new T.PlaneGeometry(9,1.5),new T.MeshBasicMaterial({map:tex}));label.position.set(0,5.25,4.28);scene.add(label);
+scene.add(new T.HemisphereLight('#bfcee6','#362015',2.5));const key=new T.DirectionalLight('#c4d9ff',3);key.position.set(-8,15,12);scene.add(key);
+const inside=new T.PointLight('#ffac72',90,18,2);inside.position.set(0,4,0);scene.add(inside);
+const interiorMark=new T.Mesh(new T.PlaneGeometry(7,1.17),new T.MeshBasicMaterial({map:tex}));interiorMark.position.set(0,3,-4.8);scene.add(interiorMark);
+let width,height,raf,start;let stopped=false;
+function resize(){width=host.clientWidth;height=host.clientHeight;renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix()}
+resize();window.addEventListener('resize',resize);
+app.setCleanup(()=>{stopped=true;cancelAnimationFrame(raf);window.removeEventListener('resize',resize);scene.traverse(o=>{o.geometry?.dispose()});new Set([wall,floor,trim,glow,white,glass,label.material,interiorMark.material]).forEach(m=>m.dispose());tex.dispose();renderer.dispose()});
+const smooth=t=>t*t*(3-2*t),lerp=(a,b,t)=>a+(b-a)*t;
+function frame(now){if(stopped)return;if(document.hidden){start=undefined;raf=requestAnimationFrame(frame);return}start??=now;const t=Math.min((now-start)/1000,6.7),mobile=width<700;const radius=mobile?28:20;let x,y,z;
+if(t<3){const p=smooth(t/3),angle=lerp(mobile?.34:.62,0,p);x=Math.sin(angle)*radius;y=lerp(5.8,3.3,p);z=4+Math.cos(angle)*radius}
+else{const p=smooth(Math.min((t-3)/3.3,1));x=0;y=lerp(3.3,2.2,p);z=lerp(4+radius,-1.4,p)}
+camera.position.set(x,y,z);camera.lookAt(0,t<3?3:lerp(3,2.2,smooth(Math.min((t-3)/3.3,1))),0);
+const opening=smooth(Math.max(0,Math.min((t-2.7)/1.2,1)));left.position.x=-2.15*opening;right.position.x=2.15*opening;
+host.style.setProperty('--arrival-progress',String(t/6.7));host.querySelector('.arrival-copy').style.opacity=String(Math.max(0,1-(t-3.1)/1.2));
+renderer.render(scene,camera);host.classList.add('arrival-ready');if(t>=6.7){app.finish();return}raf=requestAnimationFrame(frame)}
+raf=requestAnimationFrame(frame);
+}catch(e){console.warn('Storefront preview unavailable',e);app.finish()}
+})();</script>
 <script>
 const menu=document.getElementById('menu'),navlinks=document.getElementById('navlinks'),nav=document.getElementById('nav');
 menu.addEventListener('click',()=>{const open=navlinks.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰';menu.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة')});
