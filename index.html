@@ -105,9 +105,79 @@
 @media(max-width:950px){.hero-grid{grid-template-columns:minmax(0,1fr);gap:22px}.hero-copy{grid-column:1;grid-row:1}.stage{grid-column:1;grid-row:2;margin:0;min-height:440px}.experience-dock{grid-column:1;grid-row:3}.hero-notes{margin-top:22px}}
 @media(max-width:700px){.hero{padding-top:95px;padding-bottom:45px}.hero-grid{gap:20px}.hero h1{font-size:clamp(34px,9.5vw,44px)}.hero-copy{order:0}.hero-desc{font-size:12px;margin-bottom:19px}.hero-notes{display:none}.stage{order:0;min-height:330px;height:clamp(330px,94vw,430px);margin-inline:-8px}.experience-dock{padding:17px 14px;margin-inline:-3px}.dock-heading{margin-bottom:17px}.dock-heading h2{font-size:16px}.dock-heading span{font-size:7px}.reset-view{font-size:9px;padding:8px 10px}.mobile-service-choice{flex:0 0 166px;min-height:66px;font-size:11px;gap:10px}.mobile-service-list{margin-inline:-5px;padding-inline:5px}.rail-hint{font-size:9px}.service-panel{display:block;margin-top:18px;padding-top:14px}.panel-tag{margin-top:9px}.service-panel h2{font-size:23px;margin:10px 0}.service-panel p{font-size:12px}.panel-points{margin:16px 0}.panel-points li{font-size:11px}.panel-book{width:100%;min-height:48px}.stage-hud{font-size:7px;left:14px}.model-label{font-size:10px;right:14px}.drag-hint{font-size:8px;right:14px}.wa-float{bottom:max(15px,env(safe-area-inset-bottom))}}
 
+
+/* ONE K Studio — cinematic art direction */
+:root{--orange:#f05a2b;--orange2:#ff9b63;--line:rgba(255,255,255,.14)}
+html{scroll-padding-top:112px}
+.nav{background:rgba(7,8,9,.76);backdrop-filter:blur(22px) saturate(140%);border-bottom-color:rgba(255,255,255,.09)}
+.navbook{border-color:rgba(255,255,255,.26);transition:background .25s,border-color .25s,transform .25s}
+.navbook:hover{background:rgba(240,90,43,.12);transform:translateY(-1px)}
+.hero{padding-top:clamp(110px,13vh,152px);padding-bottom:65px}
+.hero:before{background:radial-gradient(ellipse at 27% 55%,rgba(240,90,43,.17),transparent 43%),radial-gradient(ellipse at 83% 25%,rgba(197,205,207,.07),transparent 30%),linear-gradient(110deg,#070809 8%,#111314 50%,#08090a 100%)}
+.hero:after{opacity:.075;background-size:96px 96px;mask-image:linear-gradient(transparent,#000 23%,#000 72%,transparent)}
+.hero-copy{max-width:590px}
+.hero h1{font-size:clamp(42px,5.1vw,72px);line-height:1.3;letter-spacing:-.07em;margin:22px 0 18px}
+.hero-desc{font-size:13px;line-height:2.1;max-width:430px}
+.eyebrow{font-size:9px}
+.actions .btn{min-height:52px;padding-inline:22px;box-shadow:0 14px 34px rgba(240,90,43,.18)}
+.hero-notes{margin-top:34px}
+.stage{border:1px solid rgba(255,255,255,.12);border-radius:10px;background:radial-gradient(ellipse at 50% 70%,rgba(240,90,43,.12),transparent 48%),linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.005) 48%,rgba(240,90,43,.035));box-shadow:inset 0 1px rgba(255,255,255,.06),0 30px 100px rgba(0,0,0,.44)}
+.stage:before{inset:5% 0;background:radial-gradient(ellipse at 51% 53%,rgba(240,90,43,.22),transparent 57%);filter:blur(26px)}
+.stage:after{content:"";position:absolute;inset:auto 0 0;height:24%;z-index:0;pointer-events:none;background:linear-gradient(0deg,rgba(5,6,7,.5),transparent)}
+.stage-ring{width:85%;border-color:rgba(255,143,94,.27);box-shadow:0 0 0 34px rgba(240,90,43,.03),0 0 0 78px rgba(255,255,255,.02)}
+#carCanvas{filter:drop-shadow(0 28px 34px rgba(0,0,0,.36))}
+.stage-hud{color:#c1c3c0}
+.model-credit{font-size:7px;color:#a5a8a5}
+.experience-dock{border-color:rgba(255,255,255,.14);background:linear-gradient(130deg,rgba(31,34,35,.97),rgba(13,15,16,.98));box-shadow:0 28px 86px rgba(0,0,0,.38)}
+.dock-heading h2{font-size:clamp(18px,2vw,24px)}
+.dock-heading span{color:#ff9b63}
+.mobile-service-choice{backdrop-filter:blur(8px)}
+.mobile-service-choice[aria-pressed="true"]{box-shadow:inset 0 -2px var(--orange),0 10px 30px rgba(240,90,43,.12)}
+.service-panel{border-top-color:rgba(255,255,255,.17)}
+.section{padding:clamp(78px,9vw,122px) 0}
+.services{background:radial-gradient(ellipse at 14% 28%,rgba(240,90,43,.08),transparent 34%),linear-gradient(180deg,#101213,#090a0b 78%)}
+.section-head{margin-bottom:30px}
+.section-head h2{font-size:clamp(34px,4.3vw,56px)}
+.service-filters{display:flex;align-items:center;gap:8px;margin:0 0 22px}
+.service-filter{min-height:42px;padding:0 16px;border:1px solid rgba(255,255,255,.13);border-radius:3px;background:rgba(255,255,255,.025);color:#b7bab7;font:500 9px var(--ar);cursor:pointer;transition:background .25s,border-color .25s,color .25s}
+.service-filter:hover,.service-filter[aria-pressed="true"]{border-color:rgba(255,137,86,.62);background:rgba(240,90,43,.1);color:#fff}
+.service-filter span{margin-inline-start:8px;color:var(--orange2);font:700 8px var(--latin)}
+.service-grid{gap:13px}
+.service-card{min-height:320px;padding:25px 26px 28px;border-color:rgba(255,255,255,.1);background:linear-gradient(145deg,rgba(29,32,33,.96),rgba(12,14,15,.99) 78%);transition:transform .45s cubic-bezier(.2,.75,.2,1),border-color .35s,box-shadow .35s}
+.service-card:before{opacity:.78;transition:opacity .35s,transform .7s}
+.service-card:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 32%,rgba(255,255,255,.04) 49%,transparent 63%);transform:translateX(110%);transition:transform .8s}
+.service-card:hover{transform:translateY(-6px);border-color:rgba(255,137,86,.42);box-shadow:0 24px 70px rgba(0,0,0,.36)}
+.service-card:hover:after{transform:translateX(-110%)}
+.service-card:nth-child(3n+2):before{background:radial-gradient(circle at 80% 20%,rgba(194,207,208,.13),transparent 48%)}
+.service-card:nth-child(3n):before{background:radial-gradient(circle at 82% 22%,rgba(241,90,42,.12),transparent 47%)}
+.card-top,.service-card h3,.service-card p,.card-link,.service-symbol{position:relative;z-index:1}
+.service-card h3{font-size:clamp(17px,1.65vw,21px);margin-top:30px}
+.service-card p{font-size:10px;line-height:2.15}
+.card-visual{opacity:.24;transition:opacity .35s,transform .5s}
+.service-card:hover .card-visual{opacity:.46;transform:translateY(-5px) rotate(-8deg)}
+.process{background:linear-gradient(135deg,#eeeae2,#f7f5ef 54%,#e9e5dc)}
+.contact{background:radial-gradient(ellipse at 10% 50%,rgba(240,90,43,.12),transparent 35%),#111416}
+.read-progress{position:fixed;z-index:50;top:0;right:0;left:0;height:2px;pointer-events:none;background:rgba(255,255,255,.04)}
+.read-progress:after{content:"";display:block;width:100%;height:100%;background:linear-gradient(90deg,#ff9b63,#f04b20);transform:scaleX(var(--page-progress,0));transform-origin:right;box-shadow:0 0 12px rgba(240,90,43,.65)}
+@media(max-width:950px){.stage{border-radius:8px}.hero h1{font-size:clamp(39px,5.6vw,58px)}}
+@media(max-width:700px){
+ .hero{padding-top:96px;padding-bottom:45px}
+ .hero h1{font-size:clamp(36px,9.8vw,45px);line-height:1.34;margin:15px 0 10px}
+ .hero-desc{font-size:12px;line-height:2}
+ .stage{border-radius:7px}
+ .service-filters{margin:0 -17px 16px;padding:3px 17px 8px;overflow-x:auto;scrollbar-width:none}
+ .service-filters::-webkit-scrollbar{display:none}
+ .service-filter{white-space:nowrap;min-height:42px}
+ .service-grid{gap:10px}
+ .service-card{min-height:248px;padding:21px}
+ .service-card h3{font-size:19px;margin-top:24px}
+ .service-card p{font-size:12px}
+}
+
 </style>
 </head>
 <body>
+<div class="read-progress" aria-hidden="true"></div>
 <div class="topline">عناية مدروسة لسيارتك <b>ONE K</b></div>
 <header class="nav" id="nav"><div class="wrap navinner">
 <a class="brand" href="#home" aria-label="ONE K الرئيسية"><span class="brand-mark">K</span><span class="brandname">ONE <em>K</em><small>PREMIUM PROTECTION</small></span></a>
@@ -118,15 +188,15 @@
 <section class="hero" id="home"><div class="wrap hero-grid">
 <div class="hero-copy">
 <div class="eyebrow">CARE, IN EVERY DETAIL</div>
-<h1><span>حماية تليق</span><span>بتفاصيل <em>سيارتك.</em></span></h1>
-<p class="hero-desc">اختَر العناية من السيارة نفسها: من حماية الطلاء والشمعات إلى تفاصيل المقصورة والدعسات.</p>
+<h1><span>العناية تبدأ</span><span>من <em>التفاصيل.</em></span></h1>
+<p class="hero-desc">استكشف سيارتك واختر من ست خدمات عناية؛ من الزجاج والطلاء إلى تفاصيل المقصورة.</p>
 <div class="actions"><a class="btn" href="#stage">ابدأ التجربة <span class="arrow">←</span></a><a class="text-link" href="#protection">اكتشف خدماتنا <b>←</b></a></div>
 <div class="hero-notes"><div class="note"><i>01</i><span>حماية خارجية</span></div><div class="note"><i>02</i><span>تفاصيل المقصورة</span></div></div>
 </div>
 <div class="stage" id="stage" aria-label="اختر الخدمة من السيارة">
 <div class="stage-glow"></div><div class="stage-ring"></div>
 <div class="stage-hud">INTERACTIVE 3D<span>ONE K / STUDIO</span></div>
-<div class="model-label" id="sceneLabel" aria-live="polite">السيارة كاملة</div><div class="model-status" id="modelStatus" role="status">جارٍ تجهيز العرض ثلاثي الأبعاد…</div><a class="model-credit" href="https://sketchfab.com/3d-models/bmw-m4-competition-m-package-5c0a2dafb1ad408d9fc9eeef9aee531b" target="_blank" rel="noreferrer">3D MODEL · SRT PERFORMANCE · CC BY 4.0</a>
+<div class="model-label" id="sceneLabel" aria-live="polite">السيارة كاملة</div><div class="model-status" id="modelStatus" role="status">جارٍ تجهيز العرض ثلاثي الأبعاد…</div><a class="model-credit" href="https://sketchfab.com/3d-models/bmw-m4-competition-m-package-5c0a2dafb1ad408d9fc9eeef9aee531b" target="_blank" rel="noreferrer">MODEL BY SRT PERFORMANCE · CC BY 4.0</a>
 <svg class="car-fallback" viewBox="0 0 800 360" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="paint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9b67"/><stop offset=".28" stop-color="#e64d24"/><stop offset=".7" stop-color="#292b2d"/><stop offset="1" stop-color="#f27b47"/></linearGradient><linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8c4c8" stop-opacity=".65"/><stop offset=".55" stop-color="#252b2e" stop-opacity=".87"/><stop offset="1" stop-color="#858c8e" stop-opacity=".3"/></linearGradient></defs><ellipse cx="405" cy="286" rx="301" ry="23" fill="#000" opacity=".68"/><path d="M95 229q12-36 71-55l95-20 83-70q27-23 75-25h95q37 0 63 28l64 67q43 9 63 37l17 27-15 30H99l-12-8z" fill="url(#paint)" stroke="#ffb18a" stroke-opacity=".63" stroke-width="2"/><path d="m276 158 75-64q24-19 61-21l-1 82zM421 73v82h176l-51-53q-25-27-63-29z" fill="url(#glass)" stroke="#ffb18a" stroke-opacity=".49" stroke-width="2"/><path d="M96 220h83m412 4h95M272 161l329 1" fill="none" stroke="#ffb18a" stroke-width="2" stroke-linecap="round"/><path d="M301 180h47m143 0h43" stroke="#d8d6d0" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/><circle cx="224" cy="250" r="49" fill="#090a0b" stroke="#8a8d8e" stroke-width="4"/><circle cx="224" cy="250" r="31" fill="#26292b" stroke="#d0d2cd" stroke-width="2"/><circle cx="224" cy="250" r="7" fill="#f15a2a"/><path d="M224 220v60m-30-30h60m-51-21 42 42m0-42-42 42" stroke="#afb1ae" stroke-width="3"/><circle cx="567" cy="250" r="49" fill="#090a0b" stroke="#8a8d8e" stroke-width="4"/><circle cx="567" cy="250" r="31" fill="#26292b" stroke="#d0d2cd" stroke-width="2"/><circle cx="567" cy="250" r="7" fill="#f15a2a"/><path d="M567 220v60m-30-30h60m-51-21 42 42m0-42-42 42" stroke="#afb1ae" stroke-width="3"/></svg>
 <canvas id="carCanvas" aria-label="سيارة ثلاثية الأبعاد؛ اسحب لتدويرها"></canvas>
 <button class="hotspot hotspot--film" type="button" data-service="film" data-label="العازل الحراري" aria-label="استكشف العازل الحراري على الزجاج">01</button>
@@ -161,15 +231,16 @@
 <div class="hero-bottom"><div class="wrap"><span>ONE K · PREMIUM PROTECTION</span><span class="scroll-indicator">SCROLL TO EXPLORE</span></div></div>
 </section>
 <section class="section services" id="protection"><div class="wrap">
-<div class="section-head reveal"><div><div class="section-kicker">PROTECTION, REFINED</div><h2>خدمات واضحة.<br>اختيار أسهل.</h2></div><p>لكل جزء من سيارتك احتياجه. استكشف الخدمة من المشهد، ثم تواصل معنا لتحديد التغطية المناسبة لسيارتك.</p></div>
+<div class="section-head reveal"><div><div class="section-kicker">PROTECTION, REFINED</div><h2>كل تفصيلة لها عنايتها.<br>اختر مسارك.</h2></div><p>لكل جزء من سيارتك احتياجه. استكشف الخدمة من المشهد، ثم تواصل معنا لتحديد التغطية المناسبة لسيارتك.</p></div>
+<div class="service-filters" role="group" aria-label="تصفية خدمات العناية"><button class="service-filter" type="button" data-filter="all" aria-pressed="true">كل الخدمات <span>06</span></button><button class="service-filter" type="button" data-filter="exterior" aria-pressed="false">الخارجية <span>04</span></button><button class="service-filter" type="button" data-filter="interior" aria-pressed="false">المقصورة <span>02</span></button></div>
 <div class="service-grid">
-<article class="service-card reveal"><div class="card-top"><span>01 / PAINT PROTECTION</span><b>PPF</b></div><h3>حماية الطلاء PPF</h3><p>طبقة حماية شفافة لأسطح السيارة المختارة. شاركنا نوع سيارتك والمنطقة التي ترغب بحمايتها، ونوضح لك الخيارات المناسبة.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20PPF" target="_blank" rel="noreferrer">استفسر عن PPF <b>←</b></a><div class="card-visual" aria-hidden="true"><svg viewBox="0 0 450 140"><path d="M49 98q26-9 42-38l69-35q23-12 52-12h101q20 0 34 17l38 43q18 5 27 18l2 10H51z" fill="none" stroke="#ff8651" stroke-width="3"/><path d="m163 58 50-34h99l28 35z" fill="#232729" stroke="#ff8651"/><circle cx="130" cy="99" r="18" fill="#111315" stroke="#ff8651" stroke-width="3"/><circle cx="344" cy="99" r="18" fill="#111315" stroke="#ff8651" stroke-width="3"/></svg></div></article>
-<article class="service-card reveal delay1"><div class="card-top"><span>02 / THERMAL COMFORT</span><b>FILM</b></div><h3>العازل الحراري</h3><p>عازل مخصص لزجاج السيارة يساعد على تخفيف الحرارة والوهج. اسألنا عن الأنواع المتاحة وما يناسب استخدامك.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%B9%D8%A7%D8%B2%D9%84%20%D8%A7%D9%84%D8%AD%D8%B1%D8%A7%D8%B1%D9%8A" target="_blank" rel="noreferrer">استفسر عن العازل <b>←</b></a><div class="card-visual" aria-hidden="true"><svg viewBox="0 0 450 140"><path d="M67 111V58q0-9 10-12l41-12 44-25h127l50 26 43 11q10 3 10 14v51H67z" fill="none" stroke="#d6dbd6" stroke-width="3"/><path d="m171 17-43 26v52h76V17zm43 0v78h115V50l-48-33z" fill="#5b6262" stroke="#d6dbd6"/><circle cx="151" cy="108" r="17" fill="#111315" stroke="#d6dbd6" stroke-width="3"/><circle cx="305" cy="108" r="17" fill="#111315" stroke="#d6dbd6" stroke-width="3"/></svg></div></article>
+<article class="service-card reveal" data-service-group="exterior"><div class="card-top"><span>01 / PAINT PROTECTION</span><b>PPF</b></div><h3>حماية الطلاء PPF</h3><p>طبقة حماية شفافة لأسطح السيارة المختارة. شاركنا نوع سيارتك والمنطقة التي ترغب بحمايتها، ونوضح لك الخيارات المناسبة.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20PPF" target="_blank" rel="noreferrer">استفسر عن PPF <b>←</b></a><div class="card-visual" aria-hidden="true"><svg viewBox="0 0 450 140"><path d="M49 98q26-9 42-38l69-35q23-12 52-12h101q20 0 34 17l38 43q18 5 27 18l2 10H51z" fill="none" stroke="#ff8651" stroke-width="3"/><path d="m163 58 50-34h99l28 35z" fill="#232729" stroke="#ff8651"/><circle cx="130" cy="99" r="18" fill="#111315" stroke="#ff8651" stroke-width="3"/><circle cx="344" cy="99" r="18" fill="#111315" stroke="#ff8651" stroke-width="3"/></svg></div></article>
+<article class="service-card reveal delay1" data-service-group="exterior"><div class="card-top"><span>02 / THERMAL COMFORT</span><b>FILM</b></div><h3>العازل الحراري</h3><p>عازل مخصص لزجاج السيارة يساعد على تخفيف الحرارة والوهج. اسألنا عن الأنواع المتاحة وما يناسب استخدامك.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%B9%D8%A7%D8%B2%D9%84%20%D8%A7%D9%84%D8%AD%D8%B1%D8%A7%D8%B1%D9%8A" target="_blank" rel="noreferrer">استفسر عن العازل <b>←</b></a><div class="card-visual" aria-hidden="true"><svg viewBox="0 0 450 140"><path d="M67 111V58q0-9 10-12l41-12 44-25h127l50 26 43 11q10 3 10 14v51H67z" fill="none" stroke="#d6dbd6" stroke-width="3"/><path d="m171 17-43 26v52h76V17zm43 0v78h115V50l-48-33z" fill="#5b6262" stroke="#d6dbd6"/><circle cx="151" cy="108" r="17" fill="#111315" stroke="#d6dbd6" stroke-width="3"/><circle cx="305" cy="108" r="17" fill="#111315" stroke="#d6dbd6" stroke-width="3"/></svg></div></article>
 
-<article class="service-card reveal delay2"><div class="card-top"><span>03 / HEADLIGHTS</span><b>PPF</b></div><h3>حماية شمعات السيارة</h3><p>حماية شفافة مخصصة لعدسات الشمعات، مع تأكيد التوافق حسب نوع السيارة.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%B4%D9%85%D8%B9%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">03</span></div></article>
-<article class="service-card reveal"><div class="card-top"><span>04 / DOOR EDGES ONLY</span><b>PPF</b></div><h3>حماية أطراف الأبواب فقط</h3><p>حماية مركزة على حواف الأبواب من الاحتكاك عند الفتح والإغلاق، دون تغطية بقية الباب.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A3%D8%B7%D8%B1%D8%A7%D9%81%20%D8%A7%D9%84%D8%A3%D8%A8%D9%88%D8%A7%D8%A8%20%D9%81%D9%82%D8%B7" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">04</span></div></article>
-<article class="service-card reveal delay1"><div class="card-top"><span>05 / INTERIOR FLOOR MATS</span><b>INTERIOR</b></div><h3>دعسات داخلية للسيارة</h3><p>دعسات تناسب أرضية المقصورة. أرسل نوع السيارة وموديلها للتأكد من المقاس والخيارات المتاحة.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%AF%D8%B9%D8%B3%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84%D9%8A%D8%A9%20%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%AA%D9%8A" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">05</span></div></article>
-<article class="service-card reveal delay2"><div class="card-top"><span>06 / SEAT UPHOLSTERY</span><b>INTERIOR</b></div><h3>تلبيسة مقاعد السيارة</h3><p>خيارات تلبيس للمقاعد بمقاسات تناسب السيارة. نوضح لك الخامات والخيارات قبل الحجز.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%84%D8%A8%D9%8A%D8%B3%D8%A9%20%D9%85%D9%82%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">06</span></div></article>
+<article class="service-card reveal delay2" data-service-group="exterior"><div class="card-top"><span>03 / HEADLIGHTS</span><b>PPF</b></div><h3>حماية شمعات السيارة</h3><p>حماية شفافة مخصصة لعدسات الشمعات، مع تأكيد التوافق حسب نوع السيارة.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%B4%D9%85%D8%B9%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">03</span></div></article>
+<article class="service-card reveal" data-service-group="exterior"><div class="card-top"><span>04 / DOOR EDGES ONLY</span><b>PPF</b></div><h3>حماية أطراف الأبواب فقط</h3><p>حماية مركزة على حواف الأبواب من الاحتكاك عند الفتح والإغلاق، دون تغطية بقية الباب.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A3%D8%B7%D8%B1%D8%A7%D9%81%20%D8%A7%D9%84%D8%A3%D8%A8%D9%88%D8%A7%D8%A8%20%D9%81%D9%82%D8%B7" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">04</span></div></article>
+<article class="service-card reveal delay1" data-service-group="interior"><div class="card-top"><span>05 / INTERIOR FLOOR MATS</span><b>INTERIOR</b></div><h3>دعسات داخلية للسيارة</h3><p>دعسات تناسب أرضية المقصورة. أرسل نوع السيارة وموديلها للتأكد من المقاس والخيارات المتاحة.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%AF%D8%B9%D8%B3%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84%D9%8A%D8%A9%20%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%AA%D9%8A" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">05</span></div></article>
+<article class="service-card reveal delay2" data-service-group="interior"><div class="card-top"><span>06 / SEAT UPHOLSTERY</span><b>INTERIOR</b></div><h3>تلبيسة مقاعد السيارة</h3><p>خيارات تلبيس للمقاعد بمقاسات تناسب السيارة. نوضح لك الخامات والخيارات قبل الحجز.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%84%D8%A8%D9%8A%D8%B3%D8%A9%20%D9%85%D9%82%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">06</span></div></article>
 </div>
 <div class="coverage reveal"><span>PPF للطلاء والشمعات</span><span>حماية أطراف الأبواب فقط</span><span>العناية الداخلية حسب نوع السيارة</span></div>
 </div></section>
@@ -206,7 +277,8 @@ document.querySelectorAll('.mobile-service-choice').forEach(button=>button.addEv
 document.getElementById('backToCar').addEventListener('click',closeService);
 document.getElementById('resetView').addEventListener('click',closeService);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){closeService();document.getElementById('resetView').focus()}});
-document.querySelectorAll('.service-card .card-link').forEach((link,index)=>link.addEventListener('click',()=>{}));
+document.querySelectorAll('.service-filter').forEach(button=>button.addEventListener('click',()=>{const filter=button.dataset.filter;document.querySelectorAll('.service-filter').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));document.querySelectorAll('.service-card').forEach(card=>{const visible=filter==='all'||card.dataset.serviceGroup===filter;card.hidden=!visible;if(visible)card.classList.add('in')})}));
+ const progress=document.querySelector('.read-progress');function updatePageProgress(){const max=document.documentElement.scrollHeight-innerHeight;progress?.style.setProperty('--page-progress',max>0?String(scrollY/max):'0')}addEventListener('scroll',updatePageProgress,{passive:true});addEventListener('resize',updatePageProgress);updatePageProgress();
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}</script>
 <script type="module">
@@ -233,7 +305,7 @@ try{
   const modelURL='https://cdn.jsdelivr.net/gh/lukaizj/car-mod-saas@2a4cbf3b06769d7dff84bfdd3d1f445ef672be1a/public/models/bmw-m4.optimized.glb';
   const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);const gltf=await loader.loadAsync(modelURL);
   const car=gltf.scene,bodyMaterials=new Map();
-  car.traverse(node=>{if(node.isMesh){node.castShadow=true;node.receiveShadow=true;const mats=Array.isArray(node.material)?node.material:[node.material];mats.forEach(m=>{if(m.name==='Mesheslivery1Mtl'||m.name==='Mesheslogo11Mtl')m.visible=false;if(m.name==='Meshesbody151Mtl'||m.name==='Mesheszx1Mtl'){if(!bodyMaterials.has(m))bodyMaterials.set(m,{transparent:m.transparent,opacity:m.opacity,depthWrite:m.depthWrite,visible:m.visible});m.color?.set('#db542c');m.metalness=.62;m.roughness=.25;if('clearcoat'in m){m.clearcoat=.9;m.clearcoatRoughness=.16}}if('envMapIntensity'in m)m.envMapIntensity=1.15})}});
+  car.traverse(node=>{if(node.isMesh){node.castShadow=true;node.receiveShadow=true;const mats=Array.isArray(node.material)?node.material:[node.material];const assetNames=[node.name,...mats.map(m=>m.name)].join(' ').toLowerCase();if(/logo|badge|emblem|bmw|m4/.test(assetNames)){node.visible=false;return}mats.forEach(m=>{if(/logo|badge|emblem|brand|bmw|m4/.test(m.name.toLowerCase()))m.visible=false;if(m.name==='Meshesbody151Mtl'||m.name==='Mesheszx1Mtl'){if(!bodyMaterials.has(m))bodyMaterials.set(m,{transparent:m.transparent,opacity:m.opacity,depthWrite:m.depthWrite,visible:m.visible});m.color?.set('#db542c');m.metalness=.62;m.roughness=.25;if('clearcoat'in m){m.clearcoat=.9;m.clearcoatRoughness=.16}}if('envMapIntensity'in m)m.envMapIntensity=1.15})}});
   const rawBounds=new THREE.Box3().setFromObject(car),rawSize=rawBounds.getSize(new THREE.Vector3()),rawCenter=rawBounds.getCenter(new THREE.Vector3());
   const maxDim=Math.max(rawSize.x,rawSize.y,rawSize.z)||1;
   car.scale.setScalar(4.75/maxDim);
