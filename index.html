@@ -418,6 +418,7 @@ window.oneKLoadCarAsset=()=>{
  return carAssetPromise;
 };
 const x=document.getElementById('cinematicIntro');if(!x)return;
+const showArrival=false;if(!showArrival){x.hidden=true;return;}
 const reduceArrival=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const showArrivalCar=false;
 x.hidden=false;x.setAttribute('aria-hidden','false');
