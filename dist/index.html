@@ -450,6 +450,17 @@ const label=new T.Mesh(new T.PlaneGeometry(9,1.5),new T.MeshBasicMaterial({map:t
 scene.add(new T.HemisphereLight('#bfcee6','#362015',2.5));const key=new T.DirectionalLight('#c4d9ff',3);key.position.set(-8,15,12);scene.add(key);
 const inside=new T.PointLight('#ffac72',90,18,2);inside.position.set(0,4,0);scene.add(inside);
 const interiorMark=new T.Mesh(new T.PlaneGeometry(7,1.17),new T.MeshBasicMaterial({map:tex}));interiorMark.position.set(0,3,-4.8);scene.add(interiorMark);
+const car=new T.Group();scene.add(car);car.position.set(0,-30,-1);car.scale.setScalar(.001);
+const paint=mat('#d95128',.72,.23),dark=mat('#111519',.65,.18),tire=mat('#090b0d',.15,.86),rim=mat('#9da5aa',.85,.2),lamp=new T.MeshBasicMaterial({color:'#e9f3ff'});
+function carBox(w,h,d,x,y,z,m,group=car){const o=new T.Mesh(new T.BoxGeometry(w,h,d),m);o.position.set(x,y,z);group.add(o);return o}
+carBox(2.35,.48,4.5,0,.72,0,paint);carBox(2.25,.34,1.32,0,.99,1.42,paint);
+carBox(1.83,.72,1.9,0,1.2,-.3,dark);
+carBox(1.75,.08,.09,0,1.06,.72,lamp);carBox(.6,.35,.07,0,.73,2.28,dark);
+for(const x of [-1.14,1.14])for(const z of [-1.43,1.43]){const wheel=new T.Mesh(new T.CylinderGeometry(.43,.43,.25,24),tire);wheel.rotation.z=Math.PI/2;wheel.position.set(x,.48,z);car.add(wheel);const hub=new T.Mesh(new T.CylinderGeometry(.23,.23,.27,16),rim);hub.rotation.z=Math.PI/2;hub.position.set(x,.48,z);car.add(hub)}
+for(const x of [-.78,.78])carBox(.39,.22,.06, x,.82,2.3,lamp);
+for(const x of [-.36,.36])carBox(.25,.48,.12,x,.77,2.31,dark);
+carBox(2.1,.06,.12,0,.5,2.3,dark);
+
 let width,height,raf,start;let stopped=false;
 function resize(){width=host.clientWidth;height=host.clientHeight;renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix()}
 resize();window.addEventListener('resize',resize);
@@ -459,8 +470,10 @@ function frame(now){if(stopped)return;if(document.hidden){start=undefined;raf=re
 if(t<3){const p=smooth(t/3),angle=lerp(mobile?.34:.62,0,p);x=Math.sin(angle)*radius;y=lerp(5.8,3.3,p);z=4+Math.cos(angle)*radius}
 else{const p=smooth(Math.min((t-3)/3.3,1));x=0;y=lerp(3.3,2.2,p);z=lerp(4+radius,-1.4,p)}
 camera.position.set(x,y,z);camera.lookAt(0,t<3?3:lerp(3,2.2,smooth(Math.min((t-3)/3.3,1))),0);
-const opening=smooth(Math.max(0,Math.min((t-2.7)/1.2,1)));left.position.x=-2.15*opening;right.position.x=2.15*opening;
-host.style.setProperty('--arrival-progress',String(t/6.7));host.querySelector('.arrival-copy').style.opacity=String(Math.max(0,1-(t-3.1)/1.2));
+const opening=smooth(Math.max(0,Math.min((t-2.15)/.8,1)));left.position.x=-2.15*opening;right.position.x=2.15*opening;
+const drive=smooth(Math.max(0,Math.min((t-2.65)/2.6,1)));car.position.set(0,lerp(-30,.05,drive),lerp(-1,6.8,drive));car.scale.setScalar(lerp(.001,1,drive));car.rotation.y=lerp(0,Math.PI,drive*.08);
+if(t>4.8){const close=smooth(Math.min((t-4.8)/1.8,1));camera.position.lerp(new T.Vector3(0,2.4,lerp(18,4.5,close)),.07);camera.lookAt(0,1,0)}
+host.style.setProperty('--arrival-progress',String(t/6.7));host.querySelector('.arrival-copy').style.opacity=String(Math.max(0,1-(t-2.8)/1.1));
 renderer.render(scene,camera);host.classList.add('arrival-ready');if(t>=6.7){app.finish();return}if(!app.reduced)raf=requestAnimationFrame(frame)}
 raf=requestAnimationFrame(frame);
 }catch(e){console.warn('Storefront preview unavailable; retaining architectural fallback',e)}
