@@ -300,10 +300,23 @@ html{scroll-padding-top:112px}
 #cinematicIntro #introSkip{z-index:4;bottom:max(38px,env(safe-area-inset-bottom));background:#090c10cc;min-height:44px}
 @media(max-width:700px){.arrival-top{top:max(19px,env(safe-area-inset-top));left:16px;right:16px;font-size:7px}.arrival-copy{bottom:110px}}
 
+
+.arrival-fallback{perspective:900px;padding:20px}
+.facade-building{width:min(76vw,780px);position:relative;transform:rotateY(-13deg);box-shadow:0 30px 80px #0009;border:8px solid #252a30;background:#11191c}
+.facade-sign{font:800 clamp(24px,6vw,56px)/1.2 var(--latin);letter-spacing:.13em;padding:22px 12px 15px;background:#0a0c10;border-bottom:3px solid #ff8c53;box-shadow:0 10px 28px #ff8c5322;color:#f6f4ef;direction:ltr}
+.facade-sign small{display:block;font-size:8px;letter-spacing:.25em;margin-top:9px;color:#aab4bc}
+.facade-windows{display:grid;grid-template-columns:1fr .8fr 1fr;height:clamp(140px,25vw,260px);gap:7px;background:#171e24;padding:5px}
+.facade-windows>span,.facade-doors{background:repeating-linear-gradient(90deg,transparent 0,transparent 45%,#10161d 46%,#10161d 48%),linear-gradient(125deg,#a4bac22b,#111b25 45%,#eb946f21);border:1px solid #7a91924d}
+.facade-doors{display:flex;justify-content:center;align-items:center;gap:12px;box-shadow:inset 0 0 35px #e8a46e24}
+.facade-doors i{height:40px;width:3px;background:#c3ccd0}
+.facade-floor{height:22px;background:linear-gradient(#3c3831,#121416);border-top:2px solid #ff8c5355}
+.arrival-replay{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-top:12px;color:#ffad7c;font-size:11px;text-decoration:none;border-bottom:1px solid #ff8c5344}
+@media(max-width:700px){.facade-building{width:85vw;transform:rotateY(-7deg)}.facade-sign{padding:17px 8px}.arrival-replay{font-size:10px}}
+
 </style>
 </head>
 <body>
-<div class="cinematic-intro" id="cinematicIntro" role="dialog" aria-modal="true" aria-label="مرحبًا بك في ONE K" aria-hidden="true" hidden><div class="arrival-fallback"><strong>ONE <em>K</em></strong><p>مرحبًا بك في عالم العناية</p></div><canvas aria-hidden="true"></canvas><div class="arrival-top"><span>ONE K / THE ARRIVAL</span><span>AUTO CARE STUDIO</span></div><div class="arrival-copy"><p>تفضّل… سيارتك تستاهل.</p><small>من هنا تبدأ العناية بالتفاصيل</small></div><button id="introSkip" type="button">ادخل الموقع الآن ↗</button><div class="arrival-progress" aria-hidden="true"><span></span></div></div>
+<div class="cinematic-intro" id="cinematicIntro" role="dialog" aria-modal="true" aria-label="مرحبًا بك في ONE K" aria-hidden="true" hidden><div class="arrival-fallback" aria-hidden="true"><div class="facade-building"><div class="facade-sign">ONE <em>K</em><small>PREMIUM AUTO CARE</small></div><div class="facade-windows"><span></span><div class="facade-doors"><i></i><i></i></div><span></span></div><div class="facade-floor"></div></div></div><canvas aria-hidden="true"></canvas><div class="arrival-top"><span>ONE K / THE ARRIVAL</span><span>AUTO CARE STUDIO</span></div><div class="arrival-copy"><p>تفضّل… سيارتك تستاهل.</p><small>من هنا تبدأ العناية بالتفاصيل</small></div><button id="introSkip" type="button">ادخل الموقع الآن ↗</button><div class="arrival-progress" aria-hidden="true"><span></span></div></div>
 
 
 <div class="read-progress" aria-hidden="true"></div>
@@ -320,6 +333,7 @@ html{scroll-padding-top:112px}
 <h1><span>العناية تبدأ</span><span>من <em>التفاصيل.</em></span></h1>
 <p class="hero-desc">استكشف سيارتك واختر من ست خدمات عناية؛ من الزجاج والطلاء إلى تفاصيل المقصورة.</p>
 <div class="actions"><a class="btn" href="#stage">ابدأ التجربة <span class="arrow">←</span></a><a class="text-link" href="#protection">اكتشف خدماتنا <b>←</b></a></div>
+<a class="arrival-replay" href="?tour=1#home">شاهد دخولية المحل <span aria-hidden="true">↗</span></a>
 <div class="hero-notes"><div class="note"><i>01</i><span>حماية خارجية</span></div><div class="note"><i>02</i><span>تفاصيل المقصورة</span></div></div>
 </div>
 <div class="stage" id="stage" aria-label="اختر الخدمة من السيارة">
@@ -385,7 +399,7 @@ html{scroll-padding-top:112px}
 <script>(()=> {
 const x=document.getElementById('cinematicIntro');
 if(!x)return;
-if(matchMedia('(prefers-reduced-motion: reduce)').matches){x.remove();return}
+const reduceArrival=matchMedia('(prefers-reduced-motion: reduce)').matches;
 x.hidden=false;x.setAttribute('aria-hidden','false');
 const prevFocus=document.activeElement;
 const siblings=[...document.body.children].filter(el=>el!==x&&!['SCRIPT','STYLE'].includes(el.tagName));
@@ -398,8 +412,8 @@ setTimeout(()=>x.remove(),700);document.removeEventListener('keydown',escape)};
 const escape=e=>{if(e.key==='Escape')finish()};
 document.addEventListener('keydown',escape);
 document.getElementById('introSkip').addEventListener('click',finish);
-const safety=setTimeout(finish,11000);
-window.oneKArrival={element:x,finish,isDone:()=>done,setCleanup:fn=>{cleanup=fn;if(done)fn()}};
+const safety=setTimeout(finish,reduceArrival?5000:12000);
+window.oneKArrival={reduced:reduceArrival,element:x,finish,isDone:()=>done,setCleanup:fn=>{cleanup=fn;if(done)fn()}};
 })();</script><script>(async()=>{
 const app=window.oneKArrival;if(!app||app.isDone())return;
 try{
@@ -441,15 +455,15 @@ function resize(){width=host.clientWidth;height=host.clientHeight;renderer.setSi
 resize();window.addEventListener('resize',resize);
 app.setCleanup(()=>{stopped=true;cancelAnimationFrame(raf);window.removeEventListener('resize',resize);scene.traverse(o=>{o.geometry?.dispose()});new Set([wall,floor,trim,glow,white,glass,label.material,interiorMark.material]).forEach(m=>m.dispose());tex.dispose();renderer.dispose()});
 const smooth=t=>t*t*(3-2*t),lerp=(a,b,t)=>a+(b-a)*t;
-function frame(now){if(stopped)return;if(document.hidden){start=undefined;raf=requestAnimationFrame(frame);return}start??=now;const t=Math.min((now-start)/1000,6.7),mobile=width<700;const radius=mobile?28:20;let x,y,z;
+function frame(now){if(stopped)return;if(document.hidden){start=undefined;raf=requestAnimationFrame(frame);return}start??=now;const t=app.reduced?0:Math.min((now-start)/1000,6.7),mobile=width<700;const radius=mobile?28:20;let x,y,z;
 if(t<3){const p=smooth(t/3),angle=lerp(mobile?.34:.62,0,p);x=Math.sin(angle)*radius;y=lerp(5.8,3.3,p);z=4+Math.cos(angle)*radius}
 else{const p=smooth(Math.min((t-3)/3.3,1));x=0;y=lerp(3.3,2.2,p);z=lerp(4+radius,-1.4,p)}
 camera.position.set(x,y,z);camera.lookAt(0,t<3?3:lerp(3,2.2,smooth(Math.min((t-3)/3.3,1))),0);
 const opening=smooth(Math.max(0,Math.min((t-2.7)/1.2,1)));left.position.x=-2.15*opening;right.position.x=2.15*opening;
 host.style.setProperty('--arrival-progress',String(t/6.7));host.querySelector('.arrival-copy').style.opacity=String(Math.max(0,1-(t-3.1)/1.2));
-renderer.render(scene,camera);host.classList.add('arrival-ready');if(t>=6.7){app.finish();return}raf=requestAnimationFrame(frame)}
+renderer.render(scene,camera);host.classList.add('arrival-ready');if(t>=6.7){app.finish();return}if(!app.reduced)raf=requestAnimationFrame(frame)}
 raf=requestAnimationFrame(frame);
-}catch(e){console.warn('Storefront preview unavailable',e);app.finish()}
+}catch(e){console.warn('Storefront preview unavailable; retaining architectural fallback',e)}
 })();</script>
 <script>
 const menu=document.getElementById('menu'),navlinks=document.getElementById('navlinks'),nav=document.getElementById('nav');
