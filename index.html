@@ -86,6 +86,25 @@
 .menu{width:40px;height:40px;font-size:17px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+/* ONE K — uninterrupted mobile-first showroom */
+.hero{padding-bottom:65px}.hero-grid{column-gap:28px;row-gap:28px;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+.hero-copy{grid-column:1;grid-row:1}.stage{grid-column:2;grid-row:1;min-width:0;min-height:510px;border:1px solid #ffffff0d;border-radius:8px;background:radial-gradient(ellipse at 50% 66%,#49251944,transparent 65%)}
+.hotspot{display:none}.stage-spec{display:none}.model-label{top:22px;right:20px;font:500 11px var(--ar);letter-spacing:0;direction:rtl;color:#ddd}.stage-hud{top:22px;left:20px}.drag-hint{bottom:33px;right:20px}.model-credit{bottom:12px;font-size:7px}
+#carCanvas{touch-action:pan-y;cursor:grab}#carCanvas:active{cursor:grabbing}.model-status{position:absolute;z-index:2;bottom:65px;left:18px;right:18px;text-align:center;font-size:10px;color:#d3c5bb;pointer-events:none}.ready .model-status{display:none}.drag-hint[hidden]{display:none}
+.experience-dock{grid-column:1/-1;grid-row:2;min-width:0;padding:24px;border:1px solid #ffffff17;background:linear-gradient(130deg,#1b1c1e,#101214);border-radius:8px;box-shadow:0 24px 70px #0003}
+.dock-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}.dock-heading span{font:600 8px var(--latin);letter-spacing:.2em;color:var(--orange2)}.dock-heading h2{font-size:20px;font-weight:500;margin:9px 0 0}.reset-view{min-height:44px;background:transparent;border:1px solid #ffffff26;color:#ddd;padding:10px 14px;font-size:10px;cursor:pointer;border-radius:4px}.reset-view:hover{border-color:var(--orange)}
+.mobile-service-list{display:flex;grid-row:auto;gap:10px;margin:0;padding:3px 0 10px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#f15a2a #ffffff0a;direction:rtl}
+.mobile-service-choice{position:relative;display:flex;flex:1 0 152px;min-width:0;flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;min-height:70px;padding:12px;border:1px solid #ffffff17;border-radius:4px;background:#ffffff03;color:#eee;text-align:right;font:500 11px/1.7 var(--ar);cursor:pointer;scroll-snap-align:center;transition:border-color .3s,background .3s,transform .3s}
+.mobile-service-choice span{display:grid;place-items:center;flex:0 0 28px;height:28px;border:1px solid #f15a2a66;border-radius:50%;color:var(--orange2);font:700 10px var(--latin)}
+.mobile-service-choice:hover{border-color:#f15a2a99;background:#f15a2a0d}.mobile-service-choice[aria-pressed="true"]{background:linear-gradient(120deg,#f15a2a30,#f15a2a09);border-color:var(--orange2);box-shadow:inset 0 -2px var(--orange);transform:translateY(-2px)}.mobile-service-choice[aria-pressed="true"] span{background:var(--orange);color:#fff}
+.rail-hint{display:flex;justify-content:space-between;margin:10px 0 0;font-size:10px;color:#b7b7b2}.rail-hint span{color:#929693}
+.service-panel{position:relative;inset:auto;width:100%;margin-top:24px;padding:22px 0 0;border:0;border-top:1px solid #ffffff20;background:transparent;backdrop-filter:none;box-shadow:none;transform:none;opacity:1;display:grid;grid-template-columns:1fr 1fr;gap:8px 32px}
+.service-panel[hidden]{display:none}.panel-back{grid-column:1/-1;min-height:44px;font-size:11px}.panel-tag{grid-column:1;margin-top:5px;font-size:9px}.service-panel h2{grid-column:1;font-size:25px;margin:4px 0}.service-panel p{grid-column:1;font-size:12px;line-height:2;margin-bottom:0}.panel-points{grid-column:2;grid-row:2/5;align-self:center;margin:0}.panel-points li{font-size:12px;line-height:1.8}.panel-book{grid-column:2;font-size:12px;min-height:48px;align-self:end;border-radius:4px}
+:focus-visible{outline:2px solid var(--orange2);outline-offset:5px}.navright{display:flex;align-items:center;gap:12px}
+@media(max-width:950px){.hero-grid{grid-template-columns:minmax(0,1fr);gap:22px}.hero-copy{grid-column:1;grid-row:1}.stage{grid-column:1;grid-row:2;margin:0;min-height:440px}.experience-dock{grid-column:1;grid-row:3}.hero-notes{margin-top:22px}}
+@media(max-width:700px){.hero{padding-top:95px;padding-bottom:45px}.hero-grid{gap:20px}.hero h1{font-size:clamp(34px,9.5vw,44px)}.hero-copy{order:0}.hero-desc{font-size:12px;margin-bottom:19px}.hero-notes{display:none}.stage{order:0;min-height:330px;height:clamp(330px,94vw,430px);margin-inline:-8px}.experience-dock{padding:17px 14px;margin-inline:-3px}.dock-heading{margin-bottom:17px}.dock-heading h2{font-size:16px}.dock-heading span{font-size:7px}.reset-view{font-size:9px;padding:8px 10px}.mobile-service-choice{flex:0 0 166px;min-height:66px;font-size:11px;gap:10px}.mobile-service-list{margin-inline:-5px;padding-inline:5px}.rail-hint{font-size:9px}.service-panel{display:block;margin-top:18px;padding-top:14px}.panel-tag{margin-top:9px}.service-panel h2{font-size:23px;margin:10px 0}.service-panel p{font-size:12px}.panel-points{margin:16px 0}.panel-points li{font-size:11px}.panel-book{width:100%;min-height:48px}.stage-hud{font-size:7px;left:14px}.model-label{font-size:10px;right:14px}.drag-hint{font-size:8px;right:14px}.wa-float{bottom:max(15px,env(safe-area-inset-bottom))}}
+
 </style>
 </head>
 <body>
@@ -107,7 +126,7 @@
 <div class="stage" id="stage" aria-label="اختر الخدمة من السيارة">
 <div class="stage-glow"></div><div class="stage-ring"></div>
 <div class="stage-hud">INTERACTIVE 3D<span>ONE K / STUDIO</span></div>
-<div class="model-label">DESIGNED FOR THE DRIVE</div><a class="model-credit" href="https://sketchfab.com/3d-models/bmw-m4-competition-m-package-5c0a2dafb1ad408d9fc9eeef9aee531b" target="_blank" rel="noreferrer">3D MODEL · SRT PERFORMANCE · CC BY 4.0</a>
+<div class="model-label" id="sceneLabel" aria-live="polite">السيارة كاملة</div><div class="model-status" id="modelStatus" role="status">جارٍ تجهيز العرض ثلاثي الأبعاد…</div><a class="model-credit" href="https://sketchfab.com/3d-models/bmw-m4-competition-m-package-5c0a2dafb1ad408d9fc9eeef9aee531b" target="_blank" rel="noreferrer">3D MODEL · SRT PERFORMANCE · CC BY 4.0</a>
 <svg class="car-fallback" viewBox="0 0 800 360" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="paint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9b67"/><stop offset=".28" stop-color="#e64d24"/><stop offset=".7" stop-color="#292b2d"/><stop offset="1" stop-color="#f27b47"/></linearGradient><linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8c4c8" stop-opacity=".65"/><stop offset=".55" stop-color="#252b2e" stop-opacity=".87"/><stop offset="1" stop-color="#858c8e" stop-opacity=".3"/></linearGradient></defs><ellipse cx="405" cy="286" rx="301" ry="23" fill="#000" opacity=".68"/><path d="M95 229q12-36 71-55l95-20 83-70q27-23 75-25h95q37 0 63 28l64 67q43 9 63 37l17 27-15 30H99l-12-8z" fill="url(#paint)" stroke="#ffb18a" stroke-opacity=".63" stroke-width="2"/><path d="m276 158 75-64q24-19 61-21l-1 82zM421 73v82h176l-51-53q-25-27-63-29z" fill="url(#glass)" stroke="#ffb18a" stroke-opacity=".49" stroke-width="2"/><path d="M96 220h83m412 4h95M272 161l329 1" fill="none" stroke="#ffb18a" stroke-width="2" stroke-linecap="round"/><path d="M301 180h47m143 0h43" stroke="#d8d6d0" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/><circle cx="224" cy="250" r="49" fill="#090a0b" stroke="#8a8d8e" stroke-width="4"/><circle cx="224" cy="250" r="31" fill="#26292b" stroke="#d0d2cd" stroke-width="2"/><circle cx="224" cy="250" r="7" fill="#f15a2a"/><path d="M224 220v60m-30-30h60m-51-21 42 42m0-42-42 42" stroke="#afb1ae" stroke-width="3"/><circle cx="567" cy="250" r="49" fill="#090a0b" stroke="#8a8d8e" stroke-width="4"/><circle cx="567" cy="250" r="31" fill="#26292b" stroke="#d0d2cd" stroke-width="2"/><circle cx="567" cy="250" r="7" fill="#f15a2a"/><path d="M567 220v60m-30-30h60m-51-21 42 42m0-42-42 42" stroke="#afb1ae" stroke-width="3"/></svg>
 <canvas id="carCanvas" aria-label="سيارة ثلاثية الأبعاد؛ اسحب لتدويرها"></canvas>
 <button class="hotspot hotspot--film" type="button" data-service="film" data-label="العازل الحراري" aria-label="استكشف العازل الحراري على الزجاج">01</button>
@@ -116,22 +135,27 @@
 <button class="hotspot hotspot--edges" type="button" data-service="edges" data-label="أطراف الأبواب فقط" aria-label="استكشف حماية أطراف الأبواب فقط">04</button>
 <button class="hotspot hotspot--mats" type="button" data-service="mats" data-label="الدعسات الداخلية" aria-label="استكشف دعسات السيارة الداخلية">05</button>
 <button class="hotspot hotspot--upholstery" type="button" data-service="upholstery" data-label="تلبيسة المقاعد" aria-label="استكشف تلبيسة السيارة">06</button>
-<div class="stage-spec"><b>01 — 06 / ONE K CARE</b><br><span>اضغط على النقطة لاستكشاف الخدمة</span></div>
+<div class="stage-spec"><b>01 — 06 / ONE K CARE</b><br><span>اختر خدمتك من الشريط بالأسفل</span></div>
 <div class="drag-hint"><i>↔</i><span>اسحب السيارة لتدويرها</span><b>DRAG TO ROTATE</b></div>
-<aside class="service-panel" id="servicePanel" hidden aria-live="polite">
-<button class="panel-back" id="backToCar" type="button"><span>↩</span> رجوع إلى السيارة</button>
-<div class="panel-tag" id="panelTag"></div><h2 id="panelTitle"></h2><p id="panelText"></p><ul class="panel-points" id="panelPoints"></ul>
-<a class="btn panel-book" id="panelBook" href="#" target="_blank" rel="noreferrer">استفسر عن الخدمة <span class="arrow">←</span></a>
-</aside>
+
 </div>
+<div class="experience-dock">
+<div class="dock-heading"><div><span>THE CARE COLLECTION</span><h2>كل التفاصيل. في متناولك.</h2></div><button class="reset-view" type="button" id="resetView">السيارة كاملة ↗</button></div>
 <div class="mobile-service-list" role="group" aria-label="اختيار خدمة العناية">
-<div class="mobile-service-title">اختر العناية المناسبة لسيارتك</div>
+
 <button class="mobile-service-choice" type="button" data-service="film" aria-pressed="false"><span>01</span>العازل الحراري</button>
 <button class="mobile-service-choice" type="button" data-service="ppf" aria-pressed="false"><span>02</span>حماية الطلاء PPF</button>
 <button class="mobile-service-choice" type="button" data-service="lamps" aria-pressed="false"><span>03</span>حماية الشمعات</button>
 <button class="mobile-service-choice" type="button" data-service="edges" aria-pressed="false"><span>04</span>حماية أطراف الأبواب</button>
 <button class="mobile-service-choice" type="button" data-service="mats" aria-pressed="false"><span>05</span>الدعسات الداخلية</button>
 <button class="mobile-service-choice" type="button" data-service="upholstery" aria-pressed="false"><span>06</span>تلبيسة المقاعد</button>
+</div>
+<p class="rail-hint">اختر خدمة لاستكشافها <span>اسحب للمزيد ←</span></p>
+<aside class="service-panel" id="servicePanel" hidden aria-live="polite">
+<button class="panel-back" id="backToCar" type="button"><span>↩</span> رجوع إلى السيارة</button>
+<div class="panel-tag" id="panelTag"></div><h2 id="panelTitle"></h2><p id="panelText"></p><ul class="panel-points" id="panelPoints"></ul>
+<a class="btn panel-book" id="panelBook" href="#" target="_blank" rel="noreferrer">استفسر عن الخدمة <span class="arrow">←</span></a>
+</aside>
 </div>
 </div>
 <div class="hero-bottom"><div class="wrap"><span>ONE K · PREMIUM PROTECTION</span><span class="scroll-indicator">SCROLL TO EXPLORE</span></div></div>
@@ -151,7 +175,7 @@
 </div></section>
 <section class="section process" id="experience"><div class="wrap process-grid">
 <div class="process-copy reveal"><div class="section-kicker">A BETTER WAY TO BOOK</div><h2>خطوات بسيطة.<br>عناية على مقاسك.</h2><p>ابدأ بالخدمة التي تهمك، أرسل بيانات سيارتك، وبعدها نساعدك تختار التغطية المناسبة قبل الحجز.</p><a class="btn" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%86%D8%A7%D9%8A%D8%A9">تواصل معنا <span class="arrow">←</span></a></div>
-<div class="steps reveal delay1"><div class="step"><div class="stepno">01</div><div><h3>اختر الخدمة</h3><p>استكشف خدمات السيارة الست من النقاط التفاعلية أو بطاقات الخدمات.</p></div></div><div class="step"><div class="stepno">02</div><div><h3>أرسل تفاصيل سيارتك</h3><p>نوع السيارة وموديلها يساعدنا نوضح لك الخيارات المناسبة.</p></div></div><div class="step"><div class="stepno">03</div><div><h3>نسّق موعدك</h3><p>نتفق على تفاصيل الخدمة والموعد عبر واتساب.</p></div></div></div>
+<div class="steps reveal delay1"><div class="step"><div class="stepno">01</div><div><h3>اختر الخدمة</h3><p>استكشف خدمات السيارة الست من الشريط التفاعلي أو بطاقات الخدمات.</p></div></div><div class="step"><div class="stepno">02</div><div><h3>أرسل تفاصيل سيارتك</h3><p>نوع السيارة وموديلها يساعدنا نوضح لك الخيارات المناسبة.</p></div></div><div class="step"><div class="stepno">03</div><div><h3>نسّق موعدك</h3><p>نتفق على تفاصيل الخدمة والموعد عبر واتساب.</p></div></div></div>
 </div></section>
 <section class="contact"><div class="wrap contact-inner reveal"><div><div class="section-kicker">YOUR CAR, YOUR CHOICE</div><h2>جاهز تختار العناية؟</h2><p>اختر الخدمة، وارسل لنا نوع سيارتك ونرتب لك الخطوة الجاية.</p></div><a class="btn" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF">احجز عبر واتساب <span class="arrow">←</span></a></div></section>
 <section class="section" id="faq"><div class="wrap faq"><div class="faq-intro reveal"><div class="section-kicker">GOOD TO KNOW</div><h2>قبل ما تحجز،<br>هذي إجابات سريعة.</h2><p>ما لقيت سؤالك؟ اكتب لنا ونوضح لك تفاصيل الخدمة.</p></div><div class="reveal delay1"><details class="faq-item"><summary>وش الفرق بين PPF والعازل الحراري؟</summary><p>PPF طبقة لحماية أسطح مختارة من طلاء السيارة، والعازل الحراري يركّب على الزجاج. نساعدك تختار الخدمة حسب احتياجك.</p></details><details class="faq-item"><summary>هل أقدر أختار جزء معين للحماية؟</summary><p>تتوفر خيارات تغطية مختلفة حسب السيارة. تواصل معنا بنوع وموديل سيارتك عشان نوضح لك المتاح.</p></details><details class="faq-item"><summary>كيف أعرف الخيار المناسب لسيارتي؟</summary><p>أرسل نوع السيارة وموديلها واستخدامك اليومي، وفريق ONE K يوضح لك الخيارات قبل الحجز.</p></details><details class="faq-item"><summary>كيف أحجز موعد؟</summary><p>اضغط زر واتساب، اكتب نوع الخدمة والسيارة، وننسق معك الموعد والتفاصيل.</p></details></div></div></section>
@@ -175,11 +199,13 @@ upholstery:{tag:'SEAT UPHOLSTERY / 06',title:'تلبيسة مقاعد السيا
 };
 const stage=document.getElementById('stage'),panel=document.getElementById('servicePanel');
 const panelTag=document.getElementById('panelTag'),panelTitle=document.getElementById('panelTitle'),panelText=document.getElementById('panelText'),panelPoints=document.getElementById('panelPoints'),panelBook=document.getElementById('panelBook');
-function openService(kind){const item=details[kind];if(!item)return;stage.dataset.focus=kind;document.querySelectorAll('.mobile-service-choice').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.service===kind)));panel.hidden=false;panelTag.textContent=item.tag;panelTitle.textContent=item.title;panelText.textContent=item.text;panelPoints.innerHTML=item.points.map(text=>'<li>'+text+'</li>').join('');panelBook.href='https://wa.me/966530004764?text='+encodeURIComponent(item.message);panelBook.setAttribute('aria-label','استفسر عبر واتساب عن '+item.title);stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind}}))}
-function closeService(){delete stage.dataset.focus;document.querySelectorAll('.mobile-service-choice').forEach(button=>button.setAttribute('aria-pressed','false'));panel.hidden=true;stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind:null}}))}
+function openService(kind){const item=details[kind];if(!item)return;stage.dataset.focus=kind;document.getElementById('sceneLabel').textContent=item.title;document.querySelectorAll('.mobile-service-choice').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.service===kind)));panel.hidden=false;panelTag.textContent=item.tag;panelTitle.textContent=item.title;panelText.textContent=item.text;panelPoints.innerHTML=item.points.map(text=>'<li>'+text+'</li>').join('');panelBook.href='https://wa.me/966530004764?text='+encodeURIComponent(item.message);panelBook.setAttribute('aria-label','استفسر عبر واتساب عن '+item.title);stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind}}))}
+function closeService(){delete stage.dataset.focus;document.getElementById('sceneLabel').textContent='السيارة كاملة';document.querySelectorAll('.mobile-service-choice').forEach(button=>button.setAttribute('aria-pressed','false'));panel.hidden=true;stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind:null}}))}
 document.querySelectorAll('.hotspot').forEach(button=>button.addEventListener('click',()=>openService(button.dataset.service)));
 document.querySelectorAll('.mobile-service-choice').forEach(button=>button.addEventListener('click',()=>{openService(button.dataset.service);button.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})}));
 document.getElementById('backToCar').addEventListener('click',closeService);
+document.getElementById('resetView').addEventListener('click',closeService);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){closeService();document.getElementById('resetView').focus()}});
 document.querySelectorAll('.service-card .card-link').forEach((link,index)=>link.addEventListener('click',()=>{}));
 </script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}</script>
@@ -231,13 +257,13 @@ try{
   const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
   canvas.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)});
   canvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();pointerX=(e.clientX-r.left)/r.width-.5;pointerY=(e.clientY-r.top)/r.height-.5;if(drag){targetY+=(e.clientX-lastX)*.008;targetX=Math.max(-.15,Math.min(.12,targetX+(e.clientY-lastY)*.002));lastX=e.clientX;lastY=e.clientY}});
-  let downAt=0;
-  canvas.addEventListener('pointerdown',()=>downAt=performance.now());
-  canvas.addEventListener('pointerup',e=>{drag=false;if(performance.now()-downAt>260)return;const r=canvas.getBoundingClientRect();pointer.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObject(car,true)[0];if(hit){const local=group.worldToLocal(hit.point.clone());const materials=Array.isArray(hit.object.material)?hit.object.material:[hit.object.material];const names=[hit.object.name,...materials.map(m=>m.name)].join(' ').toLowerCase();let kind='ppf';if(names.includes('windows'))kind='film';else if(/head.?light|lamp|led/.test(names))kind='lamps';else if(/seat|uphol|interior|cabin/.test(names))kind='upholstery';else if(/floor|carpet|mat|footwell/.test(names))kind='mats';else if(local.y<height*.34&&Math.abs(local.x)>size.x*.2)kind='edges';document.querySelector('.hotspot[data-service="'+kind+'"]')?.click()}});
+  let downAt=0,downX=0,downY=0;
+  canvas.addEventListener('pointerdown',e=>{downAt=performance.now();downX=e.clientX;downY=e.clientY});
+  canvas.addEventListener('pointerup',e=>{drag=false;if(performance.now()-downAt>260||Math.hypot(e.clientX-downX,e.clientY-downY)>8)return;const r=canvas.getBoundingClientRect();pointer.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObject(car,true)[0];if(hit){const local=group.worldToLocal(hit.point.clone());const materials=Array.isArray(hit.object.material)?hit.object.material:[hit.object.material];const names=[hit.object.name,...materials.map(m=>m.name)].join(' ').toLowerCase();let kind='ppf';if(names.includes('windows'))kind='film';else if(/head.?light|lamp|led/.test(names))kind='lamps';else if(/seat|uphol|interior|cabin/.test(names))kind='upholstery';else if(/floor|carpet|mat|footwell/.test(names))kind='mats';else if(local.y<height*.34&&Math.abs(local.x)>size.x*.2)kind='edges';document.querySelector('.hotspot[data-service="'+kind+'"]')?.click()}});
   canvas.addEventListener('pointercancel',()=>drag=false);
   canvas.addEventListener('pointerleave',()=>{if(!drag){pointerX=0;pointerY=0}});
   stage.addEventListener('care-focus',e=>{
-    const kind=e.detail.kind;
+    const kind=e.detail.kind;targetY=-.2;targetX=-.035;pointerX=0;pointerY=0;
     if(kind==='film'){const view=homeCamera.clone().sub(center).normalize();desiredLook.copy(glassCenter);desiredCamera.copy(glassCenter).addScaledVector(view,Math.max(2.6,baseDistance*.42));desiredCamera.y=Math.max(desiredCamera.y,glassCenter.y+.55);}
     else if(kind==='ppf'){desiredCamera.set(center.x+Math.max(size.x*.86,2.1),Math.max(height*.62,1.15),center.z+Math.max(size.z*.72,1.9));desiredLook.set(center.x+size.x*.24,height*.26,center.z);}
     else if(kind==='lamps'){const view=homeCamera.clone().sub(center).normalize();desiredLook.copy(lampCenter);desiredCamera.copy(lampCenter).addScaledVector(view,Math.max(1.45,baseDistance*.24));}
@@ -248,10 +274,12 @@ try{
     const showInterior=kind==='mats'||kind==='upholstery';windowNodes.forEach(node=>node.visible=!showInterior);windowMaterials.forEach((original,material)=>{if(showInterior){material.transparent=true;material.opacity=Math.min(original.opacity,.12);material.depthWrite=false;material.needsUpdate=true}else{material.transparent=original.transparent;material.opacity=original.opacity;material.depthWrite=original.depthWrite;material.needsUpdate=true}});bodyMaterials.forEach((original,material)=>{material.visible=!showInterior?original.visible:false;material.transparent=original.transparent;material.opacity=original.opacity;material.depthWrite=original.depthWrite;material.needsUpdate=true});
   });
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function animate(){requestAnimationFrame(animate);camera.position.lerp(desiredCamera,reduced?.2:.045);currentLook.lerp(desiredLook,reduced?.2:.055);camera.lookAt(currentLook);group.rotation.y+=(targetY+(reduced?0:pointerX*.16)-group.rotation.y)*(reduced?.22:.045);group.rotation.x+=(targetX+(reduced?0:pointerY*-.06)-group.rotation.x)*(reduced?.22:.045);renderer.render(scene,camera)}
-  stage.classList.add('ready');animate();
-}catch(error){console.error('ONE K 3D model could not load:',error);canvas.setAttribute('aria-hidden','true')}
+  let visible=true;new IntersectionObserver(entries=>{visible=entries[0].isIntersecting},{rootMargin:'120px'}).observe(stage);
+  function animate(){requestAnimationFrame(animate);if(document.hidden||!visible)return;camera.position.lerp(desiredCamera,reduced?.2:.045);currentLook.lerp(desiredLook,reduced?.2:.055);camera.lookAt(currentLook);group.rotation.y+=(targetY+(reduced?0:pointerX*.16)-group.rotation.y)*(reduced?.22:.045);group.rotation.x+=(targetX+(reduced?0:pointerY*-.06)-group.rotation.x)*(reduced?.22:.045);renderer.render(scene,camera)}
+  stage.classList.add('ready');if(stage.dataset.focus)stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind:stage.dataset.focus}}));animate();
+}catch(error){console.error('ONE K 3D model could not load:',error);canvas.setAttribute('aria-hidden','true');document.getElementById('modelStatus').textContent='العرض المبسّط · اختر الخدمة من الشريط';document.querySelector('.drag-hint').hidden=true}
 </script>
 </body>
 </html>
+
 
