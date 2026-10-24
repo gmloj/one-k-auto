@@ -480,7 +480,7 @@ const ctx=sign.getContext('2d');ctx.fillStyle='#080a0e';ctx.fillRect(0,0,1536,25
 const tex=new T.CanvasTexture(sign);tex.colorSpace=T.SRGBColorSpace;
 const signMaterial=new T.MeshBasicMaterial({map:tex,transparent:true});
 const label=new T.Mesh(new T.PlaneGeometry(9.25,1.2),signMaterial);label.position.set(0,5.22,5.27);scene.add(label);
-let stopped=false,raf=0,start,width=1,height=1,canRender=false,shopRoot=null,car=null,left=null,right=null,resizeObserver=null;
+let stopped=false,raf=0,start,width=1,height=1,canRender=false,shopRoot=null,car=null,carRig=null,left=null,right=null,resizeObserver=null;
 function resize(){const r=canvas.getBoundingClientRect();width=Math.max(1,r.width);height=Math.max(1,r.height);renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();if(canRender)renderer.render(scene,camera)}
 window.addEventListener('resize',resize);if('ResizeObserver'in window){resizeObserver=new ResizeObserver(resize);resizeObserver.observe(canvas)}
 const cleanup=()=>{
@@ -504,13 +504,20 @@ shopRoot=shopData.scene;scene.add(shopRoot);left=shopRoot.getObjectByName('Door_
 car=bmwData.scene.clone(true);
 const rawBounds=new T.Box3().setFromObject(car),rawSize=rawBounds.getSize(new T.Vector3()),rawCenter=rawBounds.getCenter(new T.Vector3());
 const scale=4.75/(Math.max(rawSize.x,rawSize.y,rawSize.z)||1);
-car.scale.setScalar(scale);car.position.set(-rawCenter.x*scale,-rawBounds.min.y*scale,-rawCenter.z*scale);scene.add(car);
+car.scale.setScalar(scale);car.position.set(-rawCenter.x*scale,-rawBounds.min.y*scale,-rawCenter.z*scale);
+carRig=new T.Group();carRig.add(car);scene.add(carRig);
 const carBounds=new T.Box3().setFromObject(car),size=carBounds.getSize(new T.Vector3()),center=carBounds.getCenter(new T.Vector3()),heightModel=size.y;
+const shopBounds=new T.Box3().setFromObject(shopRoot),doorBounds=left?new T.Box3().setFromObject(left):null;
+const doorPlaneZ=doorBounds?doorBounds.getCenter(new T.Vector3()).z:shopBounds.max.z;
+const carHalfDepth=(size.z*Math.cos(.2)+size.x*Math.sin(.2))*.5;
+const carEndZ=Math.min(0,doorPlaneZ-carHalfDepth-.85);
+const carStartZ=Math.min(carEndZ,Math.max(shopBounds.min.z+carHalfDepth+.55,carEndZ-2.4));
 const homeDistance=Math.max(7.1,Math.max(size.x,size.z)*1.75);
 const homeCamera=new T.Vector3(homeDistance*.64,homeDistance*.3,homeDistance*.76),homeLook=new T.Vector3(center.x,heightModel*.32,center.z);
+const entryCamera=new T.Vector3(),entryLook=new T.Vector3(),cameraLook=new T.Vector3();
 canRender=true;resize();
 app.setHandoff(()=>{
- if(!car)return;
+ if(!carRig)return;
  shopRoot.visible=false;floorGlow.visible=false;orbit.visible=false;carShadow.visible=false;
  scene.background=null;scene.fog=null;renderer.setClearColor(0x000000,0);renderer.toneMappingExposure=1.12;
  camera.fov=33;camera.position.copy(homeCamera);camera.lookAt(homeLook);camera.updateProjectionMatrix();renderer.render(scene,camera);
@@ -519,22 +526,21 @@ const smooth=t=>t*t*(3-2*t),lerp=(a,b,t)=>a+(b-a)*t,clamp=t=>Math.max(0,Math.min
 function frame(now){
  if(stopped)return;if(document.hidden){start=undefined;raf=requestAnimationFrame(frame);return}
  start??=now;const t=app.reduced?6.7:Math.min((now-start)/1000,6.7),mobile=width<700,radius=mobile?24:19;
- const path=smooth(clamp((t-3)/3.3));let x,y,z;
- if(t<3){const p=smooth(t/3),angle=lerp(mobile?.34:.62,0,p);x=Math.sin(angle)*radius;y=lerp(5.8,3.3,p);z=4+Math.cos(angle)*radius}
- else{x=0;y=lerp(3.3,2.2,path);z=lerp(4+radius,-1.4,path)}
+ const approach=smooth(clamp((t-3)/3.7));let x,y,z;
  const opening=smooth(clamp((t-2.15)/.8));if(left)left.position.x=-2.15*opening;if(right)right.position.x=2.15*opening;
- const drive=smooth(clamp((t-2.65)/2.6));car.position.set(0,0,lerp(-3.4,7.1,drive));car.rotation.y=lerp(0,-.2,drive);car.rotation.x=lerp(0,-.035,drive);
- carShadow.position.z=car.position.z;carShadow.visible=drive>.04;
- if(t>4.8){
-  const bridge=smooth(clamp((t-4.8)/1.9)),carAtBridge=lerp(-3.4,7.1,smooth(clamp((4.8-2.65)/2.6)));
-  car.position.z=lerp(carAtBridge,0,bridge);
-  const pathCamera=new T.Vector3(0,lerp(3.3,2.2,path),lerp(4+radius,-1.4,path));
-  const pathLook=new T.Vector3(0,lerp(3,2.2,path),0);
-  const targetCamera=new T.Vector3(homeCamera.x,homeCamera.y,homeCamera.z+car.position.z);
-  const targetLook=new T.Vector3(homeLook.x,homeLook.y,homeLook.z+car.position.z);
-  camera.position.copy(pathCamera).lerp(targetCamera,bridge);camera.lookAt(pathLook.lerp(targetLook,bridge));
-  camera.fov=lerp(48,33,bridge);camera.updateProjectionMatrix();
- }else{camera.position.set(x,y,z);camera.lookAt(0,t<3?3:lerp(3,2.2,path),0)}
+ const drive=smooth(clamp((t-2.95)/2.85));
+ carRig.position.set(0,0,lerp(carStartZ,carEndZ,drive));
+ carRig.rotation.y=lerp(0,-.2,drive);carRig.rotation.x=lerp(0,-.035,drive);
+ carShadow.position.z=carRig.position.z;floorGlow.position.z=carRig.position.z;orbit.position.z=carRig.position.z;carShadow.visible=drive>.04;
+ if(t<3){
+  const p=smooth(t/3),angle=lerp(mobile?.34:.62,0,p);x=Math.sin(angle)*radius;y=lerp(5.8,3.3,p);z=4+Math.cos(angle)*radius;
+  camera.position.set(x,y,z);camera.lookAt(0,3,0);
+ }else{
+  entryCamera.set(0,3.3,4+radius);entryLook.set(0,3,0);
+  camera.position.copy(entryCamera).lerp(homeCamera,approach);
+  cameraLook.copy(entryLook).lerp(homeLook,approach);camera.lookAt(cameraLook);
+  camera.fov=lerp(48,33,approach);camera.updateProjectionMatrix();
+ }
  host.style.setProperty('--arrival-progress',String(t/6.7));host.querySelector('.arrival-copy').style.opacity=String(Math.max(0,1-(t-2.8)/1.1));
  renderer.render(scene,camera);host.classList.add('arrival-ready');
  if(t>=6.7){app.sceneComplete();return}raf=requestAnimationFrame(frame);
