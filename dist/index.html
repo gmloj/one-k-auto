@@ -419,6 +419,7 @@ window.oneKLoadCarAsset=()=>{
 };
 const x=document.getElementById('cinematicIntro');if(!x)return;
 const reduceArrival=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const showArrivalCar=false;
 x.hidden=false;x.setAttribute('aria-hidden','false');
 const siblings=[...document.body.children].filter(el=>el!==x&&!['SCRIPT','STYLE'].includes(el.tagName));
 const old=siblings.map(el=>el.inert);siblings.forEach(el=>el.inert=true);
@@ -429,7 +430,7 @@ const restorePage=()=>{siblings.forEach((el,i)=>el.inert=old[i]);document.body.s
 const finish=(options={})=>{
  if(done)return;done=true;clearTimeout(safety);document.removeEventListener('keydown',escape);
  window.removeEventListener('oneKHomeReady',onHomeReady);window.removeEventListener('oneKHomeFallback',onHomeFallback);
- const handoff=options.handoff===true&&homeModelReady&&stage?.classList.contains('ready')&&typeof prepareHandoff==='function';
+ const handoff=showArrivalCar&&options.handoff===true&&homeModelReady&&stage?.classList.contains('ready')&&typeof prepareHandoff==='function';
  if(handoff){
   const rect=stage.getBoundingClientRect();
   if(rect.width>0&&rect.height>0){
@@ -452,7 +453,7 @@ document.addEventListener('keydown',escape);
 document.getElementById('introSkip').addEventListener('click',()=>finish());
 window.addEventListener('oneKHomeReady',onHomeReady);window.addEventListener('oneKHomeFallback',onHomeFallback);
 safety=setTimeout(()=>finish(),16000);
-window.oneKArrival={reduced:reduceArrival,element:x,finish,sceneComplete,isDone:()=>done,loadCarAsset:window.oneKLoadCarAsset,setCleanup:fn=>{cleanup=fn;if(done)fn()},setHandoff:fn=>{prepareHandoff=fn}};
+window.oneKArrival={reduced:reduceArrival,showArrivalCar,element:x,finish,sceneComplete,isDone:()=>done,loadCarAsset:window.oneKLoadCarAsset,setCleanup:fn=>{cleanup=fn;if(done)fn()},setHandoff:fn=>{prepareHandoff=fn}};
 })();</script><script>
 (async()=>{
 const app=window.oneKArrival;if(!app||app.isDone())return;
@@ -470,11 +471,11 @@ const homeKey=new T.DirectionalLight(0xffdfc7,4.4);homeKey.position.set(-3,6,5);
 const homeRim=new T.DirectionalLight(0xff5b2b,5.2);homeRim.position.set(2.4,3,-5);scene.add(homeRim);
 const homeFill=new T.PointLight(0xffffff,32,14);homeFill.position.set(4,2.5,3);scene.add(homeFill);
 const floorGlowMat=new T.MeshBasicMaterial({color:0x5b2617,transparent:true,opacity:.23,depthWrite:false});
-const floorGlow=new T.Mesh(new T.CircleGeometry(2.35,64),floorGlowMat);floorGlow.rotation.x=-Math.PI/2;floorGlow.position.y=.015;scene.add(floorGlow);
+const floorGlow=new T.Mesh(new T.CircleGeometry(2.35,64),floorGlowMat);floorGlow.rotation.x=-Math.PI/2;floorGlow.position.y=.015;floorGlow.visible=app.showArrivalCar;scene.add(floorGlow);
 const orbitMat=new T.MeshBasicMaterial({color:0xf15a2a,transparent:true,opacity:.4});
-const orbit=new T.Mesh(new T.TorusGeometry(2.2,.008,6,110),orbitMat);orbit.rotation.x=Math.PI/2;orbit.position.y=.025;scene.add(orbit);
+const orbit=new T.Mesh(new T.TorusGeometry(2.2,.008,6,110),orbitMat);orbit.rotation.x=Math.PI/2;orbit.position.y=.025;orbit.visible=app.showArrivalCar;scene.add(orbit);
 const shadowMat=new T.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.34,depthWrite:false});
-const carShadow=new T.Mesh(new T.CircleGeometry(1.9,48),shadowMat);carShadow.rotation.x=-Math.PI/2;carShadow.position.y=.018;scene.add(carShadow);
+const carShadow=new T.Mesh(new T.CircleGeometry(1.9,48),shadowMat);carShadow.rotation.x=-Math.PI/2;carShadow.position.y=.018;carShadow.visible=app.showArrivalCar;scene.add(carShadow);
 const sign=document.createElement('canvas');sign.width=1536;sign.height=256;
 const ctx=sign.getContext('2d');ctx.fillStyle='#080a0e';ctx.fillRect(0,0,1536,256);ctx.textAlign='center';ctx.fillStyle='#f8f4ed';ctx.font='bold 145px Arial';ctx.fillText('ONE',650,155);ctx.fillStyle='#ff8c53';ctx.fillText('K',895,155);ctx.font='22px Arial';ctx.fillStyle='#b5babd';ctx.fillText('P R E M I U M   A U T O   C A R E',768,217);
 const tex=new T.CanvasTexture(sign);tex.colorSpace=T.SRGBColorSpace;
@@ -505,7 +506,7 @@ car=bmwData.scene.clone(true);
 const rawBounds=new T.Box3().setFromObject(car),rawSize=rawBounds.getSize(new T.Vector3()),rawCenter=rawBounds.getCenter(new T.Vector3());
 const scale=3.6/(Math.max(rawSize.x,rawSize.y,rawSize.z)||1);
 car.scale.setScalar(scale);car.position.set(-rawCenter.x*scale,-rawBounds.min.y*scale,-rawCenter.z*scale);
-carRig=new T.Group();carRig.add(car);scene.add(carRig);
+carRig=new T.Group();carRig.add(car);carRig.visible=app.showArrivalCar;scene.add(carRig);
 const carBounds=new T.Box3().setFromObject(car),size=carBounds.getSize(new T.Vector3()),center=carBounds.getCenter(new T.Vector3()),heightModel=size.y;
 const shopBounds=new T.Box3().setFromObject(shopRoot),doorBounds=left?new T.Box3().setFromObject(left):null;
 const doorPlaneZ=doorBounds?doorBounds.getCenter(new T.Vector3()).z:shopBounds.max.z;
@@ -531,7 +532,7 @@ function frame(now){
  const drive=smooth(clamp((t-2.95)/2.85));
  carRig.position.set(0,0,lerp(carStartZ,carEndZ,drive));
  carRig.rotation.y=lerp(0,-.2,drive);carRig.rotation.x=lerp(0,-.035,drive);
- carShadow.position.z=carRig.position.z;floorGlow.position.z=carRig.position.z;orbit.position.z=carRig.position.z;carShadow.visible=drive>.04;
+ carShadow.position.z=carRig.position.z;floorGlow.position.z=carRig.position.z;orbit.position.z=carRig.position.z;carShadow.visible=app.showArrivalCar&&drive>.04;
  if(t<3){
   const p=smooth(t/3),angle=lerp(mobile?.34:.62,0,p);x=Math.sin(angle)*radius;y=lerp(5.8,3.3,p);z=4+Math.cos(angle)*radius;
   camera.position.set(x,y,z);camera.lookAt(0,3,0);
