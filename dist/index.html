@@ -36,11 +36,16 @@
 .mobile-service-list{display:none}
 @media(max-width:700px){
 .hotspot:after{display:none}
-.mobile-service-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:5px;padding:0 0 8px;grid-row:3}
-.mobile-service-title{grid-column:1/-1;color:#aeb2af;font-size:10px;margin:0 0 2px}
-.mobile-service-choice{display:flex;align-items:center;gap:9px;min-height:44px;padding:8px 10px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.035);color:#f4f2ed;text-align:right;font:500 10px var(--ar);line-height:1.7;cursor:pointer}
-.mobile-service-choice span{display:grid;place-items:center;flex:0 0 25px;width:25px;height:25px;border:1px solid rgba(241,90,42,.55);border-radius:50%;color:var(--orange2);font:700 9px var(--latin)}
-.mobile-service-choice[aria-pressed="true"]{border-color:rgba(241,90,42,.65);background:rgba(241,90,42,.11)}
+.mobile-service-list{display:flex;flex-wrap:nowrap;gap:10px;grid-row:3;margin:10px -17px 0;padding:5px 17px 13px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;direction:rtl;position:relative}
+.mobile-service-list::-webkit-scrollbar{display:none}
+.mobile-service-title{flex:0 0 100%;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#f4f2ed;font-size:11px;font-weight:600;margin:0 0 1px;padding-inline:2px}
+.mobile-service-title:after{content:"اسحب لاكتشاف الخدمات  ←";font:500 8px var(--ar);color:#989d9b;white-space:nowrap}
+.mobile-service-choice{position:relative;isolation:isolate;overflow:hidden;display:flex;flex:0 0 148px;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:12px;min-height:84px;padding:12px 13px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018));color:#f4f2ed;text-align:right;font:500 9px var(--ar);line-height:1.7;cursor:pointer;scroll-snap-align:center;transition:border-color .28s,background .28s,transform .28s,box-shadow .28s}
+.mobile-service-choice:after{content:"";position:absolute;z-index:-1;inset:auto -10px -30px auto;width:70px;height:70px;border-radius:50%;background:rgba(241,90,42,.13);filter:blur(24px);opacity:0;transition:opacity .3s}
+.mobile-service-choice span{display:grid;place-items:center;width:26px;height:26px;border:1px solid rgba(241,90,42,.45);border-radius:50%;color:var(--orange2);font:700 9px var(--latin);transition:background .25s,color .25s,box-shadow .25s}
+.mobile-service-choice[aria-pressed="true"]{border-color:rgba(255,137,86,.72);background:linear-gradient(135deg,rgba(241,90,42,.2),rgba(255,255,255,.035));box-shadow:inset 0 0 0 1px rgba(241,90,42,.12),0 8px 24px rgba(0,0,0,.24);transform:translateY(-2px)}
+.mobile-service-choice[aria-pressed="true"]:after{opacity:1}
+.mobile-service-choice[aria-pressed="true"] span{background:var(--orange);color:#fff;border-color:var(--orange);box-shadow:0 0 16px rgba(241,90,42,.3)}
 }@media(max-width:700px){.wrap{width:min(var(--max),calc(100% - 34px))}.topline{font-size:8px}.navinner{height:66px}.navlinks{display:none;position:absolute;top:66px;right:0;left:0;background:rgba(9,10,11,.97);padding:20px 22px 24px;flex-direction:column;gap:18px;border-bottom:1px solid var(--line)}.navlinks.open{display:flex}.navright{gap:7px}.navbook{padding:10px 11px;font-size:8px}.menu{display:block}.hero{padding:119px 0 62px;min-height:auto}.hero-grid{gap:0}.stage{min-height:390px;margin-inline:-9px}.hero h1{font-size:clamp(39px,11vw,59px);margin:17px 0 12px}.hero-desc{font-size:10px;max-width:440px}.hero-notes{gap:13px;margin-top:28px}.note{font-size:7px}.note i{width:23px;height:23px}.stage-hud{top:16px;left:10px;font-size:7px}.stage-spec{bottom:23px;font-size:7px}.model-label{top:22px;right:10px;font-size:6px}.drag-hint{bottom:18px;right:10px}.drag-hint b{display:none}.hotspot{width:36px;height:36px}.hotspot:after{font-size:7px;padding:7px 9px;right:42px}.hotspot--film{top:30%;left:47%}.hotspot--ppf{top:57%;left:20%}.hotspot--lamps{top:49%;left:9%}.hotspot--edges{top:69%;left:34%}.hotspot--mats{top:49%;left:57%}.hotspot--upholstery{top:30%;left:68%}.service-panel{top:57px;right:10px;width:min(280px,calc(100% - 20px));padding:18px}.panel-tag{margin-top:17px}.service-panel h2{font-size:21px}.service-panel p{font-size:8px}.panel-points li{font-size:7px}.hero-bottom{display:none}.section{padding:75px 0}.section-head{display:block;margin-bottom:28px}.section-head p{margin-top:15px}.service-grid{grid-template-columns:1fr}.service-card{min-height:280px;padding:23px}.service-card h3{margin-top:30px}.card-visual{width:170px;opacity:.28}.coverage{gap:6px}.coverage span{font-size:7px;padding:8px 9px}.process-grid,.faq{grid-template-columns:1fr;gap:30px}.process-grid{gap:24px}.process-copy p{max-width:500px}.contact{padding:53px 0}.contact-inner{align-items:flex-start;flex-direction:column}.contact-inner .btn{width:100%}.footer-inner{flex-direction:column;align-items:flex-start}.footer-links{gap:15px}.wa-float{width:46px;height:46px;left:15px;bottom:15px}}
 @media(max-width:700px){
 .hero-copy{grid-row:1;order:1}
@@ -120,7 +125,7 @@
 </aside>
 </div>
 <div class="mobile-service-list" role="group" aria-label="اختيار خدمة العناية">
-<div class="mobile-service-title">أو اختر الخدمة من القائمة</div>
+<div class="mobile-service-title">اختر العناية المناسبة لسيارتك</div>
 <button class="mobile-service-choice" type="button" data-service="film" aria-pressed="false"><span>01</span>العازل الحراري</button>
 <button class="mobile-service-choice" type="button" data-service="ppf" aria-pressed="false"><span>02</span>حماية الطلاء PPF</button>
 <button class="mobile-service-choice" type="button" data-service="lamps" aria-pressed="false"><span>03</span>حماية الشمعات</button>
@@ -173,7 +178,7 @@ const panelTag=document.getElementById('panelTag'),panelTitle=document.getElemen
 function openService(kind){const item=details[kind];if(!item)return;stage.dataset.focus=kind;document.querySelectorAll('.mobile-service-choice').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.service===kind)));panel.hidden=false;panelTag.textContent=item.tag;panelTitle.textContent=item.title;panelText.textContent=item.text;panelPoints.innerHTML=item.points.map(text=>'<li>'+text+'</li>').join('');panelBook.href='https://wa.me/966530004764?text='+encodeURIComponent(item.message);panelBook.setAttribute('aria-label','استفسر عبر واتساب عن '+item.title);stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind}}))}
 function closeService(){delete stage.dataset.focus;document.querySelectorAll('.mobile-service-choice').forEach(button=>button.setAttribute('aria-pressed','false'));panel.hidden=true;stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind:null}}))}
 document.querySelectorAll('.hotspot').forEach(button=>button.addEventListener('click',()=>openService(button.dataset.service)));
-document.querySelectorAll('.mobile-service-choice').forEach(button=>button.addEventListener('click',()=>openService(button.dataset.service)));
+document.querySelectorAll('.mobile-service-choice').forEach(button=>button.addEventListener('click',()=>{openService(button.dataset.service);button.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})}));
 document.getElementById('backToCar').addEventListener('click',closeService);
 document.querySelectorAll('.service-card .card-link').forEach((link,index)=>link.addEventListener('click',()=>{}));
 </script>
