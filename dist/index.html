@@ -473,7 +473,7 @@ else{const p=smooth(Math.min((t-3)/3.3,1));x=0;y=lerp(3.3,2.2,p);z=lerp(4+radius
 camera.position.set(x,y,z);camera.lookAt(0,t<3?3:lerp(3,2.2,smooth(Math.min((t-3)/3.3,1))),0);
 const opening=smooth(Math.max(0,Math.min((t-2.15)/.8,1)));left.position.x=-2.15*opening;right.position.x=2.15*opening;
 const drive=smooth(Math.max(0,Math.min((t-2.65)/2.6,1)));car.position.set(0,lerp(-30,.05,drive),lerp(-1,6.8,drive));car.scale.setScalar(lerp(.001,1,drive));car.rotation.y=lerp(0,Math.PI,drive*.08);
-if(t>4.8){const close=smooth(Math.min((t-4.8)/1.8,1));camera.position.lerp(new T.Vector3(0,2.4,lerp(18,4.5,close)),.07);camera.lookAt(0,1,0)}
+if(t>4.8){const close=smooth(Math.min((t-4.8)/1.8,1));const endZ=width<700?17:14;const endTarget=lerp(3,6.8,close);if(app.reduced){camera.position.set(0,2.6,endZ);camera.lookAt(0,1,endTarget)}else{camera.position.lerp(new T.Vector3(0,2.6,lerp(19,endZ,close)),.07);camera.lookAt(0,1,endTarget)}}
 host.style.setProperty('--arrival-progress',String(t/6.7));host.querySelector('.arrival-copy').style.opacity=String(Math.max(0,1-(t-2.8)/1.1));
 renderer.render(scene,camera);host.classList.add('arrival-ready');if(t>=6.7){app.finish();return}if(!app.reduced)raf=requestAnimationFrame(frame)}
 raf=requestAnimationFrame(frame);
