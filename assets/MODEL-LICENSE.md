@@ -9,4 +9,6 @@ The interactive vehicle model is the **BMW M4 Competition M Package** by **SRT P
 - Runtime URL is pinned to source repository commit `2a4cbf3b06769d7dff84bfdd3d1f445ef672be1a` via jsDelivr.
 - Changes by the derivative publisher: Meshopt geometry compression and WebP texture compression at up to 1024 px. The complete cabin and engine geometry are retained, and the derivative retains the original attribution metadata.
 
+The still preview `one-k-bmw-preview.webp` is rendered from the same model with ONE K's lighting and orange paint treatment.
+
 The model is shown as an illustrative vehicle for the ONE K care selector. ONE K is not affiliated with or endorsed by BMW or the model author.
