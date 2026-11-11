@@ -540,7 +540,7 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
 }
 
 /* Showroom and service catalog */
-:root { --paper: #f5f3ef; --ink: #191918; --paper-muted: #5e5b57; --line-paper: #dedad3; }
+:root { --paper: #f5f5f7; --ink: #191918; --paper-muted: #56565b; --line-paper: #dedee3; }
 .nav { background: #111111ee; }
 .navbook { border-radius: 100px; }
 .hero { background: #111112; padding-block: calc(var(--nav-height) + clamp(34px, 4.8vw, 64px)) clamp(28px, 5vw, 64px); }
@@ -668,7 +668,12 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
   .services .goal-link strong { font-size: 13px; }
 }
 
-.ppf-story { padding-block: clamp(52px, 8vw, 104px); background: #eae6df; color: var(--ink); }
+.ppf-story {
+  padding-block: clamp(52px, 8vw, 104px);
+  border-block-start: 1px solid var(--line-paper);
+  background: var(--paper);
+  color: var(--ink);
+}
 .ppf-layout {
   display: grid;
   grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
