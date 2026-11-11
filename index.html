@@ -538,6 +538,135 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
   .brandname small { display: none; }
   .navright { gap: 4px; }
 }
+
+/* Showroom and service catalog */
+:root { --paper: #f5f3ef; --ink: #191918; --paper-muted: #5e5b57; --line-paper: #dedad3; }
+.nav { background: #111111ee; }
+.navbook { border-radius: 100px; }
+.hero { background: #111112; padding-block: calc(var(--nav-height) + clamp(34px, 4.8vw, 64px)) clamp(28px, 5vw, 64px); }
+.hero::before, .hero::after, .services::before { display: none; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: stretch; gap: 0; }
+.hero-copy { grid-column: auto; grid-row: auto; width: min(100%, 820px); max-width: none; margin-inline: auto; padding: 0; text-align: center; }
+.hero h1 { margin: 0; font-size: clamp(42px, 6.5vw, 86px); font-weight: 700; line-height: 1.16; }
+.hero h1 span { display: block; }
+.hero h1 em { color: #ff9c70; }
+.hero-desc { max-width: 42ch; margin: 19px auto 0; font-size: clamp(14px, 1.6vw, 18px); }
+.hero-utility { justify-content: center; align-items: center; gap: 8px 22px; margin: 21px auto 0; }
+.hero-action { min-height: 46px; padding-inline: 19px; border-radius: 100px; color: #21130e; background: #ff9b63; font-size: 13px; font-weight: 700; }
+.hero-action:hover { background: #ffb990; }
+.hero-utility .text-link { font-size: 13px; }
+.showroom { min-width: 0; margin-top: clamp(29px, 3.8vw, 49px); overflow: hidden; border-radius: clamp(15px, 2vw, 27px); background: #1b1b1c; }
+.showroom .stage {
+  min-height: 0; height: clamp(300px, 37vw, 470px); margin: 0; border: 0; border-radius: 0; box-shadow: none;
+  background: radial-gradient(ellipse at 49% 61%, #4d2d24, #222021 55%, #181819 85%);
+}
+.showroom .stage::before { opacity: .35; }
+.showroom .stage::after { background: linear-gradient(0deg, #1b1b1c, transparent); }
+.showroom .stage-ring { width: min(82%, 680px); opacity: .6; }
+.showroom .stage img.car-fallback { height: 46%; }
+.showroom .model-label { inset-block-start: clamp(14px, 2vw, 24px); }
+.showroom .model-status { bottom: 32px; }
+.showroom .experience-dock { margin: 0; padding: 20px clamp(14px, 3vw, 36px); border: 0; border-radius: 0; background: #1b1b1c; box-shadow: none; }
+.showroom .dock-heading { margin-bottom: 11px; }
+.showroom .dock-heading h2 { font-size: clamp(14px, 1.65vw, 20px); font-weight: 600; }
+.showroom .mobile-service-list { gap: 6px; margin: 0; padding: 3px 3px 8px; }
+.showroom .mobile-service-choice { flex-basis: 132px; min-height: 44px; border-radius: 100px; background: #ffffff07; }
+.showroom .mobile-service-choice[aria-pressed="true"] { background: #693c2b; box-shadow: none; }
+.showroom .reset-view { border-radius: 100px; }
+.hero-grid > .arrival-replay { justify-self: center; margin: 8px 0 0; border: 0; }
+.services, #faq { background: var(--paper); color: var(--ink); }
+.services, .booking, #faq { padding-block: clamp(52px, 8vw, 112px); }
+.needs-head { display: block; text-align: center; margin-bottom: clamp(22px, 3.4vw, 40px); }
+.section-head h2, .booking h2, .faq-intro h2 { font-weight: 700; line-height: 1.25; letter-spacing: 0; }
+.needs-head h2 { font-size: clamp(30px, 4.5vw, 60px); }
+.services .goal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 12px; margin: 0 0 29px; }
+.services .goal-link {
+  align-content: start; justify-items: start; gap: 7px; min-height: 150px; padding: 19px;
+  border: 1px solid var(--line-paper); border-radius: 16px; color: var(--ink); background: #fff;
+  text-align: start; white-space: normal;
+}
+.services .goal-link:hover, .services .goal-link[aria-pressed="true"] { border-color: #bb5b32; background: #fff2e9; }
+.services .goal-link strong { font-size: clamp(15px, 1.6vw, 21px); font-weight: 700; }
+.services .goal-link small { color: var(--paper-muted); font-size: 12px; }
+.services .goal-icon {
+  position: relative; display: grid; place-items: center; width: 36px; height: 36px; margin: 0 0 3px;
+  border-radius: 12px; background: #f2ede8; color: #a84620;
+}
+.goal-icon::before, .goal-icon::after { content: ""; display: block; }
+.goal-icon--heat::before {
+  width: 11px; height: 11px; border: 1.5px solid currentColor; border-radius: 50%;
+}
+.goal-icon--heat::after {
+  position: absolute; width: 2px; height: 2px; border-radius: 50%; background: currentColor;
+  transform: translateY(-9px); box-shadow: 0 18px currentColor, 9px 9px currentColor, -9px 9px currentColor;
+}
+.goal-icon--shield::before {
+  width: 15px; height: 17px; border: 1.5px solid currentColor; border-radius: 4px 4px 8px 8px;
+}
+.goal-icon--shield::after {
+  position: absolute; width: 7px; height: 4px; border-inline-start: 1.5px solid; border-block-end: 1.5px solid;
+  transform: rotate(-45deg) translateY(-1px);
+}
+.goal-icon--seat::before {
+  width: 13px; height: 12px; margin-top: 5px; border-inline-start: 1.5px solid; border-block-end: 1.5px solid; border-radius: 0 0 5px 5px;
+}
+.goal-icon--seat::after { position: absolute; top: 8px; right: 11px; width: 5px; height: 5px; border: 1.5px solid; border-radius: 2px; }
+.services .show-all {
+  grid-column: 1 / -1; justify-self: start; min-height: 44px; padding-inline: 14px;
+  border: 1px solid var(--line-paper); border-radius: 100px; color: var(--ink); background: #fff;
+}
+.services .show-all[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.results-head { margin-bottom: 20px; }
+.results-head h2 { font-size: clamp(23px, 3vw, 38px); }
+.results-head p { color: var(--paper-muted); }
+.services .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.services .service-card { padding: clamp(17px, 2vw, 26px); background: #fff; border: 1px solid var(--line-paper); border-radius: 16px; box-shadow: none; }
+.services .service-card::before, .services .service-card::after { display: none; }
+.services .card-area { color: #9a3d19; }
+.services .service-card p { color: var(--paper-muted); }
+.services .card-actions { align-items: start; gap: 2px 12px; }
+.services .card-quote { color: #20140f; background: #f7e7dc; border: 1px solid transparent; border-radius: 100px; }
+.services .card-quote:hover { background: #ffdcca; }
+.services .card-preview { color: #674432; }
+.services .card-preview:hover { color: #9a3d19; text-decoration: underline; }
+.booking { background: #1b1b1c; border: 0; }
+.booking-grid { align-items: center; }
+.quote-form { border-radius: 18px; background: #252526; padding: clamp(16px, 3vw, 32px); }
+.quote-cta { border-radius: 100px; }
+.faq-intro h2 { margin-block: 0; }
+#faq .faq-item { border-color: var(--line-paper); }
+#faq .faq-item summary { font-size: 14px; font-weight: 600; }
+#faq .faq-item summary::after { color: #a84620; }
+#faq .faq-item p { color: var(--paper-muted); font-size: 13px; }
+@media (max-width: 940px) {
+  .services .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .hero-desc { margin-top: 13px; }
+  .hero-utility { margin-top: 14px; gap: 4px 13px; }
+  .hero-utility .text-link, .hero-action { font-size: 11px; }
+  .showroom .stage { height: clamp(230px, 64vw, 340px); }
+  .showroom .stage img.car-fallback { height: 40%; }
+  .showroom .experience-dock { padding-block: 12px; }
+  .services .goal-grid { gap: 8px; }
+  .services .goal-link { min-height: 116px; padding: 10px; gap: 4px; border-radius: 12px; }
+  .services .goal-link strong { font-size: 12px; }
+  .services .goal-link small { font-size: 10px; }
+  .services .goal-icon { width: 31px; height: 31px; }
+  .services .card-actions { flex-direction: row; align-items: center; }
+}
+@media (max-width: 490px) {
+  .services .service-grid { grid-template-columns: minmax(0, 1fr); }
+  .services .service-card h3 { font-size: 18px; }
+  .services .service-card p { font-size: 12px; }
+  .services .card-actions a { font-size: 11px; }
+}
+@media (max-width: 370px) {
+  .services .goal-grid { grid-template-columns: minmax(0, 1fr); }
+  .services .goal-link { min-height: 60px; grid-template-columns: 32px minmax(0, 1fr); align-items: center; column-gap: 10px; }
+  .services .goal-icon { grid-row: span 2; }
+  .services .goal-link strong { font-size: 13px; }
+}
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}.quote-fields,.service-filters,.card-preview{display:none}</style></noscript>
 </head>
@@ -554,28 +683,19 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
 <main>
 <section class="hero" id="home"><div class="wrap hero-grid">
 <div class="hero-copy">
-<div class="eyebrow">حماية وعناية للسيارات في جدة</div>
 <h1>
   <span>احمِ سيارتك.</span>
   <span>من <em>أول مشوار.</em></span>
 </h1>
-<p class="hero-desc">عازل للحرّ، حماية للطلاء، وتجهيز للمقصورة. اختَر اللي تحتاجه لسيارتك.</p>
-<div class="goal-picker">
-  <h2>وش تحتاج اليوم؟</h2>
-  <div class="goal-grid">
-    <a class="goal-link" href="#protection" data-goal="heat"><strong>أخفّف الحرارة</strong><small>زجاج السيارة</small></a>
-    <a class="goal-link" href="#protection" data-goal="exterior"><strong>أحمي من الخدوش</strong><small>الطلاء والشمعات والأطراف</small></a>
-    <a class="goal-link" href="#protection" data-goal="interior"><strong>أرتّب الداخلية</strong><small>الأرضية والمقاعد</small></a>
-  </div>
-</div>
+<p class="hero-desc">حماية الطلاء، عازل حراري، وعناية بالمقصورة في جدة.</p>
 <div class="hero-utility">
-  <a class="text-link" href="#stage">جرّب السيارة التفاعلية <b aria-hidden="true">←</b></a>
-  <a class="arrival-replay" href="?tour=1#home">شاهد دخولية المحل</a>
+  <a class="btn hero-action" href="#protection" data-goal="all">اختر خدمتك <span aria-hidden="true">←</span></a>
+  <a class="text-link" href="#stage">جرّب السيارة التفاعلية</a>
 </div>
 </div>
-<div class="stage" id="stage" aria-label="اختر الخدمة من السيارة">
+<div class="showroom">
+<div class="stage" id="stage" tabindex="-1" aria-label="عرض السيارة التفاعلي">
 <div class="stage-glow"></div><div class="stage-ring"></div>
-<div class="stage-hud">عرض السيارة</div>
 <div class="model-label" id="sceneLabel" aria-live="polite">السيارة كاملة</div><div class="model-status" id="modelStatus" role="status">جارٍ تجهيز العرض ثلاثي الأبعاد…</div><a class="model-credit" href="https://sketchfab.com/3d-models/bmw-m4-competition-m-package-5c0a2dafb1ad408d9fc9eeef9aee531b" target="_blank" rel="noreferrer">MODEL BY SRT PERFORMANCE · CC BY 4.0</a>
 <img class="car-fallback" src="./assets/one-k-bmw-preview.webp" width="628" height="274" alt="" fetchpriority="high" decoding="async">
 <canvas id="carCanvas" aria-label="سيارة ثلاثية الأبعاد؛ اسحب لتدويرها"></canvas>
@@ -599,7 +719,6 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
 <button class="mobile-service-choice" type="button" data-service="mats" aria-pressed="false">الدعسات الداخلية</button>
 <button class="mobile-service-choice" type="button" data-service="upholstery" aria-pressed="false">تلبيسة المقاعد</button>
 </div>
-<p class="rail-hint">مرّر بين الخدمات <span aria-hidden="true">←</span></p>
 <aside class="service-panel" id="servicePanel" hidden aria-live="polite">
 <button class="panel-back" id="backToCar" type="button"><span>↩</span> رجوع إلى السيارة</button>
 <div class="panel-tag" id="panelTag"></div><h2 id="panelTitle"></h2><p id="panelText"></p><ul class="panel-points" id="panelPoints"></ul>
@@ -607,18 +726,32 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
 </aside>
 </div>
 </div>
+<a class="arrival-replay" href="?tour=1#home">شاهد دخولية المحل <span aria-hidden="true">←</span></a>
+</div>
 </section>
-<section class="section services" id="protection" aria-labelledby="servicesTitle">
+<section class="section services" id="protection" aria-labelledby="needsTitle">
   <div class="wrap">
-    <div class="section-head">
-      <h2 id="servicesTitle">اختر الجزء اللي يهمك</h2>
-      <p id="serviceSummary" aria-live="polite">شوف الخدمة على السيارة أو أضفها مباشرة لطلب التسعيرة.</p>
+    <div class="section-head needs-head">
+      <h2 id="needsTitle">وش تحتاج سيارتك؟</h2>
     </div>
-    <div class="service-filters" role="group" aria-label="تصفية خدمات العناية">
-      <button class="service-filter" type="button" data-filter="all" aria-pressed="true">الكل</button>
-      <button class="service-filter" type="button" data-filter="heat" aria-pressed="false">الحرارة</button>
-      <button class="service-filter" type="button" data-filter="exterior" aria-pressed="false">حماية خارجية</button>
-      <button class="service-filter" type="button" data-filter="interior" aria-pressed="false">داخلية السيارة</button>
+    <div class="service-filters goal-grid" role="group" aria-label="تصفية الخدمات حسب احتياج السيارة">
+      <button class="service-filter goal-link" type="button" data-filter="heat" aria-pressed="false">
+        <span class="goal-icon goal-icon--heat" aria-hidden="true"></span>
+        <strong>أخفّف الحرارة</strong><small>عازل زجاج السيارة</small>
+      </button>
+      <button class="service-filter goal-link" type="button" data-filter="exterior" aria-pressed="false">
+        <span class="goal-icon goal-icon--shield" aria-hidden="true"></span>
+        <strong>أحمي من الخدوش</strong><small>الطلاء والشمعات وأطراف الأبواب</small>
+      </button>
+      <button class="service-filter goal-link" type="button" data-filter="interior" aria-pressed="false">
+        <span class="goal-icon goal-icon--seat" aria-hidden="true"></span>
+        <strong>أرتّب الداخلية</strong><small>الدعسات وتلبيسة المقاعد</small>
+      </button>
+      <button class="service-filter show-all" type="button" data-filter="all" aria-pressed="true">كل الخدمات</button>
+    </div>
+    <div class="section-head results-head">
+      <h2 id="servicesTitle">الخدمات</h2>
+      <p id="serviceSummary" aria-live="polite">شوف الخدمة على السيارة أو أضفها مباشرة لطلب التسعيرة.</p>
     </div>
     <div class="service-grid">
       <article class="service-card" data-service-group="exterior">
@@ -1013,7 +1146,7 @@ document.addEventListener('keydown', event => {
 });
 
 const groups = {
-  all: ['اختر الجزء اللي يهمك', 'شوف الخدمة على السيارة أو أضفها مباشرة لطلب التسعيرة.'],
+  all: ['الخدمات', 'شوف الخدمة على السيارة أو أضفها مباشرة لطلب التسعيرة.'],
   heat: ['خفّف حرّ المقصورة', 'ابدأ بعازل الزجاج. نوضح لك الخيارات حسب نوع سيارتك.'],
   exterior: ['وين تبغى تركّز الحماية؟', 'اختَر الطلاء أو الشمعات أو أطراف الأبواب. تقدر تجمع أكثر من خدمة.'],
   interior: ['رتّب داخلية سيارتك', 'اختَر الدعسات للأرضية أو التلبيسة للمقاعد حسب اللي تحتاجه.']
@@ -1137,11 +1270,24 @@ try{
   const seatCenter=glassCenter.clone();seatCenter.y=height*.48;
   const floorCenter=glassCenter.clone();floorCenter.y=height*.13;
   const baseDistance=Math.max(8.1,Math.max(size.x,size.z)*1.75);
-  const homeCamera=new THREE.Vector3(baseDistance*.64,baseDistance*.3,baseDistance*.76);
-  const desiredCamera=homeCamera.clone(),currentLook=new THREE.Vector3(center.x,height*.32,center.z),desiredLook=currentLook.clone();
-  camera.position.copy(homeCamera);camera.lookAt(currentLook);
-  function resize(){const r=canvas.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
-  new ResizeObserver(resize).observe(canvas);resize();
+  const baseCamera = new THREE.Vector3(baseDistance * .64, baseDistance * .3, baseDistance * .76);
+  const homeLook = new THREE.Vector3(center.x, height * .32, center.z);
+  const homeCamera = baseCamera.clone(), desiredCamera = homeCamera.clone();
+  const currentLook = homeLook.clone(), desiredLook = homeLook.clone();
+  function resize() {
+    const bounds = canvas.getBoundingClientRect();
+    const width = Math.max(1, bounds.width), height = Math.max(1, bounds.height);
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    const approach = Math.min(.36, Math.max(0, (camera.aspect - 1) * .49));
+    homeCamera.copy(baseCamera).lerp(homeLook, approach);
+    if (!stage.dataset.focus) desiredCamera.copy(homeCamera);
+  }
+  new ResizeObserver(resize).observe(canvas);
+  resize();
+  camera.position.copy(homeCamera);
+  camera.lookAt(currentLook);
   let drag=false,lastX=0,lastY=0,targetY=-.2,targetX=-.035,pointerX=0,pointerY=0;
   const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
   canvas.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)});
@@ -1159,7 +1305,7 @@ try{
     else if(kind==='edges'){desiredLook.set(center.x+size.x*.24,height*.25,center.z+size.z*.06);desiredCamera.set(center.x+Math.max(size.x*.77,1.5),height*.32,center.z+size.z*.12);}
     else if(kind==='mats'){desiredLook.copy(floorCenter);desiredCamera.copy(floorCenter).addScaledVector(new THREE.Vector3(.25,.9,.55).normalize(),Math.max(1.75,baseDistance*.25));}
     else if(kind==='upholstery'){desiredLook.copy(seatCenter);desiredCamera.copy(seatCenter).addScaledVector(new THREE.Vector3(.2,.72,.68).normalize(),Math.max(1.6,baseDistance*.22));}
-    else{desiredCamera.copy(homeCamera);desiredLook.set(center.x,height*.32,center.z);}
+    else{desiredCamera.copy(homeCamera);desiredLook.copy(homeLook);}
     const showInterior=kind==='mats'||kind==='upholstery';windowNodes.forEach(node=>node.visible=!showInterior);windowMaterials.forEach((original,material)=>{if(showInterior){material.transparent=true;material.opacity=Math.min(original.opacity,.12);material.depthWrite=false;material.needsUpdate=true}else{material.transparent=original.transparent;material.opacity=original.opacity;material.depthWrite=original.depthWrite;material.needsUpdate=true}});bodyMaterials.forEach((original,material)=>{material.visible=!showInterior?original.visible:false;material.transparent=original.transparent;material.opacity=original.opacity;material.depthWrite=original.depthWrite;material.needsUpdate=true});
   });
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
