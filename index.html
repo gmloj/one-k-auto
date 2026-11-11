@@ -861,22 +861,29 @@ body, .hero, .booking, .footer, .nav, .navlinks.open, #cinematicIntro {
   font-variant-numeric: tabular-nums;
 }
 .hero-action > span { display: inline-block; }
+:is(.hero a, .nav a, .menu, .mobile-service-choice, .reset-view, .panel-back,
+    .service-filter, .card-actions a, .quote-cta, .quote-float, .wa-float, .faq-item summary) {
+  touch-action: manipulation;
+}
 @media (prefers-reduced-motion: no-preference) {
   .faq-item[open] > p { animation: one-k-enter .25s ease-out; }
-  .hero-copy > * { animation: one-k-enter .52s cubic-bezier(.18,.72,.3,1) backwards; }
-  .hero-copy > .hero-desc { animation-delay: .07s; }
-  .hero-copy > .hero-utility { animation-delay: .14s; }
-  .hero-copy > .hero-contact { animation-delay: .19s; }
-  .stage-glow { animation: one-k-light-pass .8s .22s ease-out; }
+  .navinner > :is(.brand, .navright), .hero-copy > *, .hero-grid > :is(.showroom, .arrival-replay) {
+    animation: one-k-rise .66s cubic-bezier(.2,.72,.25,1) backwards;
+  }
+  .navinner > :is(.brand, .navright) { --rise-distance: 10px; }
+  .hero-copy > h1 { animation-delay: .06s; }
+  .hero-copy > .hero-desc { animation-delay: .12s; }
+  .hero-copy > .hero-utility { animation-delay: .18s; }
+  .hero-copy > .hero-contact { animation-delay: .23s; }
+  .hero-grid > .showroom { --rise-distance: 28px; animation-delay: .28s; }
+  .hero-grid > .arrival-replay { --rise-distance: 14px; animation-delay: .35s; }
+  .stage-glow { animation: one-k-light-pass .8s .48s ease-out; }
   .stage.ready .drag-hint i { animation: one-k-drag-hint .78s .25s ease-in-out 2; }
   .quote-float { animation: one-k-enter .35s cubic-bezier(.16,.82,.36,1); }
   .hero-action > span, .quote-float {
     transition: transform .22s ease, background-color .22s ease;
   }
   .hero-action:is(:hover,:focus-visible) > span { transform: translateX(-4px); }
-  :is(.hero-action,.navbook,.panel-book,.quote-cta,.quote-float,.goal-link,.mobile-service-choice):active {
-    scale: .97;
-  }
 }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .services .goal-link, .services .service-card {
@@ -891,6 +898,10 @@ body, .hero, .booking, .footer, .nav, .navlinks.open, #cinematicIntro {
 @keyframes one-k-enter {
   from { opacity: .45; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+@keyframes one-k-rise {
+  from { opacity: .28; translate: 0 var(--rise-distance, 22px); }
+  to { opacity: 1; translate: 0 0; }
 }
 @keyframes one-k-light-pass {
   0% { opacity: 0; transform: translateX(-62%); }
@@ -1370,6 +1381,19 @@ function showMotion(element, duration = 360) {
     { opacity: 1, transform: 'translateY(0)' }
   ], duration);
 }
+
+const animatedControls = '.hero a, .nav a, .menu, .mobile-service-choice, .reset-view, .panel-back, ' +
+  '.service-filter, .card-actions a, .quote-cta, .quote-float, .wa-float, .faq-item summary';
+document.addEventListener('click', event => {
+  const control = event.target.closest(animatedControls);
+  if (!control) return;
+  playMotion(control, [
+    { scale: '1' },
+    { scale: '.955', offset: .28 },
+    { scale: '1.012', offset: .68 },
+    { scale: '1' }
+  ], 300);
+}, { capture: true });
 
 function openService(kind) {
   const service = details[kind];
