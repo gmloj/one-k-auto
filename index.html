@@ -668,73 +668,6 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
   .services .goal-link strong { font-size: 13px; }
 }
 
-.ppf-story {
-  padding-block: clamp(52px, 8vw, 104px);
-  border-block-start: 1px solid var(--line-paper);
-  background: var(--paper);
-  color: var(--ink);
-}
-.ppf-layout {
-  display: grid;
-  grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
-  grid-template-rows: 1fr 1fr;
-  column-gap: clamp(25px, 5vw, 72px);
-  row-gap: 16px;
-}
-.ppf-copy { grid-column: 1; grid-row: 1; align-self: end; }
-.ppf-copy h2 { margin: 0 0 12px; font-size: clamp(29px, 4.15vw, 54px); line-height: 1.22; }
-.ppf-copy p { margin: 0; color: var(--paper-muted); font-size: clamp(13px, 1.4vw, 16px); line-height: 1.85; }
-.ppf-actions { grid-column: 1; grid-row: 2; align-self: start; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 15px; }
-.ppf-actions .btn { min-height: 46px; border-radius: 100px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 700; }
-.ppf-actions .btn:hover { background: #433328; }
-.ppf-actions .ppf-interact { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; color: #674432; }
-.ppf-interact:hover { text-decoration: underline; }
-.ppf-figure {
-  position: relative;
-  grid-column: 2;
-  grid-row: 1 / -1;
-  min-height: clamp(240px, 31vw, 412px);
-  margin: 0;
-  overflow: hidden;
-  border-radius: clamp(15px, 2vw, 26px);
-  background: radial-gradient(ellipse at 38% 58%, #49312b, #222123 62%, #19191b);
-  color: #fff;
-}
-.ppf-figure figcaption { position: absolute; inset: auto 15px 12px auto; color: #e5dfdb; font-size: 10px; }
-.ppf-visual { position: absolute; top: 51%; left: 6%; width: 113%; transform: translateY(-46%); }
-.ppf-visual img { display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 22px #09090abb); }
-.ppf-pin {
-  position: absolute;
-  top: 43%;
-  left: 24%;
-  width: 12px;
-  height: 12px;
-  border: 2px solid #241a15;
-  border-radius: 50%;
-  background: #fff0e1;
-  box-shadow: 0 0 0 4px #fff0e14a;
-  transform: translate(-50%, -50%);
-}
-.ppf-pin::after { content: ""; position: absolute; bottom: 100%; left: 50%; width: 1px; height: 28px; background: #fff0e1; }
-.ppf-pin span {
-  position: absolute;
-  bottom: calc(100% + 28px);
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 6px 9px;
-  border-radius: 100px;
-  background: #fff0e1;
-  color: #32241c;
-  white-space: nowrap;
-  font-size: 10px;
-  font-weight: 700;
-}
-@media (max-width: 700px) {
-  .ppf-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; }
-  .ppf-copy, .ppf-figure, .ppf-actions { grid-column: 1; grid-row: auto; }
-  .ppf-visual { width: min(124%, 760px); }
-}
-
 /* Responsive layout: WCAG 2.2 reflow and enhanced touch-target sizing. */
 :root {
   --page-gutter: clamp(16px, 4vw, 48px);
@@ -748,13 +681,13 @@ html { scroll-padding-top: calc(var(--nav-height) + var(--safe-top) + 16px); }
 .nav { padding-top: var(--safe-top); }
 .navlinks a { display: inline-flex; align-items: center; min-height: var(--tap-size); }
 .navbook, .menu, .hero-utility a, .hero-grid > .arrival-replay, .services .card-actions a,
-.ppf-actions a, .showroom .reset-view, .quote-option, .footer-links a {
+.showroom .reset-view, .quote-option, .footer-links a {
   min-width: var(--tap-size);
   min-height: var(--tap-size);
 }
 .hero { padding-top: calc(var(--nav-height) + var(--safe-top) + clamp(28px, 4.8vw, 64px)); }
 .hero h1 { font-size: clamp(2.25rem, 6.5vw, 5.375rem); }
-.services, .ppf-story, .booking, #faq { padding-block: var(--section-space); }
+.services, .booking, #faq { padding-block: var(--section-space); }
 .showroom .stage { height: clamp(224px, 130px + 31vw, 470px); }
 .showroom .mobile-service-list {
   display: grid;
@@ -785,7 +718,7 @@ html { scroll-padding-top: calc(var(--nav-height) + var(--safe-top) + 16px); }
     overflow-y: auto;
   }
   .services .card-actions { gap: 4px 12px; }
-  .services .card-actions a, .ppf-actions a { font-size: .8125rem; }
+  .services .card-actions a { font-size: .8125rem; }
   .showroom .model-status { bottom: 39px; }
 }
 @media (max-width: 480px) {
@@ -827,26 +760,26 @@ body, .hero, .booking, .footer, .nav, .navlinks.open, #cinematicIntro {
 .hero-desc, .booking-copy p, .quote-note, .footer,
 .quote-form legend span, .quote-car label span { color: var(--paper-muted); }
 .hero-grid > .arrival-replay, .panel-tag, .panel-back:hover { color: var(--accent-ink); }
-.hero-action, .navbook, .quote-cta, .ppf-actions .btn, .panel-book,
+.hero-action, .navbook, .quote-cta, .panel-book,
 #cinematicIntro #introSkip {
   background: var(--accent-fill);
   border-color: transparent;
   color: #25140c;
 }
-.hero-action:hover, .navbook:hover, .quote-cta:hover, .ppf-actions .btn:hover,
+.hero-action:hover, .navbook:hover, .quote-cta:hover,
 .panel-book:hover, #cinematicIntro #introSkip:hover { background: #ffb58e; color: #25140c; }
 .showroom, .showroom .stage, .showroom .experience-dock,
-.ppf-figure, .quote-form, .quote-car input, .quote-option {
+.quote-form, .quote-car input, .quote-option {
   background: #fff;
   color: var(--ink);
 }
-.showroom, .ppf-figure, .quote-form, .quote-car input, .quote-option { border: 1px solid var(--line-paper); }
+.showroom, .quote-form, .quote-car input, .quote-option { border: 1px solid var(--line-paper); }
 .showroom .stage::before { opacity: .22; }
 .showroom .stage::after { display: none; }
 .showroom .stage-ring { opacity: .42; }
 .showroom .stage img.car-fallback, #carCanvas { filter: drop-shadow(0 12px 18px #24212a27); }
 .model-label, .model-status, .model-credit, .drag-hint, .panel-back,
-.service-panel p, .panel-points li, .ppf-figure figcaption { color: var(--paper-muted); }
+.service-panel p, .panel-points li { color: var(--paper-muted); }
 .showroom .mobile-service-choice, .showroom .reset-view {
   background: var(--paper);
   border-color: var(--line-paper);
@@ -861,10 +794,6 @@ body, .hero, .booking, .footer, .nav, .navlinks.open, #cinematicIntro {
 }
 .drag-hint i { background: var(--paper); border-color: var(--line-paper); color: var(--accent-ink); }
 .service-panel { border-top-color: var(--line-paper); }
-.ppf-visual img { filter: drop-shadow(0 12px 18px #24212a30); }
-.ppf-pin { border-color: var(--accent-ink); background: #fff; box-shadow: 0 0 0 4px #fff8; }
-.ppf-pin::after, .ppf-pin span { background: #fff; }
-.ppf-pin span { border: 1px solid var(--line-paper); }
 .booking { border-block-start: 1px solid var(--line-paper); }
 .quote-car input::placeholder { color: #68686d; }
 .read-progress, .arrival-progress { background: transparent; }
@@ -1014,25 +943,6 @@ body, .hero, .booking, .footer, .nav, .navlinks.open, #cinematicIntro {
           <a class="card-preview" href="#stage" data-preview-service="upholstery" aria-label="شوف تلبيسة المقاعد على السيارة">شوفها على السيارة</a>
         </div>
       </article>
-    </div>
-  </div>
-</section>
-<section class="section ppf-story" id="ppf" aria-labelledby="ppfTitle">
-  <div class="wrap ppf-layout">
-    <div class="ppf-copy">
-      <h2 id="ppfTitle">شف وين يركب الـPPF.</h2>
-      <p>فيلم شفاف يغطّي أجزاء من الطلاء مثل الكبوت. حدّد الجزء اللي تبغى تحميه ونوضح لك التغطية المناسبة لسيارتك.</p>
-    </div>
-    <figure class="ppf-figure">
-      <div class="ppf-visual">
-        <img src="./assets/one-k-bmw-preview.webp" width="628" height="274" loading="lazy" decoding="async" alt="سيارة BMW مع مؤشر على منطقة الكبوت التي يمكن تغطيتها بالفيلم">
-        <div class="ppf-pin" aria-hidden="true"><span>الكبوت</span></div>
-      </div>
-      <figcaption>معاينة توضيحية</figcaption>
-    </figure>
-    <div class="ppf-actions">
-      <a class="btn" href="#experience" data-quote-service="ppf">سعّر الحماية لسيارتي</a>
-      <a class="ppf-interact" href="#stage" data-preview-service="ppf">شوفها على المجسّم <span aria-hidden="true">←</span></a>
     </div>
   </div>
 </section>
