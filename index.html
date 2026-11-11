@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090a0b">
+<meta name="theme-color" content="#f5f5f7">
 <meta name="description" content="اختَر العازل الحراري أو حماية PPF أو العناية بالمقصورة في وان كيه بجدة. استكشف الخدمة على السيارة واطلب تسعيرة عبر واتساب.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_SA">
@@ -805,6 +805,77 @@ html { scroll-padding-top: calc(var(--nav-height) + var(--safe-top) + 16px); }
 @media (orientation: landscape) and (max-height: 480px) {
   .showroom .stage { height: clamp(200px, 64svh, 340px); }
 }
+
+/* Light palette shared by the page and storefront tour. */
+:root {
+  color-scheme: light;
+  --line: var(--line-paper);
+  --accent-ink: #92391c;
+  --accent-fill: #ff9b63;
+  --accent-soft: #fbe8df;
+}
+body, .hero, .booking, .footer, .nav, .navlinks.open, #cinematicIntro {
+  background: var(--paper);
+  color: var(--ink);
+}
+.nav, .navlinks.open { border-color: var(--line-paper); }
+.brand-mark, .brandname em, .footer-brand em { color: var(--accent-ink); }
+.brandname small, .footer-brand small { color: var(--paper-muted); }
+.footer-brand small { font: 600 7px var(--latin); letter-spacing: .15em; margin-inline-start: 8px; }
+.navlinks, .menu, .footer-brand, .hero-utility .text-link { color: var(--ink); }
+.hero h1 { font-size: clamp(1.9rem, 5.6vw, 4.25rem); line-height: 1.42; }
+.hero-desc, .booking-copy p, .quote-note, .footer,
+.quote-form legend span, .quote-car label span { color: var(--paper-muted); }
+.hero-grid > .arrival-replay, .panel-tag, .panel-back:hover { color: var(--accent-ink); }
+.hero-action, .navbook, .quote-cta, .ppf-actions .btn, .panel-book,
+#cinematicIntro #introSkip {
+  background: var(--accent-fill);
+  border-color: transparent;
+  color: #25140c;
+}
+.hero-action:hover, .navbook:hover, .quote-cta:hover, .ppf-actions .btn:hover,
+.panel-book:hover, #cinematicIntro #introSkip:hover { background: #ffb58e; color: #25140c; }
+.showroom, .showroom .stage, .showroom .experience-dock,
+.ppf-figure, .quote-form, .quote-car input, .quote-option {
+  background: #fff;
+  color: var(--ink);
+}
+.showroom, .ppf-figure, .quote-form, .quote-car input, .quote-option { border: 1px solid var(--line-paper); }
+.showroom .stage::before { opacity: .22; }
+.showroom .stage::after { display: none; }
+.showroom .stage-ring { opacity: .42; }
+.showroom .stage img.car-fallback, #carCanvas { filter: drop-shadow(0 12px 18px #24212a27); }
+.model-label, .model-status, .model-credit, .drag-hint, .panel-back,
+.service-panel p, .panel-points li, .ppf-figure figcaption { color: var(--paper-muted); }
+.showroom .mobile-service-choice, .showroom .reset-view {
+  background: var(--paper);
+  border-color: var(--line-paper);
+  color: var(--ink);
+}
+.showroom .mobile-service-choice:hover, .showroom .reset-view:hover,
+.showroom .mobile-service-choice[aria-pressed="true"],
+.services .show-all[aria-pressed="true"], .quote-option:has(input:checked) {
+  background: var(--accent-soft);
+  border-color: #ba6d50;
+  color: var(--ink);
+}
+.drag-hint i { background: var(--paper); border-color: var(--line-paper); color: var(--accent-ink); }
+.service-panel { border-top-color: var(--line-paper); }
+.ppf-visual img { filter: drop-shadow(0 12px 18px #24212a30); }
+.ppf-pin { border-color: var(--accent-ink); background: #fff; box-shadow: 0 0 0 4px #fff8; }
+.ppf-pin::after, .ppf-pin span { background: #fff; }
+.ppf-pin span { border: 1px solid var(--line-paper); }
+.booking { border-block-start: 1px solid var(--line-paper); }
+.quote-car input::placeholder { color: #68686d; }
+.read-progress, .arrival-progress { background: transparent; }
+.arrival-top, .arrival-copy p, .arrival-copy small { color: var(--ink); }
+.arrival-copy { text-shadow: 0 1px 8px #fff; }
+.arrival-fallback { background: var(--paper); }
+.facade-building { border-color: #dedee3; background: #fff; box-shadow: 0 25px 55px #29253322; }
+.facade-sign, .facade-sign small { background: #fff; color: var(--ink); }
+.facade-windows, .facade-floor { background: var(--paper); }
+.facade-windows > span, .facade-doors { background: linear-gradient(135deg, #fff, #dce3e8); }
+.facade-doors i { background: #8c9298; }
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}.quote-fields,.service-filters,.card-preview{display:none}</style></noscript>
 </head>
@@ -821,10 +892,7 @@ html { scroll-padding-top: calc(var(--nav-height) + var(--safe-top) + 16px); }
 <main>
 <section class="hero" id="home"><div class="wrap hero-grid">
 <div class="hero-copy">
-<h1>
-  <span>احمِ سيارتك.</span>
-  <span>من <em>أول مشوار.</em></span>
-</h1>
+<h1>حماية لسيارتك</h1>
 <p class="hero-desc">حماية الطلاء، عازل حراري، وعناية بالمقصورة في جدة.</p>
 <div class="hero-utility">
   <a class="btn hero-action" href="#protection" data-goal="all">اختر خدمتك <span aria-hidden="true">←</span></a>
@@ -1007,7 +1075,7 @@ html { scroll-padding-top: calc(var(--nav-height) + var(--safe-top) + 16px); }
   </div>
 </section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><a class="footer-brand" href="#home">ONE <em>K</em><span style="font:600 7px var(--latin);letter-spacing:.15em;color:#777d7b;margin-inline-start:8px">PREMIUM PROTECTION</span></a><div>© ONE K · العناية بالسيارات</div><div class="footer-links"><a href="#protection" data-goal="all">الخدمات</a><a href="#faq">الأسئلة الشائعة</a><a href="https://wa.me/966530004764">واتساب</a></div></div></footer>
+<footer class="footer"><div class="wrap footer-inner"><a class="footer-brand" href="#home">ONE <em>K</em><small>PREMIUM PROTECTION</small></a><div>© ONE K · العناية بالسيارات</div><div class="footer-links"><a href="#protection" data-goal="all">الخدمات</a><a href="#faq">الأسئلة الشائعة</a><a href="https://wa.me/966530004764">واتساب</a></div></div></footer>
 <a class="wa-float" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1" aria-label="تواصل مع ONE K على واتساب" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.5-4.8a8.4 8.4 0 1 1 16-4Z"/><path d="M8.2 8.6c.3-.7.6-.7.9-.7h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4-.1.6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.7-.1l1.5.7c.3.1.4.3.4.5 0 .3-.2 1-.7 1.3-.5.4-1.1.6-1.8.5-1.1-.2-2.3-.7-3.5-1.8-1.1-1-1.9-2.2-2.1-3.3-.2-.8 0-1.5.3-2.1Z"/></svg></a>
 <script>
 (()=>{
@@ -1081,8 +1149,9 @@ try{
 const T=await import('https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js');if(app.isDone())return;
 const host=app.element,canvas=host.querySelector('canvas');
 const renderer=new T.WebGLRenderer({canvas,antialias:innerWidth>700,alpha:true,powerPreference:'low-power'});
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.28;renderer.setClearColor('#000000',1);
-const scene=new T.Scene();scene.background=new T.Color('#090d12');scene.fog=new T.Fog('#090d12',28,68);
+const tourPaper = getComputedStyle(host).getPropertyValue('--paper').trim();
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.28;renderer.setClearColor(tourPaper,1);
+const scene=new T.Scene();scene.background=new T.Color(tourPaper);scene.fog=new T.Fog(tourPaper,28,68);
 const camera=new T.PerspectiveCamera(48,1,.1,100);
 scene.add(new T.HemisphereLight('#bfcee6','#362015',2.5));
 const key=new T.DirectionalLight('#c4d9ff',3);key.position.set(-8,15,12);scene.add(key);
@@ -1097,7 +1166,7 @@ const orbit=new T.Mesh(new T.TorusGeometry(2.2,.008,6,110),orbitMat);orbit.rotat
 const shadowMat=new T.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.34,depthWrite:false});
 const carShadow=new T.Mesh(new T.CircleGeometry(1.9,48),shadowMat);carShadow.rotation.x=-Math.PI/2;carShadow.position.y=.018;carShadow.visible=app.showArrivalCar;scene.add(carShadow);
 const sign=document.createElement('canvas');sign.width=1536;sign.height=256;
-const ctx=sign.getContext('2d');ctx.fillStyle='#080a0e';ctx.fillRect(0,0,1536,256);ctx.textAlign='center';ctx.fillStyle='#f8f4ed';ctx.font='bold 145px Arial';ctx.fillText('ONE',650,155);ctx.fillStyle='#ff8c53';ctx.fillText('K',895,155);ctx.font='22px Arial';ctx.fillStyle='#b5babd';ctx.fillText('P R E M I U M   A U T O   C A R E',768,217);
+const ctx=sign.getContext('2d');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,1536,256);ctx.textAlign='center';ctx.fillStyle='#191918';ctx.font='bold 145px Arial';ctx.fillText('ONE',650,155);ctx.fillStyle='#a84620';ctx.fillText('K',895,155);ctx.font='22px Arial';ctx.fillStyle='#56565b';ctx.fillText('P R E M I U M   A U T O   C A R E',768,217);
 const tex=new T.CanvasTexture(sign);tex.colorSpace=T.SRGBColorSpace;
 const signMaterial=new T.MeshBasicMaterial({map:tex,transparent:true});
 const label=new T.Mesh(new T.PlaneGeometry(9.25,1.2),signMaterial);label.position.set(0,5.22,5.27);scene.add(label);
@@ -1125,6 +1194,13 @@ const [shopData,bmwData]=await Promise.all([
 ]);
 if(app.isDone()||stopped)return;
 shopRoot=shopData.scene;scene.add(shopRoot);left=shopRoot.getObjectByName('Door_Left');right=shopRoot.getObjectByName('Door_Right');
+const storefrontFinishes = { Graphite: '#e7e7ea', Concrete: '#f5f5f7', 'Anodized metal': '#c9cbd1', Floor: '#e1e1e6' };
+shopRoot.traverse(node => {
+  const material = node.material;
+  if (material && Object.hasOwn(storefrontFinishes, material.name)) {
+    material.color.set(storefrontFinishes[material.name]);
+  }
+});
 const shopBounds=new T.Box3().setFromObject(shopRoot);
 const homeCamera=new T.Vector3(0,2.8,shopBounds.max.z+4.5),homeLook=new T.Vector3(0,2.4,0);
 let carStartZ=0,carEndZ=0;
@@ -1403,9 +1479,9 @@ try{
   const rim=new THREE.DirectionalLight(0xff5b2b,5.2);rim.position.set(2.4,3,-5);scene.add(rim);
   const fill=new THREE.PointLight(0xffffff,32,14);fill.position.set(4,2.5,3);scene.add(fill);
   const group=new THREE.Group();group.rotation.y=-.2;group.rotation.x=-.035;scene.add(group);
-  const floorGlow=new THREE.Mesh(new THREE.CircleGeometry(2.35,64),new THREE.MeshBasicMaterial({color:0x5b2617,transparent:true,opacity:.23,depthWrite:false}));
+  const floorGlow=new THREE.Mesh(new THREE.CircleGeometry(2.35,64),new THREE.MeshBasicMaterial({color:0xe98e64,transparent:true,opacity:.12,depthWrite:false}));
   floorGlow.rotation.x=-Math.PI/2;floorGlow.position.y=.015;scene.add(floorGlow);
-  const orbit=new THREE.Mesh(new THREE.TorusGeometry(2.2,.008,6,110),new THREE.MeshBasicMaterial({color:0xf15a2a,transparent:true,opacity:.4}));
+  const orbit=new THREE.Mesh(new THREE.TorusGeometry(2.2,.008,6,110),new THREE.MeshBasicMaterial({color:0xf15a2a,transparent:true,opacity:.28}));
   orbit.rotation.x=Math.PI/2;orbit.position.y=.025;scene.add(orbit);
   const modelURL='https://cdn.jsdelivr.net/gh/lukaizj/car-mod-saas@2a4cbf3b06769d7dff84bfdd3d1f445ef672be1a/public/models/bmw-m4.optimized.glb';
   const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);const gltf=await (window.oneKLoadCarAsset?window.oneKLoadCarAsset():loader.loadAsync(modelURL));
