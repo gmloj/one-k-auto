@@ -4,8 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090a0b">
-<meta name="description" content="ONE K للعناية بالسيارات. استكشف خدمات الحماية والعناية عبر تجربة ثلاثية الأبعاد تفاعلية.">
-<title>ONE K | عناية تحمي تفاصيل سيارتك</title>
+<meta name="description" content="اختَر العازل الحراري أو حماية PPF أو العناية بالمقصورة في وان كيه بجدة. استكشف الخدمة على السيارة واطلب تسعيرة عبر واتساب.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:title" content="وان كيه | حماية وعناية لسيارتك في جدة">
+<meta property="og:description" content="من العازل الحراري وحماية الطلاء إلى تفاصيل المقصورة. اختَر خدمتك وجهّز طلب تسعيرة على واتساب.">
+<meta property="og:url" content="https://gmloj.github.io/one-k-auto/">
+<title>وان كيه | حماية وعناية لسيارتك في جدة</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -321,34 +326,258 @@ html{scroll-padding-top:112px}
 #cinematicIntro.is-handoff .arrival-fallback,#cinematicIntro.is-handoff .arrival-top,#cinematicIntro.is-handoff .arrival-copy,#cinematicIntro.is-handoff #introSkip,#cinematicIntro.is-handoff .arrival-progress{opacity:0;transition:opacity .42s ease}
 #cinematicIntro.is-handoff canvas{position:fixed;inset:auto;left:0;top:0;width:100vw;height:100vh;z-index:1002}
 @media(prefers-reduced-motion:reduce){#cinematicIntro.is-handoff canvas{transition-duration:.25s}}
+
+/* Customer journey */
+:root { --nav-height: 72px; }
+html { scroll-padding-top: calc(var(--nav-height) + 18px); }
+.nav { inset: 0 0 auto; }
+.navinner { height: var(--nav-height); }
+.navlinks { font-size: 12px; }
+.navbook {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border-color: #f7eee3;
+  border-radius: 4px;
+  background: #f7eee3;
+  color: #20140f;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.navbook:hover { background: #ffe0ca; color: #20140f; }
+.hero {
+  min-height: 0;
+  padding-top: calc(var(--nav-height) + clamp(34px, 6vw, 82px));
+  padding-bottom: clamp(24px, 5vw, 58px);
+}
+.hero-grid { min-height: 0; gap: clamp(16px, 3vw, 40px); }
+.hero-copy { width: 100%; margin: 0; text-align: start; }
+.hero .eyebrow {
+  justify-content: flex-start;
+  direction: rtl;
+  font: 600 12px var(--ar);
+  letter-spacing: 0;
+}
+.hero h1 { margin: 18px 0 12px; font-size: clamp(36px, 4vw, 60px); letter-spacing: 0; line-height: 1.25; }
+.hero-desc { margin: 0; color: #c5c5c0; font-size: 14px; line-height: 1.95; }
+.goal-picker { margin-top: 25px; }
+.goal-picker h2 { margin: 0 0 10px; color: #f2eae0; font-size: 13px; font-weight: 600; }
+.goal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.goal-link {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  min-height: 84px;
+  padding: 11px 12px;
+  border: 1px solid #ffffff25;
+  border-radius: 6px;
+  background: linear-gradient(152deg, #ffffff0c, #ffffff03);
+  transition: background .2s, border-color .2s;
+}
+.goal-link:hover, .goal-link:focus-visible {
+  background: linear-gradient(152deg, #f05a2b30, #f05a2b0b);
+  border-color: var(--orange2);
+}
+.goal-link strong { font-size: clamp(11px, 1.15vw, 15px); font-weight: 650; line-height: 1.55; }
+.goal-link small { color: #c4bdb7; font-size: 10px; line-height: 1.55; }
+.hero-utility { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 8px; }
+.hero-utility .text-link, .hero-utility .arrival-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  margin: 0;
+  border: 0;
+  font-size: 11px;
+}
+.hero-utility .text-link:hover { color: var(--orange2); }
+.stage-hud { font: 600 10px var(--ar); letter-spacing: 0; }
+.stage img.car-fallback {
+  inset: 50% auto auto 50%;
+  width: auto;
+  height: 31%;
+  max-width: 86%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 17px 17px #0007);
+  pointer-events: none;
+}
+.dock-heading h2 { margin: 0; }
+.reset-view { min-height: 44px; white-space: nowrap; }
+.mobile-service-choice { min-height: 49px; flex-basis: 139px; justify-content: center; text-align: center; }
+.rail-hint { justify-content: flex-end; gap: 6px; }
+#stage:not(.ready) .drag-hint { visibility: hidden; }
+.section-head h2, .booking h2 { margin: 0; letter-spacing: 0; }
+.section-head p { font-size: 13px; color: #c3c5c2; line-height: 1.9; }
+.service-filters { flex-wrap: wrap; gap: 7px; margin: 0 0 19px; padding: 0; overflow: visible; }
+.service-filter { min-height: 44px; font-size: 12px; }
+.service-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: clamp(17px, 3vw, 30px);
+  background: linear-gradient(150deg, #1d2021, #101213 80%);
+}
+.service-card[hidden] { display: none; }
+.service-card:hover { transform: none; }
+.service-card .card-area {
+  position: relative;
+  z-index: 1;
+  color: #ffaf83;
+  font-size: 11px;
+  font-weight: 600;
+}
+.service-card h3 { max-width: none; margin: 11px 0 6px; font-size: clamp(16px, 2vw, 24px); }
+.service-card p { flex: 1; margin: 0; color: #c2c5c3; font-size: 13px; line-height: 1.85; }
+.card-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 17px; }
+.card-actions a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.card-quote { padding-inline: 13px; border: 1px solid #f05a2b83; border-radius: 4px; color: #ffb38e; }
+.card-quote:hover { background: #f05a2b26; border-color: var(--orange2); }
+.card-preview { color: #d6d7d4; }
+.card-preview:hover { color: var(--orange2); }
+.booking {
+  background: radial-gradient(ellipse at 86% 26%, #6c2a1a42, transparent 49%), #101213;
+  border-block: 1px solid #ffffff14;
+}
+.booking-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; gap: clamp(22px, 5vw, 70px); }
+.booking h2 { font-size: clamp(31px, 4.3vw, 53px); line-height: 1.38; }
+.booking-copy p { max-width: 35em; margin: 14px 0 0; color: #c8c9c5; font-size: 14px; line-height: 1.9; }
+.quote-form {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+  padding: clamp(17px, 3vw, 29px);
+  border: 1px solid #ffffff23;
+  border-radius: 8px;
+  background: #171a1c;
+}
+.quote-form fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.quote-form legend, .quote-car label { padding: 0; font-size: 13px; font-weight: 650; }
+.quote-form legend span, .quote-car label span { margin-inline-start: 5px; color: #bcbdba; font-size: 11px; font-weight: 400; }
+.quote-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 10px; }
+.quote-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 46px;
+  padding: 7px 9px;
+  border: 1px solid #ffffff24;
+  border-radius: 4px;
+  background: #ffffff05;
+  color: #eeeae4;
+  font-size: 11px;
+  line-height: 1.55;
+  cursor: pointer;
+}
+.quote-option:has(input:checked) { border-color: var(--orange2); background: #f05a2b20; }
+.quote-option input { flex: 0 0 auto; width: 15px; height: 15px; margin: 0; accent-color: #ff8b5b; }
+.quote-car { display: grid; gap: 8px; }
+.quote-car input {
+  width: 100%;
+  min-height: 47px;
+  padding: 9px 12px;
+  border: 1px solid #ffffff2d;
+  border-radius: 4px;
+  background: #101213;
+  color: var(--white);
+  font: 400 16px var(--ar);
+}
+.quote-car input::placeholder { color: #9ea3a0; }
+.quote-cta { width: 100%; min-height: 50px; border-radius: 4px; background: #ff9b63; color: #21130d; font-size: 14px; font-weight: 700; }
+.quote-cta:hover { background: #ffb58d; }
+.quote-note { margin: -9px 0 0; color: #b9bdb9; text-align: center; font-size: 11px; line-height: 1.7; }
+.faq-item summary { font-size: 13px; }
+.faq-item p { font-size: 12px; }
+.wa-float[hidden] { display: none; }
+@media (max-width: 950px) {
+  .hero-grid { gap: 15px; }
+  .hero-copy { max-width: 620px; margin-inline: auto; }
+  .goal-link strong { font-size: 14px; }
+}
+@media (max-width: 700px) {
+  :root { --nav-height: 61px; }
+  .navlinks { top: var(--nav-height); gap: 4px; }
+  .navlinks a { display: flex; align-items: center; min-height: 44px; }
+  .menu { width: 44px; height: 44px; }
+  .navbook { padding-inline: 10px; }
+  .hero { padding-top: calc(var(--nav-height) + 26px); }
+  .hero h1 { margin: 12px 0 9px; font-size: clamp(31px, 9.2vw, 41px); }
+  .hero .eyebrow { font-size: 10px; }
+  .hero-desc { font-size: 12px; }
+  .goal-picker { margin-top: 16px; }
+  .goal-grid { gap: 6px; }
+  .goal-link { min-height: 69px; padding: 8px 7px; gap: 3px; }
+  .goal-link strong { font-size: 11px; }
+  .goal-link small { font-size: 9px; }
+  .hero-utility { margin-top: 4px; }
+  .service-filters { gap: 5px; margin: 0 0 16px; padding: 0; }
+  .service-filter { padding-inline: 8px; font-size: 10px; }
+  .service-card { padding: 12px; }
+  .service-card h3 { font-size: 15px; line-height: 1.55; }
+  .service-card p { font-size: 11px; }
+  .card-actions { flex-direction: column; align-items: stretch; gap: 2px; margin-top: 11px; }
+  .card-actions a { font-size: 10px; }
+  .booking-grid { grid-template-columns: 1fr; }
+  .booking-copy p { font-size: 12px; }
+  .quote-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .faq-item summary { font-size: 12px; }
+  .faq-item p { font-size: 11px; }
+  .wa-float { left: max(12px, env(safe-area-inset-left)); width: 46px; height: 46px; }
+}
+@media (max-width: 370px) {
+  .navinner { gap: 10px; }
+  .brand { gap: 7px; }
+  .brandname small { display: none; }
+  .navright { gap: 4px; }
+}
 </style>
+<noscript><style>.reveal{opacity:1;transform:none}.quote-fields,.service-filters,.card-preview{display:none}</style></noscript>
 </head>
 <body>
 <div class="cinematic-intro" id="cinematicIntro" role="dialog" aria-modal="true" aria-label="مرحبًا بك في ONE K" aria-hidden="true" hidden><div class="arrival-fallback" aria-hidden="true"><div class="facade-building"><div class="facade-sign">ONE <em>K</em><small>PREMIUM AUTO CARE</small></div><div class="facade-windows"><span></span><div class="facade-doors"><i></i><i></i></div><span></span></div><div class="facade-floor"></div></div></div><canvas aria-hidden="true"></canvas><div class="arrival-car-fallback" aria-hidden="true"><svg viewBox="0 0 680 220"><defs><linearGradient id="fallbackPaint" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ff9a65"/><stop offset="1" stop-color="#a9341d"/></linearGradient></defs><ellipse cx="344" cy="184" rx="250" ry="17" fill="#000" opacity=".6"/><path d="M88 154q10-25 45-39l97-20 58-52q18-17 47-17h113q32 0 54 26l48 49q54 8 71 39l-8 31H96z" fill="url(#fallbackPaint)" stroke="#ffc29d" stroke-opacity=".6" stroke-width="3"/><path d="m246 91 53-46q16-14 40-14v61zm108-60v60h125l-40-43q-16-17-43-17z" fill="#111920" stroke="#9aabb0" stroke-width="2"/><path d="M88 147h87m385 0h82" stroke="#ffbb8d" stroke-width="4"/><circle cx="220" cy="163" r="40" fill="#080a0d" stroke="#bbc0c2" stroke-width="5"/><circle cx="220" cy="163" r="22" fill="#292e32" stroke="#ff9a65" stroke-width="3"/><circle cx="500" cy="163" r="40" fill="#080a0d" stroke="#bbc0c2" stroke-width="5"/><circle cx="500" cy="163" r="22" fill="#292e32" stroke="#ff9a65" stroke-width="3"/></svg></div><div class="arrival-top"><span>ONE K / THE ARRIVAL</span><span>AUTO CARE STUDIO</span></div><div class="arrival-copy"><p>تفضّل… سيارتك تستاهل.</p><small>من هنا تبدأ العناية بالتفاصيل</small></div><button id="introSkip" type="button">ادخل الموقع الآن ↗</button><div class="arrival-progress" aria-hidden="true"><span></span></div></div>
 
 
 <div class="read-progress" aria-hidden="true"></div>
-<div class="topline">عناية مدروسة لسيارتك <b>ONE K</b></div>
 <header class="nav" id="nav"><div class="wrap navinner">
 <a class="brand" href="#home" aria-label="ONE K الرئيسية"><span class="brand-mark">K</span><span class="brandname">ONE <em>K</em><small>PREMIUM PROTECTION</small></span></a>
-<nav class="navlinks" id="navlinks" aria-label="التنقل الرئيسي"><a href="#protection">الخدمات</a><a href="#experience">طريقة الحجز</a><a href="#faq">الأسئلة الشائعة</a></nav>
-<div class="navright"><a class="navbook" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF" target="_blank" rel="noreferrer">احجز موعدك</a><button class="menu" id="menu" aria-expanded="false" aria-controls="navlinks" aria-label="فتح القائمة">☰</button></div>
+<nav class="navlinks" id="navlinks" aria-label="التنقل الرئيسي"><a href="#protection" data-goal="all">الخدمات</a><a href="#stage">تجربة السيارة</a><a href="#faq">الأسئلة الشائعة</a></nav>
+<div class="navright"><a class="navbook" href="#experience">اطلب تسعيرة</a><button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="فتح القائمة">☰</button></div>
 </div></header>
 <main>
 <section class="hero" id="home"><div class="wrap hero-grid">
 <div class="hero-copy">
-<div class="eyebrow">CARE, IN EVERY DETAIL</div>
-<h1><span>العناية تبدأ</span><span>من <em>التفاصيل.</em></span></h1>
-<p class="hero-desc">استكشف سيارتك واختر من ست خدمات عناية؛ من الزجاج والطلاء إلى تفاصيل المقصورة.</p>
-<div class="actions"><a class="btn" href="#stage">ابدأ التجربة <span class="arrow">←</span></a><a class="text-link" href="#protection">اكتشف خدماتنا <b>←</b></a></div>
-<a class="arrival-replay" href="?tour=1#home">شاهد دخولية المحل <span aria-hidden="true">↗</span></a>
-<div class="hero-notes"><div class="note"><i>01</i><span>حماية خارجية</span></div><div class="note"><i>02</i><span>تفاصيل المقصورة</span></div></div>
+<div class="eyebrow">حماية وعناية للسيارات في جدة</div>
+<h1>
+  <span>احمِ سيارتك.</span>
+  <span>من <em>أول مشوار.</em></span>
+</h1>
+<p class="hero-desc">عازل للحرّ، حماية للطلاء، وتجهيز للمقصورة. اختَر اللي تحتاجه لسيارتك.</p>
+<div class="goal-picker">
+  <h2>وش تحتاج اليوم؟</h2>
+  <div class="goal-grid">
+    <a class="goal-link" href="#protection" data-goal="heat"><strong>أخفّف الحرارة</strong><small>زجاج السيارة</small></a>
+    <a class="goal-link" href="#protection" data-goal="exterior"><strong>أحمي من الخدوش</strong><small>الطلاء والشمعات والأطراف</small></a>
+    <a class="goal-link" href="#protection" data-goal="interior"><strong>أرتّب الداخلية</strong><small>الأرضية والمقاعد</small></a>
+  </div>
+</div>
+<div class="hero-utility">
+  <a class="text-link" href="#stage">جرّب السيارة التفاعلية <b aria-hidden="true">←</b></a>
+  <a class="arrival-replay" href="?tour=1#home">شاهد دخولية المحل</a>
+</div>
 </div>
 <div class="stage" id="stage" aria-label="اختر الخدمة من السيارة">
 <div class="stage-glow"></div><div class="stage-ring"></div>
-<div class="stage-hud">INTERACTIVE 3D<span>ONE K / STUDIO</span></div>
+<div class="stage-hud">عرض السيارة</div>
 <div class="model-label" id="sceneLabel" aria-live="polite">السيارة كاملة</div><div class="model-status" id="modelStatus" role="status">جارٍ تجهيز العرض ثلاثي الأبعاد…</div><a class="model-credit" href="https://sketchfab.com/3d-models/bmw-m4-competition-m-package-5c0a2dafb1ad408d9fc9eeef9aee531b" target="_blank" rel="noreferrer">MODEL BY SRT PERFORMANCE · CC BY 4.0</a>
-<svg class="car-fallback" viewBox="0 0 800 360" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="paint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff9b67"/><stop offset=".28" stop-color="#e64d24"/><stop offset=".7" stop-color="#292b2d"/><stop offset="1" stop-color="#f27b47"/></linearGradient><linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8c4c8" stop-opacity=".65"/><stop offset=".55" stop-color="#252b2e" stop-opacity=".87"/><stop offset="1" stop-color="#858c8e" stop-opacity=".3"/></linearGradient></defs><ellipse cx="405" cy="286" rx="301" ry="23" fill="#000" opacity=".68"/><path d="M95 229q12-36 71-55l95-20 83-70q27-23 75-25h95q37 0 63 28l64 67q43 9 63 37l17 27-15 30H99l-12-8z" fill="url(#paint)" stroke="#ffb18a" stroke-opacity=".63" stroke-width="2"/><path d="m276 158 75-64q24-19 61-21l-1 82zM421 73v82h176l-51-53q-25-27-63-29z" fill="url(#glass)" stroke="#ffb18a" stroke-opacity=".49" stroke-width="2"/><path d="M96 220h83m412 4h95M272 161l329 1" fill="none" stroke="#ffb18a" stroke-width="2" stroke-linecap="round"/><path d="M301 180h47m143 0h43" stroke="#d8d6d0" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/><circle cx="224" cy="250" r="49" fill="#090a0b" stroke="#8a8d8e" stroke-width="4"/><circle cx="224" cy="250" r="31" fill="#26292b" stroke="#d0d2cd" stroke-width="2"/><circle cx="224" cy="250" r="7" fill="#f15a2a"/><path d="M224 220v60m-30-30h60m-51-21 42 42m0-42-42 42" stroke="#afb1ae" stroke-width="3"/><circle cx="567" cy="250" r="49" fill="#090a0b" stroke="#8a8d8e" stroke-width="4"/><circle cx="567" cy="250" r="31" fill="#26292b" stroke="#d0d2cd" stroke-width="2"/><circle cx="567" cy="250" r="7" fill="#f15a2a"/><path d="M567 220v60m-30-30h60m-51-21 42 42m0-42-42 42" stroke="#afb1ae" stroke-width="3"/></svg>
+<img class="car-fallback" src="./assets/one-k-bmw-preview.webp" width="628" height="274" alt="" fetchpriority="high" decoding="async">
 <canvas id="carCanvas" aria-label="سيارة ثلاثية الأبعاد؛ اسحب لتدويرها"></canvas>
 <button class="hotspot hotspot--film" type="button" data-service="film" data-label="العازل الحراري" aria-label="استكشف العازل الحراري على الزجاج">01</button>
 <button class="hotspot hotspot--ppf" type="button" data-service="ppf" data-label="حماية الطلاء PPF" aria-label="استكشف حماية الطلاء PPF">02</button>
@@ -356,53 +585,139 @@ html{scroll-padding-top:112px}
 <button class="hotspot hotspot--edges" type="button" data-service="edges" data-label="أطراف الأبواب فقط" aria-label="استكشف حماية أطراف الأبواب فقط">04</button>
 <button class="hotspot hotspot--mats" type="button" data-service="mats" data-label="الدعسات الداخلية" aria-label="استكشف دعسات السيارة الداخلية">05</button>
 <button class="hotspot hotspot--upholstery" type="button" data-service="upholstery" data-label="تلبيسة المقاعد" aria-label="استكشف تلبيسة السيارة">06</button>
-<div class="stage-spec"><b>01 — 06 / ONE K CARE</b><br><span>اختر خدمتك من الشريط بالأسفل</span></div>
-<div class="drag-hint"><i>↔</i><span>اسحب السيارة لتدويرها</span><b>DRAG TO ROTATE</b></div>
+<div class="drag-hint"><i aria-hidden="true">↔</i><span>اسحب السيارة لتدويرها</span></div>
 
 </div>
 <div class="experience-dock">
-<div class="dock-heading"><div><span>THE CARE COLLECTION</span><h2>كل التفاصيل. في متناولك.</h2></div><button class="reset-view" type="button" id="resetView">السيارة كاملة ↗</button></div>
+<div class="dock-heading"><h2>شوف الخدمة على السيارة</h2><button class="reset-view" type="button" id="resetView">السيارة كاملة</button></div>
 <div class="mobile-service-list" role="group" aria-label="اختيار خدمة العناية">
 
-<button class="mobile-service-choice" type="button" data-service="film" aria-pressed="false"><span>01</span>العازل الحراري</button>
-<button class="mobile-service-choice" type="button" data-service="ppf" aria-pressed="false"><span>02</span>حماية الطلاء PPF</button>
-<button class="mobile-service-choice" type="button" data-service="lamps" aria-pressed="false"><span>03</span>حماية الشمعات</button>
-<button class="mobile-service-choice" type="button" data-service="edges" aria-pressed="false"><span>04</span>حماية أطراف الأبواب</button>
-<button class="mobile-service-choice" type="button" data-service="mats" aria-pressed="false"><span>05</span>الدعسات الداخلية</button>
-<button class="mobile-service-choice" type="button" data-service="upholstery" aria-pressed="false"><span>06</span>تلبيسة المقاعد</button>
+<button class="mobile-service-choice" type="button" data-service="film" aria-pressed="false">العازل الحراري</button>
+<button class="mobile-service-choice" type="button" data-service="ppf" aria-pressed="false">حماية الطلاء PPF</button>
+<button class="mobile-service-choice" type="button" data-service="lamps" aria-pressed="false">حماية الشمعات</button>
+<button class="mobile-service-choice" type="button" data-service="edges" aria-pressed="false">حماية أطراف الأبواب</button>
+<button class="mobile-service-choice" type="button" data-service="mats" aria-pressed="false">الدعسات الداخلية</button>
+<button class="mobile-service-choice" type="button" data-service="upholstery" aria-pressed="false">تلبيسة المقاعد</button>
 </div>
-<p class="rail-hint">اختر خدمة لاستكشافها <span>اسحب للمزيد ←</span></p>
+<p class="rail-hint">مرّر بين الخدمات <span aria-hidden="true">←</span></p>
 <aside class="service-panel" id="servicePanel" hidden aria-live="polite">
 <button class="panel-back" id="backToCar" type="button"><span>↩</span> رجوع إلى السيارة</button>
 <div class="panel-tag" id="panelTag"></div><h2 id="panelTitle"></h2><p id="panelText"></p><ul class="panel-points" id="panelPoints"></ul>
-<a class="btn panel-book" id="panelBook" href="#" target="_blank" rel="noreferrer">استفسر عن الخدمة <span class="arrow">←</span></a>
+<a class="btn panel-book" id="panelBook" href="#experience" data-quote-service="">أضف للتسعيرة <span class="arrow" aria-hidden="true">←</span></a>
 </aside>
 </div>
 </div>
-<div class="hero-bottom"><div class="wrap"><span>ONE K · PREMIUM PROTECTION</span><span class="scroll-indicator">SCROLL TO EXPLORE</span></div></div>
 </section>
-<section class="section services" id="protection"><div class="wrap">
-<div class="section-head reveal"><div><div class="section-kicker">PROTECTION, REFINED</div><h2>كل تفصيلة لها عنايتها.<br>اختر مسارك.</h2></div><p>لكل جزء من سيارتك احتياجه. استكشف الخدمة من المشهد، ثم تواصل معنا لتحديد التغطية المناسبة لسيارتك.</p></div>
-<div class="service-filters" role="group" aria-label="تصفية خدمات العناية"><button class="service-filter" type="button" data-filter="all" aria-pressed="true">كل الخدمات <span>06</span></button><button class="service-filter" type="button" data-filter="exterior" aria-pressed="false">الخارجية <span>04</span></button><button class="service-filter" type="button" data-filter="interior" aria-pressed="false">المقصورة <span>02</span></button></div>
-<div class="service-grid">
-<article class="service-card reveal" data-service-group="exterior"><div class="card-top"><span>01 / PAINT PROTECTION</span><b>PPF</b></div><h3>حماية الطلاء PPF</h3><p>طبقة حماية شفافة لأسطح السيارة المختارة. شاركنا نوع سيارتك والمنطقة التي ترغب بحمايتها، ونوضح لك الخيارات المناسبة.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20PPF" target="_blank" rel="noreferrer">استفسر عن PPF <b>←</b></a><div class="card-visual" aria-hidden="true"><svg viewBox="0 0 450 140"><path d="M49 98q26-9 42-38l69-35q23-12 52-12h101q20 0 34 17l38 43q18 5 27 18l2 10H51z" fill="none" stroke="#ff8651" stroke-width="3"/><path d="m163 58 50-34h99l28 35z" fill="#232729" stroke="#ff8651"/><circle cx="130" cy="99" r="18" fill="#111315" stroke="#ff8651" stroke-width="3"/><circle cx="344" cy="99" r="18" fill="#111315" stroke="#ff8651" stroke-width="3"/></svg></div></article>
-<article class="service-card reveal delay1" data-service-group="exterior"><div class="card-top"><span>02 / THERMAL COMFORT</span><b>FILM</b></div><h3>العازل الحراري</h3><p>عازل مخصص لزجاج السيارة يساعد على تخفيف الحرارة والوهج. اسألنا عن الأنواع المتاحة وما يناسب استخدامك.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%B9%D8%A7%D8%B2%D9%84%20%D8%A7%D9%84%D8%AD%D8%B1%D8%A7%D8%B1%D9%8A" target="_blank" rel="noreferrer">استفسر عن العازل <b>←</b></a><div class="card-visual" aria-hidden="true"><svg viewBox="0 0 450 140"><path d="M67 111V58q0-9 10-12l41-12 44-25h127l50 26 43 11q10 3 10 14v51H67z" fill="none" stroke="#d6dbd6" stroke-width="3"/><path d="m171 17-43 26v52h76V17zm43 0v78h115V50l-48-33z" fill="#5b6262" stroke="#d6dbd6"/><circle cx="151" cy="108" r="17" fill="#111315" stroke="#d6dbd6" stroke-width="3"/><circle cx="305" cy="108" r="17" fill="#111315" stroke="#d6dbd6" stroke-width="3"/></svg></div></article>
-
-<article class="service-card reveal delay2" data-service-group="exterior"><div class="card-top"><span>03 / HEADLIGHTS</span><b>PPF</b></div><h3>حماية شمعات السيارة</h3><p>حماية شفافة مخصصة لعدسات الشمعات، مع تأكيد التوافق حسب نوع السيارة.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%B4%D9%85%D8%B9%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">03</span></div></article>
-<article class="service-card reveal" data-service-group="exterior"><div class="card-top"><span>04 / DOOR EDGES ONLY</span><b>PPF</b></div><h3>حماية أطراف الأبواب فقط</h3><p>حماية مركزة على حواف الأبواب من الاحتكاك عند الفتح والإغلاق، دون تغطية بقية الباب.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D8%A3%D8%B7%D8%B1%D8%A7%D9%81%20%D8%A7%D9%84%D8%A3%D8%A8%D9%88%D8%A7%D8%A8%20%D9%81%D9%82%D8%B7" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">04</span></div></article>
-<article class="service-card reveal delay1" data-service-group="interior"><div class="card-top"><span>05 / INTERIOR FLOOR MATS</span><b>INTERIOR</b></div><h3>دعسات داخلية للسيارة</h3><p>دعسات تناسب أرضية المقصورة. أرسل نوع السيارة وموديلها للتأكد من المقاس والخيارات المتاحة.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%AF%D8%B9%D8%B3%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84%D9%8A%D8%A9%20%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%AA%D9%8A" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">05</span></div></article>
-<article class="service-card reveal delay2" data-service-group="interior"><div class="card-top"><span>06 / SEAT UPHOLSTERY</span><b>INTERIOR</b></div><h3>تلبيسة مقاعد السيارة</h3><p>خيارات تلبيس للمقاعد بمقاسات تناسب السيارة. نوضح لك الخامات والخيارات قبل الحجز.</p><a class="card-link" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%84%D8%A8%D9%8A%D8%B3%D8%A9%20%D9%85%D9%82%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9" target="_blank" rel="noreferrer">استفسر عن الخدمة <b>←</b></a><div class="card-visual" aria-hidden="true"><span class="service-symbol">06</span></div></article>
-</div>
-<div class="coverage reveal"><span>PPF للطلاء والشمعات</span><span>حماية أطراف الأبواب فقط</span><span>العناية الداخلية حسب نوع السيارة</span></div>
-</div></section>
-<section class="section process" id="experience"><div class="wrap process-grid">
-<div class="process-copy reveal"><div class="section-kicker">A BETTER WAY TO BOOK</div><h2>خطوات بسيطة.<br>عناية على مقاسك.</h2><p>ابدأ بالخدمة التي تهمك، أرسل بيانات سيارتك، وبعدها نساعدك تختار التغطية المناسبة قبل الحجز.</p><a class="btn" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%86%D8%A7%D9%8A%D8%A9">تواصل معنا <span class="arrow">←</span></a></div>
-<div class="steps reveal delay1"><div class="step"><div class="stepno">01</div><div><h3>اختر الخدمة</h3><p>استكشف خدمات السيارة الست من الشريط التفاعلي أو بطاقات الخدمات.</p></div></div><div class="step"><div class="stepno">02</div><div><h3>أرسل تفاصيل سيارتك</h3><p>نوع السيارة وموديلها يساعدنا نوضح لك الخيارات المناسبة.</p></div></div><div class="step"><div class="stepno">03</div><div><h3>نسّق موعدك</h3><p>نتفق على تفاصيل الخدمة والموعد عبر واتساب.</p></div></div></div>
-</div></section>
-<section class="contact"><div class="wrap contact-inner reveal"><div><div class="section-kicker">YOUR CAR, YOUR CHOICE</div><h2>جاهز تختار العناية؟</h2><p>اختر الخدمة، وارسل لنا نوع سيارتك ونرتب لك الخطوة الجاية.</p></div><a class="btn" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF">احجز عبر واتساب <span class="arrow">←</span></a></div></section>
-<section class="section" id="faq"><div class="wrap faq"><div class="faq-intro reveal"><div class="section-kicker">GOOD TO KNOW</div><h2>قبل ما تحجز،<br>هذي إجابات سريعة.</h2><p>ما لقيت سؤالك؟ اكتب لنا ونوضح لك تفاصيل الخدمة.</p></div><div class="reveal delay1"><details class="faq-item"><summary>وش الفرق بين PPF والعازل الحراري؟</summary><p>PPF طبقة لحماية أسطح مختارة من طلاء السيارة، والعازل الحراري يركّب على الزجاج. نساعدك تختار الخدمة حسب احتياجك.</p></details><details class="faq-item"><summary>هل أقدر أختار جزء معين للحماية؟</summary><p>تتوفر خيارات تغطية مختلفة حسب السيارة. تواصل معنا بنوع وموديل سيارتك عشان نوضح لك المتاح.</p></details><details class="faq-item"><summary>كيف أعرف الخيار المناسب لسيارتي؟</summary><p>أرسل نوع السيارة وموديلها واستخدامك اليومي، وفريق ONE K يوضح لك الخيارات قبل الحجز.</p></details><details class="faq-item"><summary>كيف أحجز موعد؟</summary><p>اضغط زر واتساب، اكتب نوع الخدمة والسيارة، وننسق معك الموعد والتفاصيل.</p></details></div></div></section>
+<section class="section services" id="protection" aria-labelledby="servicesTitle">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="servicesTitle">اختر الجزء اللي يهمك</h2>
+      <p id="serviceSummary" aria-live="polite">شوف الخدمة على السيارة أو أضفها مباشرة لطلب التسعيرة.</p>
+    </div>
+    <div class="service-filters" role="group" aria-label="تصفية خدمات العناية">
+      <button class="service-filter" type="button" data-filter="all" aria-pressed="true">الكل</button>
+      <button class="service-filter" type="button" data-filter="heat" aria-pressed="false">الحرارة</button>
+      <button class="service-filter" type="button" data-filter="exterior" aria-pressed="false">حماية خارجية</button>
+      <button class="service-filter" type="button" data-filter="interior" aria-pressed="false">داخلية السيارة</button>
+    </div>
+    <div class="service-grid">
+      <article class="service-card" data-service-group="exterior">
+        <div class="card-area">طلاء السيارة</div>
+        <h3>حماية الطلاء PPF</h3>
+        <p>فيلم شفاف للأجزاء اللي تبي تحميها من آثار الطريق والخدوش الخفيفة.</p>
+        <div class="card-actions">
+          <a class="card-quote" href="#experience" data-quote-service="ppf" aria-label="أضف حماية الطلاء للتسعيرة">أضف للتسعيرة</a>
+          <a class="card-preview" href="#stage" data-preview-service="ppf" aria-label="شوف حماية الطلاء على السيارة">شوفها على السيارة</a>
+        </div>
+      </article>
+      <article class="service-card" data-service-group="heat">
+        <div class="card-area">زجاج السيارة</div>
+        <h3>العازل الحراري</h3>
+        <p>يساعد يخفف الحرارة والوهج عبر الزجاج. اسألنا عن الخيارات اللي تناسب سيارتك.</p>
+        <div class="card-actions">
+          <a class="card-quote" href="#experience" data-quote-service="film" aria-label="أضف العازل الحراري للتسعيرة">أضف للتسعيرة</a>
+          <a class="card-preview" href="#stage" data-preview-service="film" aria-label="شوف العازل الحراري على السيارة">شوفها على السيارة</a>
+        </div>
+      </article>
+      <article class="service-card" data-service-group="exterior">
+        <div class="card-area">العدسات الأمامية</div>
+        <h3>حماية الشمعات</h3>
+        <p>حماية شفافة لعدسات الشمعات، بتغطية تتحدد حسب نوع السيارة.</p>
+        <div class="card-actions">
+          <a class="card-quote" href="#experience" data-quote-service="lamps" aria-label="أضف حماية الشمعات للتسعيرة">أضف للتسعيرة</a>
+          <a class="card-preview" href="#stage" data-preview-service="lamps" aria-label="شوف حماية الشمعات على السيارة">شوفها على السيارة</a>
+        </div>
+      </article>
+      <article class="service-card" data-service-group="exterior">
+        <div class="card-area">حواف الأبواب</div>
+        <h3>حماية أطراف الأبواب</h3>
+        <p>تغطية للحواف اللي تتعرض للاحتكاك عند فتح الباب وإغلاقه.</p>
+        <div class="card-actions">
+          <a class="card-quote" href="#experience" data-quote-service="edges" aria-label="أضف حماية أطراف الأبواب للتسعيرة">أضف للتسعيرة</a>
+          <a class="card-preview" href="#stage" data-preview-service="edges" aria-label="شوف حماية أطراف الأبواب على السيارة">شوفها على السيارة</a>
+        </div>
+      </article>
+      <article class="service-card" data-service-group="interior">
+        <div class="card-area">أرضية المقصورة</div>
+        <h3>دعسات داخلية</h3>
+        <p>خيارات لأرضية المقصورة حسب مقاس سيارتك وموديلها.</p>
+        <div class="card-actions">
+          <a class="card-quote" href="#experience" data-quote-service="mats" aria-label="أضف الدعسات الداخلية للتسعيرة">أضف للتسعيرة</a>
+          <a class="card-preview" href="#stage" data-preview-service="mats" aria-label="شوف الدعسات الداخلية على السيارة">شوفها على السيارة</a>
+        </div>
+      </article>
+      <article class="service-card" data-service-group="interior">
+        <div class="card-area">المقاعد</div>
+        <h3>تلبيسة المقاعد</h3>
+        <p>خيارات للتلبيس حسب تصميم المقاعد. نوضح لك الخامات المتاحة قبل الحجز.</p>
+        <div class="card-actions">
+          <a class="card-quote" href="#experience" data-quote-service="upholstery" aria-label="أضف تلبيسة المقاعد للتسعيرة">أضف للتسعيرة</a>
+          <a class="card-preview" href="#stage" data-preview-service="upholstery" aria-label="شوف تلبيسة المقاعد على السيارة">شوفها على السيارة</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section booking" id="experience" aria-labelledby="quoteTitle">
+  <div class="wrap booking-grid">
+    <div class="booking-copy">
+      <h2 id="quoteTitle">كم تطلع على سيارتك؟</h2>
+      <p>اختَر الخدمات واكتب موديل سيارتك. وإذا محتار، اكتب الموديل وخلّنا نرشّح لك اللي يناسبك.</p>
+    </div>
+    <form class="quote-form" id="quoteForm">
+      <fieldset class="quote-fields">
+        <legend>الخدمات <span>تقدر تختار أكثر من وحدة</span></legend>
+        <div class="quote-options">
+          <label class="quote-option"><input type="checkbox" name="service" value="film">العازل الحراري</label>
+          <label class="quote-option"><input type="checkbox" name="service" value="ppf">حماية الطلاء</label>
+          <label class="quote-option"><input type="checkbox" name="service" value="lamps">حماية الشمعات</label>
+          <label class="quote-option"><input type="checkbox" name="service" value="edges">حماية أطراف الأبواب</label>
+          <label class="quote-option"><input type="checkbox" name="service" value="mats">الدعسات الداخلية</label>
+          <label class="quote-option"><input type="checkbox" name="service" value="upholstery">تلبيسة المقاعد</label>
+        </div>
+      </fieldset>
+      <div class="quote-car quote-fields">
+        <label for="quoteCar">السيارة والموديل <span>اختياري</span></label>
+        <input id="quoteCar" type="text" name="car" dir="auto" maxlength="80" placeholder="مثل كامري 2024">
+      </div>
+      <a class="btn quote-cta" id="quoteWhatsApp" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%AA%D8%B1%D8%B4%D9%91%D8%AD%D9%88%D9%86%20%D9%84%D9%8A%20%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9%20%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%AA%D9%8A." target="_blank" rel="noopener noreferrer">افتح واتساب <span class="arrow" aria-hidden="true">←</span></a>
+      <p class="quote-note">تفتح رسالة جاهزة تراجعها وترسلها على واتساب.</p>
+    </form>
+  </div>
+</section>
+<section class="section" id="faq" aria-labelledby="faqTitle">
+  <div class="wrap faq">
+    <div class="faq-intro"><h2 id="faqTitle">قبل ما تحجز</h2></div>
+    <div>
+      <details class="faq-item"><summary>كيف أعرف سعر الخدمة؟</summary><p>السعر يعتمد على موديل السيارة والخدمة ونطاق التغطية. أرسل التفاصيل على واتساب ونوضح لك الخيارات والسعر.</p></details>
+      <details class="faq-item"><summary>وش الفرق بين PPF والعازل الحراري؟</summary><p>PPF يحمي الأجزاء المختارة من الطلاء، والعازل يركّب على الزجاج ويساعد يخفف الحرارة والوهج.</p></details>
+      <details class="faq-item"><summary>أقدر أطلب حماية لجزء معيّن؟</summary><p>إيه، حدّد الجزء اللي يهمك مثل الطلاء أو الشمعات أو أطراف الأبواب، ونوضح لك التغطية المناسبة.</p></details>
+      <details class="faq-item"><summary>كيف أحجز بعد التسعيرة؟</summary><p>بعد ما تختار الخدمة والتغطية، تنسّق الموعد مع الفريق من نفس محادثة واتساب.</p></details>
+    </div>
+  </div>
+</section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><a class="footer-brand" href="#home">ONE <em>K</em><span style="font:600 7px var(--latin);letter-spacing:.15em;color:#777d7b;margin-inline-start:8px">PREMIUM PROTECTION</span></a><div>© ONE K · العناية بالسيارات</div><div class="footer-links"><a href="#protection">الخدمات</a><a href="#faq">الأسئلة الشائعة</a><a href="https://wa.me/966530004764">واتساب</a></div></div></footer>
+<footer class="footer"><div class="wrap footer-inner"><a class="footer-brand" href="#home">ONE <em>K</em><span style="font:600 7px var(--latin);letter-spacing:.15em;color:#777d7b;margin-inline-start:8px">PREMIUM PROTECTION</span></a><div>© ONE K · العناية بالسيارات</div><div class="footer-links"><a href="#protection" data-goal="all">الخدمات</a><a href="#faq">الأسئلة الشائعة</a><a href="https://wa.me/966530004764">واتساب</a></div></div></footer>
 <a class="wa-float" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1" aria-label="تواصل مع ONE K على واتساب" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.5-4.8a8.4 8.4 0 1 1 16-4Z"/><path d="M8.2 8.6c.3-.7.6-.7.9-.7h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4-.1.6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.7-.1l1.5.7c.3.1.4.3.4.5 0 .3-.2 1-.7 1.3-.5.4-1.1.6-1.8.5-1.1-.2-2.3-.7-3.5-1.8-1.1-1-1.9-2.2-2.1-3.3-.2-.8 0-1.5.3-2.1Z"/></svg></a>
 <script>
 (()=>{
@@ -581,31 +896,205 @@ raf=requestAnimationFrame(frame);
 }
 })();</script>
 <script>
-const menu=document.getElementById('menu'),navlinks=document.getElementById('navlinks'),nav=document.getElementById('nav');
-menu.addEventListener('click',()=>{const open=navlinks.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰';menu.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة')});
-navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navlinks.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}));
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>22),{passive:true});
-const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');revealObserver.unobserve(entry.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
-const details={
-film:{tag:'THERMAL COMFORT / 01',title:'العازل الحراري',text:'العناية تبدأ من الزجاج. اختر العازل المناسب لاستخدامك، واسألنا عن الأنواع المتاحة لسيارتك.',points:['خيارات متعددة حسب نوع السيارة','يساعد على تخفيف الحرارة والوهج','نوضح لك التفاصيل قبل تثبيت الموعد'],message:'هلا ONE K، أبغى أستفسر عن العازل الحراري لسيارتي'},
-ppf:{tag:'PAINT PROTECTION / 02',title:'حماية الطلاء PPF',text:'طبقة حماية شفافة لأسطح تختارها من هيكل السيارة. نساعدك على تحديد التغطية المناسبة حسب نوع وموديل السيارة.',points:['تحديد التغطية حسب احتياجك','خيارات تناسب أجزاء مختلفة من السيارة','اسألنا عن التفاصيل قبل الحجز'],message:'هلا ONE K، أبغى أستفسر عن حماية الطلاء PPF لسيارتي'},
-lamps:{tag:'HEADLIGHT PROTECTION / 03',title:'حماية شمعات السيارة',text:'حماية شفافة مخصصة لعدسات الشمعات، تُختار تغطيتها بما يناسب نوع السيارة.',points:['تقريب مباشر على منطقة الشمعات','حماية شفافة للاستخدام اليومي','التأكد من التوافق حسب موديل السيارة'],message:'هلا ONE K، أبغى أستفسر عن حماية شمعات السيارة'},
-edges:{tag:'DOOR EDGE PROTECTION / 04',title:'حماية أطراف الأبواب فقط',text:'حماية تركز على حواف الأبواب المعرضة للاحتكاك عند الفتح، مع إبقاء الخدمة على الأطراف فقط.',points:['تركيب على حافة الباب فقط','تخفيف آثار الخدوش والاحتكاك','تأكيد التغطية قبل بدء العمل'],message:'هلا ONE K، أبغى أستفسر عن حماية أطراف الأبواب فقط'},
-mats:{tag:'INTERIOR FLOOR MATS / 05',title:'دعسات داخلية للسيارة',text:'استكشف أرضية المقصورة عن قرب، واسألنا عن الدعسات المتوفرة لسيارتك.',points:['تحديد المقاس حسب نوع السيارة','خيارات مناسبة لأرضية المقصورة','التأكد من التوافق قبل الحجز'],message:'هلا ONE K، أبغى أستفسر عن الدعسات الداخلية لسيارتي'},
-upholstery:{tag:'SEAT UPHOLSTERY / 06',title:'تلبيسة مقاعد السيارة',text:'قرّب المشهد على المقاعد واستكشف خيارات التلبيس المناسبة للمقصورة.',points:['خيارات حسب تصميم وموديل السيارة','توضيح الخامات والتفاصيل المتاحة','التأكد من التوافق قبل الموعد'],message:'هلا ONE K، أبغى أستفسر عن تلبيسة مقاعد السيارة'}
+const menu = document.getElementById('menu');
+const navlinks = document.getElementById('navlinks');
+
+function setMenuOpen(open) {
+  navlinks.classList.toggle('open', open);
+  menu.setAttribute('aria-expanded', String(open));
+  menu.setAttribute('aria-label', open ? 'إغلاق القائمة' : 'فتح القائمة');
+  menu.textContent = open ? '×' : '☰';
+}
+
+menu.addEventListener('click', () => setMenuOpen(!navlinks.classList.contains('open')));
+navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+
+const details = {
+  film: {
+    area: 'زجاج السيارة',
+    title: 'العازل الحراري',
+    text: 'العازل يركّب على الزجاج ويساعد يخفف الحرارة ووهج الشمس.',
+    points: ['خيارات حسب نوع السيارة', 'نوضح لك التغطية قبل الحجز']
+  },
+  ppf: {
+    area: 'طلاء السيارة',
+    title: 'حماية الطلاء PPF',
+    text: 'فيلم شفاف للأجزاء اللي تبي تحميها من آثار الطريق والخدوش الخفيفة.',
+    points: ['حدّد أجزاء الطلاء اللي تهمك', 'التغطية حسب موديل السيارة']
+  },
+  lamps: {
+    area: 'العدسات الأمامية',
+    title: 'حماية شمعات السيارة',
+    text: 'حماية شفافة لعدسات الشمعات الأمامية.',
+    points: ['تقريب على منطقة الشمعات', 'نحدد التوافق حسب موديل السيارة']
+  },
+  edges: {
+    area: 'حواف الأبواب',
+    title: 'حماية أطراف الأبواب',
+    text: 'تغطية للحواف اللي تتعرض للاحتكاك وقت فتح الباب وإغلاقه.',
+    points: ['التغطية على حافة الباب', 'حدّد الأبواب اللي تهمك']
+  },
+  mats: {
+    area: 'أرضية المقصورة',
+    title: 'دعسات داخلية للسيارة',
+    text: 'شوف أرضية المقصورة واطلب خيارات الدعسات حسب موديل سيارتك.',
+    points: ['نراجع المقاس المناسب', 'نوضح لك الخيارات المتاحة']
+  },
+  upholstery: {
+    area: 'المقاعد',
+    title: 'تلبيسة مقاعد السيارة',
+    text: 'شوف المقاعد عن قرب واطلب خيارات التلبيس المناسبة لتصميم سيارتك.',
+    points: ['خيارات حسب الموديل', 'توضيح الخامات المتاحة قبل الحجز']
+  }
 };
-const stage=document.getElementById('stage'),panel=document.getElementById('servicePanel');
-const panelTag=document.getElementById('panelTag'),panelTitle=document.getElementById('panelTitle'),panelText=document.getElementById('panelText'),panelPoints=document.getElementById('panelPoints'),panelBook=document.getElementById('panelBook');
-function openService(kind){const item=details[kind];if(!item)return;stage.dataset.focus=kind;document.getElementById('sceneLabel').textContent=item.title;document.querySelectorAll('.mobile-service-choice').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.service===kind)));panel.hidden=false;panelTag.textContent=item.tag;panelTitle.textContent=item.title;panelText.textContent=item.text;panelPoints.innerHTML=item.points.map(text=>'<li>'+text+'</li>').join('');panelBook.href='https://wa.me/966530004764?text='+encodeURIComponent(item.message);panelBook.setAttribute('aria-label','استفسر عبر واتساب عن '+item.title);stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind}}))}
-function closeService(){delete stage.dataset.focus;document.getElementById('sceneLabel').textContent='السيارة كاملة';document.querySelectorAll('.mobile-service-choice').forEach(button=>button.setAttribute('aria-pressed','false'));panel.hidden=true;stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind:null}}))}
-document.querySelectorAll('.hotspot').forEach(button=>button.addEventListener('click',()=>openService(button.dataset.service)));
-document.querySelectorAll('.mobile-service-choice').forEach(button=>button.addEventListener('click',()=>{openService(button.dataset.service);button.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})}));
-document.getElementById('backToCar').addEventListener('click',closeService);
-document.getElementById('resetView').addEventListener('click',closeService);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){closeService();document.getElementById('resetView').focus()}});
-document.querySelectorAll('.service-filter').forEach(button=>button.addEventListener('click',()=>{const filter=button.dataset.filter;document.querySelectorAll('.service-filter').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));document.querySelectorAll('.service-card').forEach(card=>{const visible=filter==='all'||card.dataset.serviceGroup===filter;card.hidden=!visible;if(visible)card.classList.add('in')})}));
- const progress=document.querySelector('.read-progress');function updatePageProgress(){const max=document.documentElement.scrollHeight-innerHeight;progress?.style.setProperty('--page-progress',max>0?String(scrollY/max):'0')}addEventListener('scroll',updatePageProgress,{passive:true});addEventListener('resize',updatePageProgress);updatePageProgress();
+
+const stage = document.getElementById('stage');
+const sceneLabel = document.getElementById('sceneLabel');
+const serviceChoices = document.querySelectorAll('.mobile-service-choice');
+const panel = document.getElementById('servicePanel');
+const panelTag = document.getElementById('panelTag');
+const panelTitle = document.getElementById('panelTitle');
+const panelText = document.getElementById('panelText');
+const panelPoints = document.getElementById('panelPoints');
+const panelBook = document.getElementById('panelBook');
+const resetView = document.getElementById('resetView');
+
+function openService(kind) {
+  const service = details[kind];
+  if (!service) return;
+  stage.dataset.focus = kind;
+  sceneLabel.textContent = service.title;
+  serviceChoices.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.service === kind)));
+  panelTag.textContent = service.area;
+  panelTitle.textContent = service.title;
+  panelText.textContent = service.text;
+  panelPoints.replaceChildren(...service.points.map(point => {
+    const item = document.createElement('li');
+    item.textContent = point;
+    return item;
+  }));
+  panelBook.dataset.quoteService = kind;
+  panelBook.setAttribute('aria-label', 'أضف ' + service.title + ' للتسعيرة');
+  panel.hidden = false;
+  stage.dispatchEvent(new CustomEvent('care-focus', { detail: { kind } }));
+}
+
+function closeService() {
+  delete stage.dataset.focus;
+  sceneLabel.textContent = 'السيارة كاملة';
+  serviceChoices.forEach(button => button.setAttribute('aria-pressed', 'false'));
+  panel.hidden = true;
+  stage.dispatchEvent(new CustomEvent('care-focus', { detail: { kind: null } }));
+}
+
+document.querySelectorAll('.hotspot').forEach(button => {
+  button.addEventListener('click', () => openService(button.dataset.service));
+});
+serviceChoices.forEach(button => {
+  button.addEventListener('click', () => {
+    openService(button.dataset.service);
+    button.scrollIntoView({ block: 'nearest', inline: 'center' });
+  });
+});
+document.querySelectorAll('[data-preview-service]').forEach(link => {
+  link.addEventListener('click', () => openService(link.dataset.previewService));
+});
+document.getElementById('backToCar').addEventListener('click', closeService);
+resetView.addEventListener('click', closeService);
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
+  if (navlinks.classList.contains('open')) {
+    setMenuOpen(false);
+    menu.focus();
+  } else if (!panel.hidden) {
+    closeService();
+    resetView.focus();
+  }
+});
+
+const groups = {
+  all: ['اختر الجزء اللي يهمك', 'شوف الخدمة على السيارة أو أضفها مباشرة لطلب التسعيرة.'],
+  heat: ['خفّف حرّ المقصورة', 'ابدأ بعازل الزجاج. نوضح لك الخيارات حسب نوع سيارتك.'],
+  exterior: ['وين تبغى تركّز الحماية؟', 'اختَر الطلاء أو الشمعات أو أطراف الأبواب. تقدر تجمع أكثر من خدمة.'],
+  interior: ['رتّب داخلية سيارتك', 'اختَر الدعسات للأرضية أو التلبيسة للمقاعد حسب اللي تحتاجه.']
+};
+const serviceTitle = document.getElementById('servicesTitle');
+const serviceSummary = document.getElementById('serviceSummary');
+const serviceFilters = document.querySelectorAll('.service-filter');
+const serviceCards = document.querySelectorAll('.service-card');
+
+function showServiceGroup(group) {
+  const [title, summary] = groups[group];
+  serviceTitle.textContent = title;
+  serviceSummary.textContent = summary;
+  serviceFilters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === group)));
+  serviceCards.forEach(card => {
+    card.hidden = group !== 'all' && card.dataset.serviceGroup !== group;
+  });
+}
+
+serviceFilters.forEach(button => button.addEventListener('click', () => showServiceGroup(button.dataset.filter)));
+document.querySelectorAll('[data-goal]').forEach(link => {
+  link.addEventListener('click', () => showServiceGroup(link.dataset.goal));
+});
+
+const quoteForm = document.getElementById('quoteForm');
+const quoteCar = document.getElementById('quoteCar');
+const quoteWhatsApp = document.getElementById('quoteWhatsApp');
+const whatsappUrl = new URL(quoteWhatsApp.href);
+const quoteOptions = [...quoteForm.querySelectorAll('input[name="service"]')];
+
+function updateQuote() {
+  const selected = quoteOptions.filter(option => option.checked).map(option => details[option.value].title);
+  const vehicle = quoteCar.value.trim().replace(/\s+/g, ' ');
+  const lines = selected.length
+    ? ['هلا ONE K، أبغى تسعيرة للخدمات التالية.', ...selected.map(service => '• ' + service)]
+    : ['هلا ONE K، أبغى ترشّحون لي الخدمة المناسبة لسيارتي.'];
+  if (vehicle) lines.push('سيارتي ' + vehicle);
+  whatsappUrl.searchParams.set('text', lines.join('\n'));
+  quoteWhatsApp.href = whatsappUrl.href;
+}
+
+document.querySelectorAll('[data-quote-service]').forEach(link => {
+  link.addEventListener('click', () => {
+    const option = quoteOptions.find(input => input.value === link.dataset.quoteService);
+    if (option) {
+      option.checked = true;
+      updateQuote();
+    }
+  });
+});
+quoteCar.addEventListener('input', updateQuote);
+quoteForm.addEventListener('change', updateQuote);
+quoteForm.addEventListener('submit', event => {
+  event.preventDefault();
+  updateQuote();
+  quoteWhatsApp.click();
+});
+addEventListener('pageshow', updateQuote);
+updateQuote();
+
+if ('IntersectionObserver' in window) {
+  const floatingContact = document.querySelector('.wa-float');
+  const visibleControls = new Set();
+  const contactObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) visibleControls.add(entry.target);
+      else visibleControls.delete(entry.target);
+    });
+    floatingContact.hidden = visibleControls.size > 0;
+  });
+  [quoteWhatsApp, resetView].forEach(control => contactObserver.observe(control));
+}
+
+const progress = document.querySelector('.read-progress');
+function updatePageProgress() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progress.style.setProperty('--page-progress', max > 0 ? String(scrollY / max) : '0');
+}
+addEventListener('scroll', updatePageProgress, { passive: true });
+addEventListener('resize', updatePageProgress);
+updatePageProgress();
 </script>
 <script type="module">
 const canvas=document.getElementById('carCanvas'),stage=document.getElementById('stage');
