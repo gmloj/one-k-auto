@@ -1367,19 +1367,22 @@ const resetView = document.getElementById('resetView');
 const stageGlow = stage.querySelector('.stage-glow');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const activeMotion = new WeakMap();
+const scrollRevealed = new WeakSet();
 
-function playMotion(element, frames, duration) {
+function playMotion(element, frames, duration, delay = 0) {
   if (reduceMotion.matches || typeof element.animate !== 'function') return;
   activeMotion.get(element)?.cancel();
-  const animation = element.animate(frames, { duration, easing: 'cubic-bezier(.18,.72,.3,1)' });
+  const animation = element.animate(frames, {
+    duration, delay, fill: 'backwards', easing: 'cubic-bezier(.18,.72,.3,1)'
+  });
   activeMotion.set(element, animation);
 }
 
-function showMotion(element, duration = 360) {
+function showMotion(element, duration = 360, delay = 0) {
   playMotion(element, [
-    { opacity: .55, transform: 'translateY(9px)' },
+    { opacity: .55, transform: 'translateY(14px)' },
     { opacity: 1, transform: 'translateY(0)' }
-  ], duration);
+  ], duration, delay);
 }
 
 const animatedControls = '.hero a, .nav a, .menu, .mobile-service-choice, .reset-view, .panel-back, ' +
@@ -1474,7 +1477,7 @@ function showServiceGroup(group) {
   serviceCards.forEach(card => {
     const wasHidden = card.hidden;
     card.hidden = group !== 'all' && card.dataset.serviceGroup !== group;
-    if (wasHidden && !card.hidden) showMotion(card);
+    if (wasHidden && !card.hidden && scrollRevealed.has(card)) showMotion(card);
   });
   if (preview) openService(preview);
 }
@@ -1546,13 +1549,17 @@ if ('IntersectionObserver' in window) {
   [booking, quoteWhatsApp, resetView].forEach(control => contactObserver.observe(control));
 
   const sectionObserver = new IntersectionObserver(entries => {
+    let delay = 0;
     entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      showMotion(entry.target, 480);
+      if (entry.intersectionRatio < .18) return;
+      scrollRevealed.add(entry.target);
       sectionObserver.unobserve(entry.target);
+      showMotion(entry.target, 480, delay);
+      delay = Math.min(delay + 45, 135);
     });
-  }, { threshold: .25 });
-  document.querySelectorAll('.needs-head, .booking-copy, .faq-intro').forEach(heading => sectionObserver.observe(heading));
+  }, { threshold: .18 });
+  document.querySelectorAll('.needs-head, .goal-link, .results-head, .service-card, .booking-copy, .quote-form, .faq-intro, .faq-item')
+    .forEach(element => sectionObserver.observe(element));
 }
 
 const progress = document.querySelector('.read-progress');
