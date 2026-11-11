@@ -729,6 +729,77 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
   .ppf-copy, .ppf-figure, .ppf-actions { grid-column: 1; grid-row: auto; }
   .ppf-visual { width: min(124%, 760px); }
 }
+
+/* Responsive layout: WCAG 2.2 reflow and enhanced touch-target sizing. */
+:root {
+  --page-gutter: clamp(16px, 4vw, 48px);
+  --section-space: clamp(42px, 7.5vw, 104px);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-inline: max(env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+  --tap-size: 44px;
+}
+html { scroll-padding-top: calc(var(--nav-height) + var(--safe-top) + 16px); }
+.wrap { width: min(var(--max), calc(100% - 2 * max(var(--page-gutter), var(--safe-inline)))); }
+.nav { padding-top: var(--safe-top); }
+.navlinks a { display: inline-flex; align-items: center; min-height: var(--tap-size); }
+.navbook, .menu, .hero-utility a, .hero-grid > .arrival-replay, .services .card-actions a,
+.ppf-actions a, .showroom .reset-view, .quote-option, .footer-links a {
+  min-width: var(--tap-size);
+  min-height: var(--tap-size);
+}
+.hero { padding-top: calc(var(--nav-height) + var(--safe-top) + clamp(28px, 4.8vw, 64px)); }
+.hero h1 { font-size: clamp(2.25rem, 6.5vw, 5.375rem); }
+.services, .ppf-story, .booking, #faq { padding-block: var(--section-space); }
+.showroom .stage { height: clamp(224px, 130px + 31vw, 470px); }
+.showroom .mobile-service-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.75rem), 1fr));
+  gap: 8px;
+  padding: 5px;
+  overflow: visible;
+  scroll-snap-type: none;
+}
+.showroom .mobile-service-choice { min-height: var(--tap-size); font-size: .8125rem; }
+.showroom .model-credit { display: inline-flex; align-items: center; min-height: 24px; }
+.services .service-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); }
+.services .service-card p, .section-head p { font-size: .875rem; }
+.quote-options { grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.25rem), 1fr)); }
+.quote-option { font-size: .8125rem; }
+.quote-car input { min-width: 0; font-size: 1rem; }
+.footer { padding-bottom: max(24px, calc(env(safe-area-inset-bottom, 0px) + 12px)); }
+.footer-inner, .footer-links { flex-wrap: wrap; }
+.footer-links { gap: 3px 14px; }
+.footer-links a { display: inline-flex; align-items: center; }
+@media (max-width: 900px) {
+  .booking-grid { grid-template-columns: minmax(0, 1fr); align-items: start; }
+}
+@media (max-width: 700px) {
+  .navlinks {
+    top: calc(var(--nav-height) + var(--safe-top));
+    max-height: calc(100dvh - var(--nav-height) - var(--safe-top) - env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+  }
+  .services .card-actions { gap: 4px 12px; }
+  .services .card-actions a, .ppf-actions a { font-size: .8125rem; }
+  .showroom .model-status { bottom: 39px; }
+}
+@media (max-width: 480px) {
+  .services .goal-grid { grid-template-columns: minmax(0, 1fr); }
+  .services .goal-link {
+    min-height: 68px;
+    grid-template-columns: 32px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 12px;
+  }
+  .services .goal-icon { grid-row: span 2; }
+  .services .goal-link strong { font-size: .9375rem; }
+  .services .goal-link small { font-size: .75rem; }
+  .showroom .mobile-service-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .showroom .dock-heading { flex-wrap: wrap; }
+}
+@media (orientation: landscape) and (max-height: 480px) {
+  .showroom .stage { height: clamp(200px, 64svh, 340px); }
+}
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}.quote-fields,.service-filters,.card-preview{display:none}</style></noscript>
 </head>
@@ -1205,10 +1276,7 @@ document.querySelectorAll('.hotspot').forEach(button => {
   button.addEventListener('click', () => openService(button.dataset.service));
 });
 serviceChoices.forEach(button => {
-  button.addEventListener('click', () => {
-    openService(button.dataset.service);
-    button.scrollIntoView({ block: 'nearest', inline: 'center' });
-  });
+  button.addEventListener('click', () => openService(button.dataset.service));
 });
 document.querySelectorAll('[data-preview-service]').forEach(link => {
   link.addEventListener('click', () => openService(link.dataset.previewService));
@@ -1394,7 +1462,7 @@ try{
   let visible=true;new IntersectionObserver(entries=>{visible=entries[0].isIntersecting},{rootMargin:'120px'}).observe(stage);
   function animate(){requestAnimationFrame(animate);if(document.hidden||!visible)return;camera.position.lerp(desiredCamera,reduced?.2:.045);currentLook.lerp(desiredLook,reduced?.2:.055);camera.lookAt(currentLook);group.rotation.y+=(targetY+(reduced?0:pointerX*.16)-group.rotation.y)*(reduced?.22:.045);group.rotation.x+=(targetX+(reduced?0:pointerY*-.06)-group.rotation.x)*(reduced?.22:.045);renderer.render(scene,camera)}
   renderer.render(scene,camera);stage.classList.add('ready');window.oneKHomeModelReady=true;window.dispatchEvent(new Event('oneKHomeReady'));if(stage.dataset.focus)stage.dispatchEvent(new CustomEvent('care-focus',{detail:{kind:stage.dataset.focus}}));animate();
-}catch(error){window.oneKHomeModelReady=false;window.dispatchEvent(new Event('oneKHomeFallback'));console.error('ONE K 3D model could not load:',error);canvas.setAttribute('aria-hidden','true');document.getElementById('modelStatus').textContent='العرض المبسّط · اختر الخدمة من الشريط';document.querySelector('.drag-hint').hidden=true}
+}catch(error){window.oneKHomeModelReady=false;window.dispatchEvent(new Event('oneKHomeFallback'));console.error('ONE K 3D model could not load:',error);canvas.setAttribute('aria-hidden','true');document.getElementById('modelStatus').textContent='العرض المبسّط · اختر الخدمة بالأسفل';document.querySelector('.drag-hint').hidden=true}
 </script>
 </body>
 </html>
