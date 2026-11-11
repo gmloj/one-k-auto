@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}</script>
 <style>
 :root{--bg:#090a0b;--panel:#111416;--panel2:#171a1c;--white:#f6f5f1;--muted:#a0a4a3;--line:rgba(255,255,255,.12);--orange:#f15a2a;--orange2:#ff8956;--ar:'Alexandria',sans-serif;--latin:'Manrope',sans-serif;--max:1240px}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--white);font-family:var(--ar);-webkit-font-smoothing:antialiased;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}::selection{background:var(--orange);color:#fff}.wrap{width:min(var(--max),calc(100% - 64px));margin:auto}
@@ -417,19 +418,24 @@ window.oneKLoadCarAsset=()=>{
  }
  return carAssetPromise;
 };
-const x=document.getElementById('cinematicIntro');if(!x)return;
-const showArrival=false;if(!showArrival){x.hidden=true;return;}
+const x=document.getElementById('cinematicIntro');
+if(!x||new URLSearchParams(location.search).get('tour')!=='1')return;
 const reduceArrival=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const showArrivalCar=false;
+const skip=document.getElementById('introSkip');
+x.querySelector('.arrival-car-fallback').hidden=!showArrivalCar;
 x.hidden=false;x.setAttribute('aria-hidden','false');
 const siblings=[...document.body.children].filter(el=>el!==x&&!['SCRIPT','STYLE'].includes(el.tagName));
 const old=siblings.map(el=>el.inert);siblings.forEach(el=>el.inert=true);
 const overflow=document.body.style.overflow;document.body.style.overflow='hidden';
 const stage=document.getElementById('stage'),canvas=x.querySelector('canvas');
-let done=false,homeModelReady=window.oneKHomeModelReady===true,homeFallbackReady=false,sceneReady=false,cleanup=()=>{},prepareHandoff=null,safety;
+let done=false,homeModelReady=window.oneKHomeModelReady===true,homeFallbackReady=false,sceneReady=false,cleanup=()=>{},prepareHandoff=null,safety,exitDelay;
+let resolveClosed;
+const closed=new Promise(resolve=>{resolveClosed=resolve});
+const removeIntro=()=>{x.remove();resolveClosed()};
 const restorePage=()=>{siblings.forEach((el,i)=>el.inert=old[i]);document.body.style.overflow=overflow};
 const finish=(options={})=>{
- if(done)return;done=true;clearTimeout(safety);document.removeEventListener('keydown',escape);
+ if(done)return;done=true;clearTimeout(safety);clearTimeout(exitDelay);document.removeEventListener('keydown',escape);
  window.removeEventListener('oneKHomeReady',onHomeReady);window.removeEventListener('oneKHomeFallback',onHomeFallback);
  const handoff=showArrivalCar&&options.handoff===true&&homeModelReady&&stage?.classList.contains('ready')&&typeof prepareHandoff==='function';
  if(handoff){
@@ -439,22 +445,30 @@ const finish=(options={})=>{
    canvas.style.position='fixed';canvas.style.inset='auto';canvas.style.left='0px';canvas.style.top='0px';canvas.style.width='100vw';canvas.style.height='100vh';canvas.style.zIndex='1002';
    canvas.style.transition='left 950ms cubic-bezier(.2,.72,.2,1),top 950ms cubic-bezier(.2,.72,.2,1),width 950ms cubic-bezier(.2,.72,.2,1),height 950ms cubic-bezier(.2,.72,.2,1)';
    requestAnimationFrame(()=>requestAnimationFrame(()=>{const r=stage.getBoundingClientRect();canvas.style.left=r.left+'px';canvas.style.top=r.top+'px';canvas.style.width=r.width+'px';canvas.style.height=r.height+'px'}));
-   setTimeout(()=>{restorePage();cleanup();x.remove()},1050);return;
+   setTimeout(()=>{restorePage();cleanup();removeIntro()},1050);return;
   }
  }
- cleanup();restorePage();x.classList.add('is-leaving');
- if(x.contains(document.activeElement))document.querySelector('.actions .btn')?.focus({preventScroll:true});
- setTimeout(()=>x.remove(),700);
+ cleanup();restorePage();
+ if(x.contains(document.activeElement))document.querySelector('.arrival-replay')?.focus({preventScroll:true});
+ x.inert=true;x.setAttribute('aria-hidden','true');x.classList.add('is-leaving');
+ setTimeout(removeIntro,700);
 };
 const onHomeReady=()=>{homeModelReady=true;window.oneKHomeModelReady=true;if(sceneReady)finish({handoff:true})};
 const onHomeFallback=()=>{homeFallbackReady=true;if(sceneReady)finish()};
-const sceneComplete=()=>{sceneReady=true;if(homeModelReady)finish({handoff:true});else if(homeFallbackReady)finish()};
+const sceneComplete=(hold=0)=>{
+ if(done)return;
+ if(hold>0){exitDelay=setTimeout(sceneComplete,hold);return}
+ sceneReady=true;
+ if(!showArrivalCar||homeFallbackReady)finish();
+ else if(homeModelReady)finish({handoff:true});
+};
 const escape=e=>{if(e.key==='Escape')finish()};
 document.addEventListener('keydown',escape);
-document.getElementById('introSkip').addEventListener('click',()=>finish());
+skip.addEventListener('click',()=>finish());
+requestAnimationFrame(()=>{if(!done)skip.focus({preventScroll:true})});
 window.addEventListener('oneKHomeReady',onHomeReady);window.addEventListener('oneKHomeFallback',onHomeFallback);
 safety=setTimeout(()=>finish(),16000);
-window.oneKArrival={reduced:reduceArrival,showArrivalCar,element:x,finish,sceneComplete,isDone:()=>done,loadCarAsset:window.oneKLoadCarAsset,setCleanup:fn=>{cleanup=fn;if(done)fn()},setHandoff:fn=>{prepareHandoff=fn}};
+window.oneKArrival={reduced:reduceArrival,showArrivalCar,element:x,closed,finish,sceneComplete,isDone:()=>done,loadCarAsset:window.oneKLoadCarAsset,setCleanup:fn=>{cleanup=fn;if(done)fn()},setHandoff:fn=>{prepareHandoff=fn}};
 })();</script><script>
 (async()=>{
 const app=window.oneKArrival;if(!app||app.isDone())return;
@@ -482,7 +496,7 @@ const ctx=sign.getContext('2d');ctx.fillStyle='#080a0e';ctx.fillRect(0,0,1536,25
 const tex=new T.CanvasTexture(sign);tex.colorSpace=T.SRGBColorSpace;
 const signMaterial=new T.MeshBasicMaterial({map:tex,transparent:true});
 const label=new T.Mesh(new T.PlaneGeometry(9.25,1.2),signMaterial);label.position.set(0,5.22,5.27);scene.add(label);
-let stopped=false,raf=0,start,width=1,height=1,canRender=false,shopRoot=null,car=null,carRig=null,left=null,right=null,resizeObserver=null;
+let stopped=false,raf=0,start,width=1,height=1,canRender=false,shopRoot=null,carRig=null,left=null,right=null,resizeObserver=null;
 function resize(){const r=canvas.getBoundingClientRect();width=Math.max(1,r.width);height=Math.max(1,r.height);renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();if(canRender)renderer.render(scene,camera)}
 window.addEventListener('resize',resize);if('ResizeObserver'in window){resizeObserver=new ResizeObserver(resize);resizeObserver.observe(canvas)}
 const cleanup=()=>{
@@ -500,22 +514,33 @@ if(app.isDone())return;
 const [{GLTFLoader},{MeshoptDecoder}]=loaderModules;
 const shopLoader=new GLTFLoader();shopLoader.setMeshoptDecoder(MeshoptDecoder);
 const shopURL=new URL('./assets/one-k-store.glb',document.baseURI).href;
-const [shopData,bmwData]=await Promise.all([shopLoader.loadAsync(shopURL),app.loadCarAsset()]);
+const [shopData,bmwData]=await Promise.all([
+ shopLoader.loadAsync(shopURL),
+ app.showArrivalCar?app.loadCarAsset():null
+]);
 if(app.isDone()||stopped)return;
 shopRoot=shopData.scene;scene.add(shopRoot);left=shopRoot.getObjectByName('Door_Left');right=shopRoot.getObjectByName('Door_Right');
-car=bmwData.scene.clone(true);
-const rawBounds=new T.Box3().setFromObject(car),rawSize=rawBounds.getSize(new T.Vector3()),rawCenter=rawBounds.getCenter(new T.Vector3());
-const scale=3.6/(Math.max(rawSize.x,rawSize.y,rawSize.z)||1);
-car.scale.setScalar(scale);car.position.set(-rawCenter.x*scale,-rawBounds.min.y*scale,-rawCenter.z*scale);
-carRig=new T.Group();carRig.add(car);carRig.visible=app.showArrivalCar;scene.add(carRig);
-const carBounds=new T.Box3().setFromObject(car),size=carBounds.getSize(new T.Vector3()),center=carBounds.getCenter(new T.Vector3()),heightModel=size.y;
-const shopBounds=new T.Box3().setFromObject(shopRoot),doorBounds=left?new T.Box3().setFromObject(left):null;
-const doorPlaneZ=doorBounds?doorBounds.getCenter(new T.Vector3()).z:shopBounds.max.z;
-const carHalfDepth=(size.z*Math.cos(.2)+size.x*Math.sin(.2))*.5;
-const carEndZ=Math.min(0,doorPlaneZ-carHalfDepth-.85);
-const carStartZ=Math.min(carEndZ,Math.max(shopBounds.min.z+carHalfDepth+.55,carEndZ-2.4));
-const homeDistance=Math.max(8.1,Math.max(size.x,size.z)*1.75);
-const homeCamera=new T.Vector3(homeDistance*.64,homeDistance*.3,homeDistance*.76),homeLook=new T.Vector3(center.x,heightModel*.32,center.z);
+const shopBounds=new T.Box3().setFromObject(shopRoot);
+const homeCamera=new T.Vector3(0,2.8,shopBounds.max.z+4.5),homeLook=new T.Vector3(0,2.4,0);
+let carStartZ=0,carEndZ=0;
+if(bmwData){
+ const car=bmwData.scene.clone(true);
+ const rawBounds=new T.Box3().setFromObject(car);
+ const rawSize=rawBounds.getSize(new T.Vector3()),rawCenter=rawBounds.getCenter(new T.Vector3());
+ const scale=3.6/(Math.max(rawSize.x,rawSize.y,rawSize.z)||1);
+ car.scale.setScalar(scale);
+ car.position.set(-rawCenter.x*scale,-rawBounds.min.y*scale,-rawCenter.z*scale);
+ carRig=new T.Group();carRig.add(car);scene.add(carRig);
+ const carBounds=new T.Box3().setFromObject(car);
+ const size=carBounds.getSize(new T.Vector3()),center=carBounds.getCenter(new T.Vector3());
+ const doorPlaneZ=left?new T.Box3().setFromObject(left).getCenter(new T.Vector3()).z:shopBounds.max.z;
+ const carHalfDepth=(size.z*Math.cos(.2)+size.x*Math.sin(.2))*.5;
+ carEndZ=Math.min(0,doorPlaneZ-carHalfDepth-.85);
+ carStartZ=Math.min(carEndZ,Math.max(shopBounds.min.z+carHalfDepth+.55,carEndZ-2.4));
+ const homeDistance=Math.max(8.1,Math.max(size.x,size.z)*1.75);
+ homeCamera.set(homeDistance*.64,homeDistance*.3,homeDistance*.76);
+ homeLook.set(center.x,size.y*.32,center.z);
+}
 const entryCamera=new T.Vector3(),entryLook=new T.Vector3(),cameraLook=new T.Vector3();
 canRender=true;resize();
 app.setHandoff(()=>{
@@ -530,10 +555,12 @@ function frame(now){
  start??=now;const t=app.reduced?6.7:Math.min((now-start)/1000,6.7),mobile=width<700,radius=mobile?24:19;
  const approach=smooth(clamp((t-3)/3.7));let x,y,z;
  const opening=smooth(clamp((t-2.15)/.8));if(left)left.position.x=-2.15*opening;if(right)right.position.x=2.15*opening;
- const drive=smooth(clamp((t-2.95)/2.85));
- carRig.position.set(0,0,lerp(carStartZ,carEndZ,drive));
- carRig.rotation.y=lerp(0,-.2,drive);carRig.rotation.x=lerp(0,-.035,drive);
- carShadow.position.z=carRig.position.z;floorGlow.position.z=carRig.position.z;orbit.position.z=carRig.position.z;carShadow.visible=app.showArrivalCar&&drive>.04;
+ if(carRig){
+  const drive=smooth(clamp((t-2.95)/2.85));
+  carRig.position.set(0,0,lerp(carStartZ,carEndZ,drive));
+  carRig.rotation.y=lerp(0,-.2,drive);carRig.rotation.x=lerp(0,-.035,drive);
+  carShadow.position.z=carRig.position.z;floorGlow.position.z=carRig.position.z;orbit.position.z=carRig.position.z;carShadow.visible=drive>.04;
+ }
  if(t<3){
   const p=smooth(t/3),angle=lerp(mobile?.34:.62,0,p);x=Math.sin(angle)*radius;y=lerp(5.8,3.3,p);z=4+Math.cos(angle)*radius;
   camera.position.set(x,y,z);camera.lookAt(0,3,0);
@@ -545,10 +572,13 @@ function frame(now){
  }
  host.style.setProperty('--arrival-progress',String(t/6.7));host.querySelector('.arrival-copy').style.opacity=String(Math.max(0,1-(t-2.8)/1.1));
  renderer.render(scene,camera);host.classList.add('arrival-ready');
- if(t>=6.7){app.sceneComplete();return}raf=requestAnimationFrame(frame);
+ if(t>=6.7){app.sceneComplete(app.reduced?1200:0);return}raf=requestAnimationFrame(frame);
 }
 raf=requestAnimationFrame(frame);
-}catch(e){console.warn('Storefront scene unavailable; retaining architectural fallback',e);app.sceneComplete()}
+}catch(e){
+ console.warn('Storefront scene unavailable; retaining architectural fallback',e);
+ app.sceneComplete(app.reduced?1200:3200);
+}
 })();</script>
 <script>
 const menu=document.getElementById('menu'),navlinks=document.getElementById('navlinks'),nav=document.getElementById('nav');
@@ -577,10 +607,11 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){clos
 document.querySelectorAll('.service-filter').forEach(button=>button.addEventListener('click',()=>{const filter=button.dataset.filter;document.querySelectorAll('.service-filter').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));document.querySelectorAll('.service-card').forEach(card=>{const visible=filter==='all'||card.dataset.serviceGroup===filter;card.hidden=!visible;if(visible)card.classList.add('in')})}));
  const progress=document.querySelector('.read-progress');function updatePageProgress(){const max=document.documentElement.scrollHeight-innerHeight;progress?.style.setProperty('--page-progress',max>0?String(scrollY/max):'0')}addEventListener('scroll',updatePageProgress,{passive:true});addEventListener('resize',updatePageProgress);updatePageProgress();
 </script>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"}}</script>
 <script type="module">
 const canvas=document.getElementById('carCanvas'),stage=document.getElementById('stage');
 try{
+  const arrival=window.oneKArrival;
+  if(arrival&&!arrival.showArrivalCar)await arrival.closed;
   const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js');
   const [{GLTFLoader},{MeshoptDecoder}]=await Promise.all([import('https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/loaders/GLTFLoader.js'),import('https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/libs/meshopt_decoder.module.js')]);
   const scene=new THREE.Scene();
