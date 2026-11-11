@@ -667,6 +667,68 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
   .services .goal-icon { grid-row: span 2; }
   .services .goal-link strong { font-size: 13px; }
 }
+
+.ppf-story { padding-block: clamp(52px, 8vw, 104px); background: #eae6df; color: var(--ink); }
+.ppf-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+  grid-template-rows: 1fr 1fr;
+  column-gap: clamp(25px, 5vw, 72px);
+  row-gap: 16px;
+}
+.ppf-copy { grid-column: 1; grid-row: 1; align-self: end; }
+.ppf-copy h2 { margin: 0 0 12px; font-size: clamp(29px, 4.15vw, 54px); line-height: 1.22; }
+.ppf-copy p { margin: 0; color: var(--paper-muted); font-size: clamp(13px, 1.4vw, 16px); line-height: 1.85; }
+.ppf-actions { grid-column: 1; grid-row: 2; align-self: start; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 15px; }
+.ppf-actions .btn { min-height: 46px; border-radius: 100px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 700; }
+.ppf-actions .btn:hover { background: #433328; }
+.ppf-actions .ppf-interact { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; color: #674432; }
+.ppf-interact:hover { text-decoration: underline; }
+.ppf-figure {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1 / -1;
+  min-height: clamp(240px, 31vw, 412px);
+  margin: 0;
+  overflow: hidden;
+  border-radius: clamp(15px, 2vw, 26px);
+  background: radial-gradient(ellipse at 38% 58%, #49312b, #222123 62%, #19191b);
+  color: #fff;
+}
+.ppf-figure figcaption { position: absolute; inset: auto 15px 12px auto; color: #e5dfdb; font-size: 10px; }
+.ppf-visual { position: absolute; top: 51%; left: 6%; width: 113%; transform: translateY(-46%); }
+.ppf-visual img { display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 22px #09090abb); }
+.ppf-pin {
+  position: absolute;
+  top: 43%;
+  left: 24%;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #241a15;
+  border-radius: 50%;
+  background: #fff0e1;
+  box-shadow: 0 0 0 4px #fff0e14a;
+  transform: translate(-50%, -50%);
+}
+.ppf-pin::after { content: ""; position: absolute; bottom: 100%; left: 50%; width: 1px; height: 28px; background: #fff0e1; }
+.ppf-pin span {
+  position: absolute;
+  bottom: calc(100% + 28px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 9px;
+  border-radius: 100px;
+  background: #fff0e1;
+  color: #32241c;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 700;
+}
+@media (max-width: 700px) {
+  .ppf-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; }
+  .ppf-copy, .ppf-figure, .ppf-actions { grid-column: 1; grid-row: auto; }
+  .ppf-visual { width: min(124%, 760px); }
+}
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}.quote-fields,.service-filters,.card-preview{display:none}</style></noscript>
 </head>
@@ -808,6 +870,25 @@ html { scroll-padding-top: calc(var(--nav-height) + 18px); }
           <a class="card-preview" href="#stage" data-preview-service="upholstery" aria-label="شوف تلبيسة المقاعد على السيارة">شوفها على السيارة</a>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+<section class="section ppf-story" id="ppf" aria-labelledby="ppfTitle">
+  <div class="wrap ppf-layout">
+    <div class="ppf-copy">
+      <h2 id="ppfTitle">شف وين يركب الـPPF.</h2>
+      <p>فيلم شفاف يغطّي أجزاء من الطلاء مثل الكبوت. حدّد الجزء اللي تبغى تحميه ونوضح لك التغطية المناسبة لسيارتك.</p>
+    </div>
+    <figure class="ppf-figure">
+      <div class="ppf-visual">
+        <img src="./assets/one-k-bmw-preview.webp" width="628" height="274" loading="lazy" decoding="async" alt="سيارة BMW مع مؤشر على منطقة الكبوت التي يمكن تغطيتها بالفيلم">
+        <div class="ppf-pin" aria-hidden="true"><span>الكبوت</span></div>
+      </div>
+      <figcaption>معاينة توضيحية</figcaption>
+    </figure>
+    <div class="ppf-actions">
+      <a class="btn" href="#experience" data-quote-service="ppf">سعّر الحماية لسيارتي</a>
+      <a class="ppf-interact" href="#stage" data-preview-service="ppf">شوفها على المجسّم <span aria-hidden="true">←</span></a>
     </div>
   </div>
 </section>
@@ -1147,9 +1228,9 @@ document.addEventListener('keydown', event => {
 
 const groups = {
   all: ['الخدمات', 'شوف الخدمة على السيارة أو أضفها مباشرة لطلب التسعيرة.'],
-  heat: ['خفّف حرّ المقصورة', 'ابدأ بعازل الزجاج. نوضح لك الخيارات حسب نوع سيارتك.'],
-  exterior: ['وين تبغى تركّز الحماية؟', 'اختَر الطلاء أو الشمعات أو أطراف الأبواب. تقدر تجمع أكثر من خدمة.'],
-  interior: ['رتّب داخلية سيارتك', 'اختَر الدعسات للأرضية أو التلبيسة للمقاعد حسب اللي تحتاجه.']
+  heat: ['خفّف حرّ المقصورة', 'ابدأ بعازل الزجاج. نوضح لك الخيارات حسب نوع سيارتك.', 'film'],
+  exterior: ['وين تبغى تركّز الحماية؟', 'اختَر الطلاء أو الشمعات أو أطراف الأبواب. تقدر تجمع أكثر من خدمة.', 'ppf'],
+  interior: ['رتّب داخلية سيارتك', 'اختَر الدعسات للأرضية أو التلبيسة للمقاعد حسب اللي تحتاجه.', 'mats']
 };
 const serviceTitle = document.getElementById('servicesTitle');
 const serviceSummary = document.getElementById('serviceSummary');
@@ -1157,13 +1238,14 @@ const serviceFilters = document.querySelectorAll('.service-filter');
 const serviceCards = document.querySelectorAll('.service-card');
 
 function showServiceGroup(group) {
-  const [title, summary] = groups[group];
+  const [title, summary, preview] = groups[group];
   serviceTitle.textContent = title;
   serviceSummary.textContent = summary;
   serviceFilters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === group)));
   serviceCards.forEach(card => {
     card.hidden = group !== 'all' && card.dataset.serviceGroup !== group;
   });
+  if (preview) openService(preview);
 }
 
 serviceFilters.forEach(button => button.addEventListener('click', () => showServiceGroup(button.dataset.filter)));
