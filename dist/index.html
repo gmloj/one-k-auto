@@ -824,6 +824,83 @@ body, .hero, .booking, .footer, .nav, .navlinks.open, #cinematicIntro {
 }
 .hero-contact a:hover, .hero-contact a:focus-visible { color: var(--ink); text-decoration: underline; }
 .hero-contact svg { width: 16px; height: 16px; flex: none; }
+
+.stage-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(110deg, transparent 31%, #ffab7d54 49%, transparent 67%);
+}
+.quote-float {
+  position: fixed;
+  z-index: 25;
+  left: max(15px, env(safe-area-inset-left));
+  bottom: max(15px, env(safe-area-inset-bottom));
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: var(--tap-size);
+  padding: 5px 13px 5px 7px;
+  border-radius: 100px;
+  background: var(--accent-fill);
+  color: #25140c;
+  font-size: .8125rem;
+  font-weight: 700;
+  box-shadow: 0 6px 20px #58281133;
+}
+.quote-float[hidden] { display: none; }
+.quote-float:hover { background: #ffb58e; }
+.quote-float-count {
+  display: grid;
+  place-items: center;
+  min-width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fff9f5;
+  font-variant-numeric: tabular-nums;
+}
+.hero-action > span { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) {
+  .faq-item[open] > p { animation: one-k-enter .25s ease-out; }
+  .hero-copy > * { animation: one-k-enter .52s cubic-bezier(.18,.72,.3,1) backwards; }
+  .hero-copy > .hero-desc { animation-delay: .07s; }
+  .hero-copy > .hero-utility { animation-delay: .14s; }
+  .hero-copy > .hero-contact { animation-delay: .19s; }
+  .stage-glow { animation: one-k-light-pass .8s .22s ease-out; }
+  .stage.ready .drag-hint i { animation: one-k-drag-hint .78s .25s ease-in-out 2; }
+  .quote-float { animation: one-k-enter .35s cubic-bezier(.16,.82,.36,1); }
+  .hero-action > span, .quote-float {
+    transition: transform .22s ease, background-color .22s ease;
+  }
+  .hero-action:is(:hover,:focus-visible) > span { transform: translateX(-4px); }
+  :is(.hero-action,.navbook,.panel-book,.quote-cta,.quote-float,.goal-link,.mobile-service-choice):active {
+    scale: .97;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .services .goal-link, .services .service-card {
+    transition: translate .24s ease, box-shadow .24s ease, background-color .24s ease, border-color .24s ease;
+  }
+  .services :is(.goal-link:hover,.service-card:hover,.service-card:focus-within) {
+    translate: 0 -4px;
+    box-shadow: 0 9px 22px #31221612;
+  }
+  .quote-float:hover { transform: translateY(-3px); }
+}
+@keyframes one-k-enter {
+  from { opacity: .45; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes one-k-light-pass {
+  0% { opacity: 0; transform: translateX(-62%); }
+  46% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(62%); }
+}
+@keyframes one-k-drag-hint {
+  25% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+}
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}.quote-fields,.service-filters,.card-preview{display:none}</style></noscript>
 </head>
@@ -975,7 +1052,7 @@ body, .hero, .booking, .footer, .nav, .navlinks.open, #cinematicIntro {
     </div>
   </div>
 </section>
-<section class="section booking" id="experience" aria-labelledby="quoteTitle">
+<section class="section booking" id="experience" aria-labelledby="quoteTitle" tabindex="-1">
   <div class="wrap booking-grid">
     <div class="booking-copy">
       <h2 id="quoteTitle">كم تطلع على سيارتك؟</h2>
@@ -1027,6 +1104,7 @@ body, .hero, .booking, .footer, .nav, .navlinks.open, #cinematicIntro {
     </nav>
   </div>
 </footer>
+<a class="quote-float" href="#experience" hidden>تسعيرتي <span class="quote-float-count"></span></a>
 <a class="wa-float" href="https://wa.me/966530004764?text=%D9%87%D9%84%D8%A7%20ONE%20K%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1" aria-label="تواصل مع ONE K على واتساب" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.5-4.8a8.4 8.4 0 1 1 16-4Z"/><path d="M8.2 8.6c.3-.7.6-.7.9-.7h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4-.1.6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.7-.1l1.5.7c.3.1.4.3.4.5 0 .3-.2 1-.7 1.3-.5.4-1.1.6-1.8.5-1.1-.2-2.3-.7-3.5-1.8-1.1-1-1.9-2.2-2.1-3.3-.2-.8 0-1.5.3-2.1Z"/></svg></a>
 <script>
 (()=>{
@@ -1275,10 +1353,28 @@ const panelText = document.getElementById('panelText');
 const panelPoints = document.getElementById('panelPoints');
 const panelBook = document.getElementById('panelBook');
 const resetView = document.getElementById('resetView');
+const stageGlow = stage.querySelector('.stage-glow');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const activeMotion = new WeakMap();
+
+function playMotion(element, frames, duration) {
+  if (reduceMotion.matches || typeof element.animate !== 'function') return;
+  activeMotion.get(element)?.cancel();
+  const animation = element.animate(frames, { duration, easing: 'cubic-bezier(.18,.72,.3,1)' });
+  activeMotion.set(element, animation);
+}
+
+function showMotion(element, duration = 360) {
+  playMotion(element, [
+    { opacity: .55, transform: 'translateY(9px)' },
+    { opacity: 1, transform: 'translateY(0)' }
+  ], duration);
+}
 
 function openService(kind) {
   const service = details[kind];
   if (!service) return;
+  const changed = stage.dataset.focus !== kind;
   stage.dataset.focus = kind;
   sceneLabel.textContent = service.title;
   serviceChoices.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.service === kind)));
@@ -1293,6 +1389,15 @@ function openService(kind) {
   panelBook.dataset.quoteService = kind;
   panelBook.setAttribute('aria-label', 'أضف ' + service.title + ' للتسعيرة');
   panel.hidden = false;
+  if (changed) {
+    playMotion(stageGlow, [
+      { opacity: 0, transform: 'translateX(-62%)' },
+      { opacity: .85, offset: .45 },
+      { opacity: 0, transform: 'translateX(62%)' }
+    ], 650);
+    showMotion(sceneLabel, 300);
+    showMotion(panel);
+  }
   stage.dispatchEvent(new CustomEvent('care-focus', { detail: { kind } }));
 }
 
@@ -1343,7 +1448,9 @@ function showServiceGroup(group) {
   serviceSummary.textContent = summary;
   serviceFilters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === group)));
   serviceCards.forEach(card => {
+    const wasHidden = card.hidden;
     card.hidden = group !== 'all' && card.dataset.serviceGroup !== group;
+    if (wasHidden && !card.hidden) showMotion(card);
   });
   if (preview) openService(preview);
 }
@@ -1358,6 +1465,18 @@ const quoteCar = document.getElementById('quoteCar');
 const quoteWhatsApp = document.getElementById('quoteWhatsApp');
 const whatsappUrl = new URL(quoteWhatsApp.href);
 const quoteOptions = [...quoteForm.querySelectorAll('input[name="service"]')];
+const floatingContact = document.querySelector('.wa-float');
+const floatingQuote = document.querySelector('.quote-float');
+const floatingCount = floatingQuote.querySelector('.quote-float-count');
+const booking = document.getElementById('experience');
+const visibleControls = new Set();
+let bookingVisible = true;
+
+function updateFloatingActions() {
+  const showQuote = !bookingVisible && Number(floatingCount.textContent) > 0 && !visibleControls.size;
+  floatingQuote.hidden = !showQuote;
+  floatingContact.hidden = showQuote || visibleControls.size > 0;
+}
 
 function updateQuote() {
   const selected = quoteOptions.filter(option => option.checked).map(option => details[option.value].title);
@@ -1368,6 +1487,8 @@ function updateQuote() {
   if (vehicle) lines.push('سيارتي ' + vehicle);
   whatsappUrl.searchParams.set('text', lines.join('\n'));
   quoteWhatsApp.href = whatsappUrl.href;
+  floatingCount.textContent = selected.length;
+  updateFloatingActions();
 }
 
 document.querySelectorAll('[data-quote-service]').forEach(link => {
@@ -1390,16 +1511,24 @@ addEventListener('pageshow', updateQuote);
 updateQuote();
 
 if ('IntersectionObserver' in window) {
-  const floatingContact = document.querySelector('.wa-float');
-  const visibleControls = new Set();
   const contactObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) visibleControls.add(entry.target);
+      if (entry.target === booking) bookingVisible = entry.isIntersecting;
+      else if (entry.isIntersecting) visibleControls.add(entry.target);
       else visibleControls.delete(entry.target);
     });
-    floatingContact.hidden = visibleControls.size > 0;
+    updateFloatingActions();
   });
-  [quoteWhatsApp, resetView].forEach(control => contactObserver.observe(control));
+  [booking, quoteWhatsApp, resetView].forEach(control => contactObserver.observe(control));
+
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      showMotion(entry.target, 480);
+      sectionObserver.unobserve(entry.target);
+    });
+  }, { threshold: .25 });
+  document.querySelectorAll('.needs-head, .booking-copy, .faq-intro').forEach(heading => sectionObserver.observe(heading));
 }
 
 const progress = document.querySelector('.read-progress');
